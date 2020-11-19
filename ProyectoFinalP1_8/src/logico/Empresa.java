@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Empresa {
+public class Empresa { 
 	
 	private ArrayList<Empleado> empleados;
 	private ArrayList<Cliente> clientes;
