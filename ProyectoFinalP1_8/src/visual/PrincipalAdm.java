@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import logico.Empresa;
 
-public class PrincipalAdm extends JFrame {
+public class PrincipalAdm extends JFrame { 
 
 	private JPanel contentPane;
 
