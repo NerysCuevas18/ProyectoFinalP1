@@ -3,7 +3,7 @@ package logico;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Factura { 
+public class Factura {
 	
 	private String codFactura;
 	private Cliente cliente;
