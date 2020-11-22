@@ -1,5 +1,8 @@
 package logico;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public abstract class Persona {
 	protected String cedula;
 	protected String nombres;
