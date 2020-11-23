@@ -1,10 +1,20 @@
 package logico;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Empleado extends Persona {
 	protected Date ingresoCompania;
 	protected float saldo;
+	
+	public Empleado(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
+			int edad, char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
+			String telefonoReferencia, Date ingresoCompania, float saldo) {
+		super(cedula, nombres, apellidos, telefonos, correo, edad, sexo, nacimiento, nacionalidad, nombreReferencia,
+				telefonoReferencia);
+		this.ingresoCompania = ingresoCompania;
+		this.saldo = saldo;
+	}
 	
 	public Date getIngresoCompania() {
 		return ingresoCompania;
@@ -19,5 +29,4 @@ public abstract class Empleado extends Persona {
 		this.saldo = saldo;
 	}
 	
-
 }

@@ -16,6 +16,23 @@ public abstract class Persona {
 	protected String nombreReferencia;
 	protected String telefonoReferencia;
 	
+	public Persona(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
+			int edad, char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
+			String telefonoReferencia) {
+		super();
+		this.cedula = cedula;
+		this.nombres = nombres;
+		this.apellidos = apellidos;
+		this.telefonos = telefonos;
+		this.correo = correo;
+		this.edad = edad;
+		this.sexo = sexo;
+		this.nacimiento = nacimiento;
+		this.nacionalidad = nacionalidad;
+		this.nombreReferencia = nombreReferencia;
+		this.telefonoReferencia = telefonoReferencia;
+	}
+	
 	public String getCedula() {
 		return cedula;
 	}
@@ -82,9 +99,6 @@ public abstract class Persona {
 	public void setTelefonoReferencia(String telefonoReferencia) {
 		this.telefonoReferencia = telefonoReferencia;
 	}
-	
-	
-	
 	
 
 }

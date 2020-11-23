@@ -92,9 +92,9 @@ public class Empresa {
 		facturar.setTime(hoy);
 		if(facturar.get(Calendar.DAY_OF_MONTH) == 25 && !facturasGeneradas) {
 			for(int i = 0; i<clientes.size(); i++) {
-				if(clientes.get(i).isEstado) {
+				if(clientes.get(i).isEstado()) {
 					Factura fact = new Factura("ALT"+codFacturas++, clientes.get(i));
-					clientes.get(i).getFacturas().add(fact);
+					clientes.get(i).getFacturasMensual().add(fact);
 				}
 			}
 			facturasGeneradas = true;
