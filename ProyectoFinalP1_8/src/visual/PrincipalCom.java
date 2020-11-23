@@ -98,7 +98,7 @@ public class PrincipalCom extends JFrame {
 		JMenuItem mntmNewMenuItem_21 = new JMenuItem("Compra de planes");
 		mntmNewMenuItem_21.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CompraPlan compraPlan = new CompraPlan("Registrar empleado", 0, null);
+				CompraPlan compraPlan = new CompraPlan();
 				compraPlan.setVisible(true);
 			}
 		});
