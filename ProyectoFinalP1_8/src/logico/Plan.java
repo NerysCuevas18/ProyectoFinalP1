@@ -1,18 +1,20 @@
 package logico;
 
 public class Plan {
-	static int codPlan = 0;
-	String nombreP;
-	String descripcionP;
-	float precioP;
+	private static int codPlan = 0;
+	private String nombreP;
+	private String descripcionP;
+	private float precioP;
+	private String tipoPlan;
 	
-	public Plan(String nombreP, String descripcionP, float precioP) {
+	public Plan(String nombreP, String descripcionP, float precioP, String tipoPlan) {
 		super();
 		this.nombreP = nombreP;
 		this.descripcionP = descripcionP;
 		this.precioP = precioP;
+		this.tipoPlan = tipoPlan;
 	}
-
+	
 	public static int getCodPlan() {
 		return codPlan;
 	}
@@ -44,10 +46,15 @@ public class Plan {
 	public void setPrecioP(float precioP) {
 		this.precioP = precioP;
 	}
-	
-	
-	
-	
-	
+
+	public String getTipoPlan() {
+		return tipoPlan;
+	}
+
+	public void setTipoPlan(String tipoPlan) {
+		this.tipoPlan = tipoPlan;
+	}
+
+		
 
 }
