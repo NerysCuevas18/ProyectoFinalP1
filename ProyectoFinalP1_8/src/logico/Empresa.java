@@ -172,7 +172,20 @@ public class Empresa implements Serializable {
 		}
 		return login;
 	}
-	/*public Plan findPlan (String codPlan) {
+	public Empleado findEmpleado (String ced) {
+		Empleado misEmpleados = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<empleados.size()){
+			if(empleados.get(i).getCedula().equalsIgnoreCase(ced)) {
+				misEmpleados = empleados.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return misEmpleados;
+	}
+	public Plan findPlan (String codPlan) {
 		Plan misPlanes = null;
 		boolean encontrado = false;
 		int i = 0;
@@ -184,6 +197,19 @@ public class Empresa implements Serializable {
 			i++;
 		}
 		return misPlanes;
-	}*/
+	}
+	public Cliente findCliente (String ced) {
+		Cliente misClientes = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<clientes.size()){
+			if(clientes.get(i).getCedula().equalsIgnoreCase(ced)) {
+				misClientes = clientes.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return misClientes;
+	}
 
 }

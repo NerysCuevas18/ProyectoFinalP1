@@ -13,6 +13,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logico.Cliente;
+import logico.Empleado;
+import logico.EmpleadoAdm;
+import logico.EmpleadoCom;
 import logico.Empresa;
 import logico.Factura;
 import logico.Plan;
@@ -24,6 +28,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -69,7 +74,7 @@ public class CompraPlan extends JDialog {
 	 * Create the dialog.
 	 * @param miAlmacen 
 	 */
-	public CompraPlan() {
+	public CompraPlan(String cedEmpleado) {
 		setTitle("Venta de planes");
 		setModal(true);
 		setLocationRelativeTo(null);
@@ -185,6 +190,23 @@ public class CompraPlan extends JDialog {
 				});
 				
 				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						String cedula = txtCed.getText();
+						String plan = txtCodPlan.getText();
+						Empleado empleado = Empresa.getInstance().findEmpleado(cedEmpleado);
+						if (empleado instanceof EmpleadoCom) {
+							((EmpleadoCom) empleado).cantVenta++;
+						}
+						Plan planC = Empresa.getInstance().findPlan(plan);
+						if(planC!=null) {
+							Cliente cliente = Empresa.getInstance().findCliente(cedula);
+							if(cliente!=null) {
+								cliente.setPlanC(planC);
+							}
+						}
+					}
+				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				btnCancelar.setActionCommand("Cancel");

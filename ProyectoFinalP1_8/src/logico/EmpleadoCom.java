@@ -6,7 +6,7 @@ import java.util.Date;
 public class EmpleadoCom extends Empleado {
 	
 	float bono;
-	int cantVenta;
+	public int cantVenta;
 
 	public EmpleadoCom(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
 			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia, String telefonoReferencia,
@@ -15,7 +15,6 @@ public class EmpleadoCom extends Empleado {
 				telefonoReferencia, ingresoCompania, saldo, pass);
 		this.bono = 0;
 		this.cantVenta = 0;
-		
 	}
 
 	public float getBono() {

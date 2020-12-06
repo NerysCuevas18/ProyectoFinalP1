@@ -232,7 +232,7 @@ public class RegCliente extends JDialog {
 						String cedula = txtCed.getText();
 						String nombre = txtNombre.getText();
 						String apellido = txtApellido.getText();
-						ArrayList<String> tel = null;
+						ArrayList<String> tel = new ArrayList<String>();						
 						tel.add(txtTel1.getText());
 						tel.add(txtTel2.getText());
 						String correo = txtEmail.getText();
