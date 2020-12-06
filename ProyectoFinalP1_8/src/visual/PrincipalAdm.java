@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logico.Empresa;
+import logico.Plan;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 
@@ -112,6 +114,30 @@ public class PrincipalAdm extends JFrame {
 		mnCuenta.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Cerrar sesi\u00F3n");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int returnValue= JOptionPane.showConfirmDialog(null, "¿Está seguro/a que desea cerrar la sesión?", "Confirmación", JOptionPane.CANCEL_OPTION);
+		    	 if(returnValue == 0) {
+		    		Empresa.getInstance().setConexion(false);
+		    		
+		    		FileOutputStream empresa2;
+					ObjectOutputStream empresaWrite;
+					try {
+						empresa2 = new  FileOutputStream("Altice.dat");
+						empresaWrite = new ObjectOutputStream(empresa2);
+						empresaWrite.writeObject(Empresa.getInstance());
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		    		
+		    		dispose();
+		    	 }
+			}
+		});
 		mnCuenta.add(mntmNewMenuItem_3);
 		
 			JMenu mnNewMenu1 = new JMenu("Registros");
@@ -176,6 +202,15 @@ public class PrincipalAdm extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmEmpleados);
+		
+		JMenu mnNewMenu_1 = new JMenu("Reportes");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Cantidad de usuarios por plan");
+		mnNewMenu_1.add(mntmNewMenuItem_4);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Ganancias mensuales");
+		mnNewMenu_1.add(mntmNewMenuItem_5);
 	
 	}
 }

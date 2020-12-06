@@ -83,8 +83,18 @@ public class Login extends JDialog {
 				}
 				
 				try {
-					Login frame = new Login();
-					frame.setVisible(true);
+					if(Empresa.getInstance().isConexion()) {
+						if(Empresa.getInstance().getLoginUser() instanceof EmpleadoAdm) {
+						PrincipalAdm frame = new PrincipalAdm();
+						frame.setVisible(true);
+					} else {
+						PrincipalCom frame = new PrincipalCom();
+						frame.setVisible(true);
+					}
+					} else {
+						Login frame = new Login();
+						frame.setVisible(true);	
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -144,10 +154,12 @@ public class Login extends JDialog {
 					PrincipalAdm frame = new PrincipalAdm();
 					dispose();
 					frame.setVisible(true);
+					Empresa.getInstance().setConexion(true);
 				} else if(Empresa.getInstance().confirmLoginCom(textField.getText(),passw)){
 					PrincipalCom frame = new PrincipalCom();
 					dispose();
 					frame.setVisible(true);
+					Empresa.getInstance().setConexion(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "El usuario que ha insertado no coincide con ninguno en nuestros registros.", "Información", JOptionPane.INFORMATION_MESSAGE);
 					clean();

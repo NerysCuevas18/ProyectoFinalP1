@@ -16,10 +16,11 @@ public class Empresa implements Serializable {
 	private ArrayList<Plan> planes;
 	private ArrayList<Factura> facturas;
 	private static Empresa altice = null;
-	private static Empleado loginUser;
+	private Empleado loginUser;
 	private boolean facturasGeneradas;
 	private int codFacturas = 1;
 	private int codPlan = 1;
+	private boolean conexion;
 	
 	private Empresa() {
 		super();
@@ -28,6 +29,7 @@ public class Empresa implements Serializable {
 		this.planes = new ArrayList<Plan>();
 		this.facturas = new ArrayList<Factura>();
 		this.facturasGeneradas = false;
+		this.setConexion(false);
 	}
 	
 	public static Empresa getInstance() {
@@ -110,6 +112,30 @@ public class Empresa implements Serializable {
 		this.codFacturas = codFacturas;
 	}
 	
+	public int getCodPlan() {
+		return codPlan;
+	}
+
+	public void setCodPlan(int codPlan) {
+		this.codPlan = codPlan;
+	}
+
+	public Empleado getLoginUser() {
+		return loginUser;
+	}
+
+	public void setLoginUser(Empleado loginUser) {
+		this.loginUser = loginUser;
+	}
+
+	public boolean isConexion() {
+		return conexion;
+	}
+
+	public void setConexion(boolean conexion) {
+		this.conexion = conexion;
+	}
+	
 	public void generarFacturas() {
 		Date hoy = new Date();
 		Calendar facturar = Calendar.getInstance();
@@ -160,19 +186,4 @@ public class Empresa implements Serializable {
 		return misPlanes;
 	}*/
 
-	public int getCodPlan() {
-		return codPlan;
-	}
-
-	public void setCodPlan(int codPlan) {
-		this.codPlan = codPlan;
-	}
-
-	public Empleado getLoginUser() {
-		return loginUser;
-	}
-
-	public static void setLoginUser(Empleado loginUser) {
-		Empresa.loginUser = loginUser;
-	}
 }
