@@ -61,10 +61,11 @@ public class Plan {
 		this.tipoPlan = tipoPlan;
 	}
 	
-	public void generarImpPlan() {
+	public float generarImpPlan() {
 		float imp = 0;
 		imp = (float) (precioBase*0.3);
 		this.precioFinal = precioBase + imp;
+		return imp;
 	}
 		
 

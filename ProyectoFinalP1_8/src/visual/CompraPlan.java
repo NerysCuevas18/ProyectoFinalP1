@@ -56,7 +56,7 @@ public class CompraPlan extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			CompraPlan dialog = new CompraPlan();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -64,7 +64,7 @@ public class CompraPlan extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	/**
 	 * Create the dialog.
 	 * @param miAlmacen 
@@ -91,7 +91,7 @@ public class CompraPlan extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"ID Plan", "Nombre Plan","Precio Plan"};
+					String[] headers = {"ID Plan", "Nombre Plan","Precio Base", "Impuesto","Precio Final"};
 					modelo.setColumnIdentifiers(headers);
 					table = new JTable();
 					table.addMouseListener(new MouseAdapter() {
@@ -201,7 +201,9 @@ public class CompraPlan extends JDialog {
 		for (Plan planes : Empresa.getInstance().getPlanes()) {
 			filas[0] = planes.getCodPlan();	
 			filas[1] = planes.getNombreP();
-			filas[2] = planes.getPrecioP();
+			filas[2] = planes.getPrecioBase();
+			filas[3] = planes.generarImpPlan();
+			filas[4] = planes.getPrecioFinal();
 			modelo.addRow(filas);
 		}
 	}
