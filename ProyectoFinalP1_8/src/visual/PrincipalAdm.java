@@ -130,6 +130,18 @@ public class PrincipalAdm extends JFrame {
 			}
 		});
 		mnNewMenu1.add(mntmNewMenuItem_21);
+		
+		JMenu mnNewMenu_1 = new JMenu("New menu");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Crear plan");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPlan crearPlan = new CrearPlan();
+				crearPlan.setVisible(true);
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem);
 	
 	}
 

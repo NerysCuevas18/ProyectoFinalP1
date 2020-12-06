@@ -159,4 +159,12 @@ public class Empresa implements Serializable {
 		}
 		return misPlanes;
 	}*/
+
+	public int getCodPlan() {
+		return codPlan;
+	}
+
+	public void setCodPlan(int codPlan) {
+		this.codPlan = codPlan;
+	}
 }
