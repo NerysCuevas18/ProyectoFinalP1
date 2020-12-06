@@ -11,10 +11,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import logico.Empresa;
+import logico.Persona;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ListEmpleados extends JDialog {
 
@@ -22,6 +30,9 @@ public class ListEmpleados extends JDialog {
 	private JTable table;
 	public static DefaultTableModel modelo;
 	public static Object[] filas;
+	private JComboBox comboBox;
+	private String seleccion = "<Todos>";
+	private Persona aux = null;
 
 	/**
 	 * Launch the application.
@@ -43,7 +54,7 @@ public class ListEmpleados extends JDialog {
 		setTitle("Listado de empleados");
 		setResizable(false);
 		setModal(true);
-		setBounds(100, 100, 940, 633);
+		setBounds(100, 100, 1222, 633);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -59,7 +70,7 @@ public class ListEmpleados extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"Cedula","Nombre","Telefono","Correo","Sexo","Ingreso compañia", "Saldo"};
+					String[] headers = {"Cedula","Nombre","Telefono","Correo","Sexo","Tipo de empleado","Ingreso compañia", "Saldo"};
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
@@ -75,14 +86,37 @@ public class ListEmpleados extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnModificar = new JButton("Modificar");
-				btnModificar.setEnabled(false);
-				btnModificar.setActionCommand("OK");
-				buttonPane.add(btnModificar);
-				getRootPane().setDefaultButton(btnModificar);
+				JLabel lblNewLabel = new JLabel("Empleado/s:");
+				buttonPane.add(lblNewLabel);
+			}
+			{
+				comboBox = new JComboBox();
+				comboBox.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						seleccion = comboBox.getSelectedItem().toString();
+						cargarListaDisponible(seleccion);
+					}
+					
+				});
+				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Comercial", "Administrativo"}));
+				buttonPane.add(comboBox);
 			}
 			{
 				JButton btnEliminar = new JButton("Eliminar");
+				btnEliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(aux!=null) {
+							int option = JOptionPane.showConfirmDialog(null, "¿Está seguro/a de que desea eliminar el empleado: "+aux.getCedula(), "Confirmación", JOptionPane.WARNING_MESSAGE);
+						    if(option == JOptionPane.OK_OPTION) {
+						        Empresa.getInstance().eliminarQueso(aux);
+						     	seleccion = "<Todos>";
+						    	cargarListaDisponible(seleccion);
+						    	btnEliminar.setEnabled(false);
+						    }
+						}
+					
+					}
+				});
 				btnEliminar.setEnabled(false);
 				buttonPane.add(btnEliminar);
 			}
@@ -99,6 +133,9 @@ public class ListEmpleados extends JDialog {
 		}
 		
 		llenarTabla();
+		cargarListaDisponible(seleccion);
 	}
+	
+	
 
 }

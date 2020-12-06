@@ -48,7 +48,7 @@ public class ListFactura extends JDialog {
 		setTitle("Listado de facturas");
 		setResizable(false);
 		setModal(true);
-		setBounds(100, 100, 940, 633);
+		setBounds(100, 100, 1222, 633);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
