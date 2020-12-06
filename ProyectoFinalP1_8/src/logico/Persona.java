@@ -24,7 +24,6 @@ public abstract class Persona {
 		this.apellidos = apellidos;
 		this.telefonos = telefonos;
 		this.correo = correo;
-		this.edad = edad;
 		this.sexo = sexo;
 		this.nacimiento = nacimiento;
 		this.nacionalidad = nacionalidad;
@@ -62,12 +61,7 @@ public abstract class Persona {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public int getEdad() {
-		return edad;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
+	
 	public char getSexo() {
 		return sexo;
 	}
