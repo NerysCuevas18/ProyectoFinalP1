@@ -13,12 +13,15 @@ import javax.swing.border.EmptyBorder;
 
 import javafx.scene.control.DatePicker;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
+import logico.Cliente;
+import logico.Empresa;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
@@ -36,21 +39,23 @@ import java.awt.Color;
 public class RegCliente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtNombres;
-	private JTextField txtApellidos;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_7;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JTextField txtCed;
+	private JTextField txtTel1;
+	private JTextField txtTel2;
+	private JTextField txtEmail;
+	private JTextField txtNac;
+	private JTextField txtNomR;
+	private JTextField txtApellR;
+	private JTextField txtTelR;
+	private JComboBox cbxSexo;
+	private JSpinner spnFecNac;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			RegCliente dialog = new RegCliente("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -58,7 +63,7 @@ public class RegCliente extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
@@ -86,90 +91,90 @@ public class RegCliente extends JDialog {
 			lblNewLabel.setBounds(10, 11, 137, 14);
 			panel.add(lblNewLabel);
 			
-			txtNombres = new JTextField();
-			txtNombres.addMouseListener(new MouseAdapter() {
+			txtNombre = new JTextField();
+			txtNombre.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					txtNombres.setText("");
-					txtApellidos.setText("");
+					txtNombre.setText("");
+					txtApellido.setText("");
 				}
 			});
-			txtNombres.setText("Nombre(s)");
-			txtNombres.setBounds(135, 8, 300, 20);
-			panel.add(txtNombres);
-			txtNombres.setColumns(10);
+			txtNombre.setText("Nombre(s)");
+			txtNombre.setBounds(135, 8, 300, 20);
+			panel.add(txtNombre);
+			txtNombre.setColumns(10);
 			
-			txtApellidos = new JTextField();
-			txtApellidos.addMouseListener(new MouseAdapter() {
+			txtApellido = new JTextField();
+			txtApellido.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					txtNombres.setText("");
-					txtApellidos.setText("");
+					txtNombre.setText("");
+					txtApellido.setText("");
 				}
 			});
-			txtApellidos.setText("Apellido(s)");
-			txtApellidos.setColumns(10);
-			txtApellidos.setBounds(455, 8, 300, 20);
-			panel.add(txtApellidos);
+			txtApellido.setText("Apellido(s)");
+			txtApellido.setColumns(10);
+			txtApellido.setBounds(455, 8, 300, 20);
+			panel.add(txtApellido);
 			
 			JLabel lblCdula = new JLabel("C\u00E9dula:");
 			lblCdula.setBounds(10, 48, 137, 14);
 			panel.add(lblCdula);
 			
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			textField_2.setBounds(135, 45, 300, 20);
-			panel.add(textField_2);
+			txtCed = new JTextField();
+			txtCed.setColumns(10);
+			txtCed.setBounds(135, 45, 300, 20);
+			panel.add(txtCed);
 			
 			JLabel lblEdad = new JLabel("Fecha de nacimiento:");
 			lblEdad.setBounds(455, 48, 137, 14);
 			panel.add(lblEdad);
 			
-			JSpinner spinner = new JSpinner();
-			spinner.setModel(new SpinnerDateModel(new Date(-287438400000L), new Date(-287438400000L), null, Calendar.DAY_OF_YEAR));
-			spinner.setBounds(604, 45, 151, 20);
-			panel.add(spinner);
+			spnFecNac = new JSpinner();
+			spnFecNac.setModel(new SpinnerDateModel(new Date(-287438400000L), new Date(-287438400000L), null, Calendar.DAY_OF_YEAR));
+			spnFecNac.setBounds(604, 45, 151, 20);
+			panel.add(spnFecNac);
 			
 			JLabel lblTelfonos = new JLabel("Tel\u00E9fono(s):");
 			lblTelfonos.setBounds(10, 130, 137, 14);
 			panel.add(lblTelfonos);
 			
-			textField_3 = new JTextField();
-			textField_3.setColumns(10);
-			textField_3.setBounds(135, 127, 300, 20);
-			panel.add(textField_3);
+			txtTel1 = new JTextField();
+			txtTel1.setColumns(10);
+			txtTel1.setBounds(135, 127, 300, 20);
+			panel.add(txtTel1);
 			
-			textField_4 = new JTextField();
-			textField_4.setColumns(10);
-			textField_4.setBounds(455, 127, 300, 20);
-			panel.add(textField_4);
+			txtTel2 = new JTextField();
+			txtTel2.setColumns(10);
+			txtTel2.setBounds(455, 127, 300, 20);
+			panel.add(txtTel2);
 			
 			JLabel lblSexo = new JLabel("Nacionalidad:");
 			lblSexo.setBounds(10, 87, 137, 14);
 			panel.add(lblSexo);
 			
-			JComboBox comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "F", "M"}));
-			comboBox.setBounds(604, 84, 151, 20);
-			panel.add(comboBox);
+			cbxSexo = new JComboBox();
+			cbxSexo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "F", "M"}));
+			cbxSexo.setBounds(604, 84, 151, 20);
+			panel.add(cbxSexo);
 			
 			JLabel lblCorreo = new JLabel("Correo:");
 			lblCorreo.setBounds(10, 171, 137, 14);
 			panel.add(lblCorreo);
 			
-			textField_5 = new JTextField();
-			textField_5.setColumns(10);
-			textField_5.setBounds(135, 168, 300, 20);
-			panel.add(textField_5);
+			txtEmail = new JTextField();
+			txtEmail.setColumns(10);
+			txtEmail.setBounds(135, 168, 300, 20);
+			panel.add(txtEmail);
 			
 			JLabel lblNacionalidad = new JLabel("Sexo:");
 			lblNacionalidad.setBounds(455, 87, 137, 14);
 			panel.add(lblNacionalidad);
 			
-			textField_6 = new JTextField();
-			textField_6.setColumns(10);
-			textField_6.setBounds(135, 84, 300, 20);
-			panel.add(textField_6);
+			txtNac = new JTextField();
+			txtNac.setColumns(10);
+			txtNac.setBounds(135, 84, 300, 20);
+			panel.add(txtNac);
 		}
 		
 		JPanel panel = new JPanel();
@@ -182,46 +187,66 @@ public class RegCliente extends JDialog {
 		label.setBounds(10, 28, 137, 14);
 		panel.add(label);
 		
-		textField = new JTextField();
-		textField.addMouseListener(new MouseAdapter() {
+		txtNomR = new JTextField();
+		txtNomR.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField.setText("");
-				textField_1.setText("");
+				txtNomR.setText("");
+				txtApellR.setText("");
 			}
 		});
-		textField.setText("Nombre(s)");
-		textField.setColumns(10);
-		textField.setBounds(135, 25, 300, 20);
-		panel.add(textField);
+		txtNomR.setText("Nombre(s)");
+		txtNomR.setColumns(10);
+		txtNomR.setBounds(135, 25, 300, 20);
+		panel.add(txtNomR);
 		
-		textField_1 = new JTextField();
-		textField_1.addMouseListener(new MouseAdapter() {
+		txtApellR = new JTextField();
+		txtApellR.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField.setText("");
-				textField_1.setText("");
+				txtNomR.setText("");
+				txtApellR.setText("");
 			}
 		});
-		textField_1.setText("Apellido(s)");
-		textField_1.setColumns(10);
-		textField_1.setBounds(455, 25, 300, 20);
-		panel.add(textField_1);
+		txtApellR.setText("Apellido(s)");
+		txtApellR.setColumns(10);
+		txtApellR.setBounds(455, 25, 300, 20);
+		panel.add(txtApellR);
 		
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
 		lblTelfono.setBounds(10, 65, 137, 14);
 		panel.add(lblTelfono);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(135, 62, 300, 20);
-		panel.add(textField_7);
+		txtTelR = new JTextField();
+		txtTelR.setColumns(10);
+		txtTelR.setBounds(135, 62, 300, 20);
+		panel.add(txtTelR);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Registrar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String cedula = txtCed.getText();
+						String nombre = txtNombre.getText();
+						String apellido = txtApellido.getText();
+						ArrayList<String> tel = null;
+						tel.add(txtTel1.getText());
+						tel.add(txtTel2.getText());
+						String correo = txtEmail.getText();
+						String s=cbxSexo.getSelectedItem().toString();  
+						char sexo=s.charAt(0);
+						Date fecha = (Date) spnFecNac.getValue();
+						String nac = txtNac.getText();
+						String nombreR = txtNomR.getText();
+						String telR = txtTelR.getText();
+						Date reg = new Date();
+						Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
+						Empresa.getInstance().insertarCliente(aux);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

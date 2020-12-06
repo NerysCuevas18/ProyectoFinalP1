@@ -9,7 +9,6 @@ public abstract class Persona {
 	protected String apellidos;
 	protected ArrayList<String> telefonos;
 	protected String correo;
-	protected int edad;
 	protected char sexo;
 	protected Date nacimiento;
 	protected String nacionalidad;
@@ -17,7 +16,7 @@ public abstract class Persona {
 	protected String telefonoReferencia;
 	
 	public Persona(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
-			int edad, char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
+			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
 			String telefonoReferencia) {
 		super();
 		this.cedula = cedula;

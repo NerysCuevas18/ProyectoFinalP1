@@ -8,9 +8,9 @@ public abstract class Empleado extends Persona {
 	protected float saldo;
 	
 	public Empleado(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
-			int edad, char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
+			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
 			String telefonoReferencia, Date ingresoCompania, float saldo) {
-		super(cedula, nombres, apellidos, telefonos, correo, edad, sexo, nacimiento, nacionalidad, nombreReferencia,
+		super(cedula, nombres, apellidos, telefonos, correo, sexo, nacimiento, nacionalidad, nombreReferencia,
 				telefonoReferencia);
 		this.ingresoCompania = ingresoCompania;
 		this.saldo = saldo;
