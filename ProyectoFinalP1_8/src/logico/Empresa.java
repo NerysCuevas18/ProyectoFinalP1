@@ -1,11 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Empresa { 
+public class Empresa implements Serializable { 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7486287422009782825L;
 	private ArrayList<Empleado> empleados;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Plan> planes;

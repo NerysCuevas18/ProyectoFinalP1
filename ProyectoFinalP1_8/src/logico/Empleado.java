@@ -10,11 +10,12 @@ public abstract class Empleado extends Persona {
 	
 	public Empleado(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
 			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
-			String telefonoReferencia, Date ingresoCompania, float saldo) {
+			String telefonoReferencia, Date ingresoCompania, float saldo, String pass) {
 		super(cedula, nombres, apellidos, telefonos, correo, sexo, nacimiento, nacionalidad, nombreReferencia,
 				telefonoReferencia);
 		this.ingresoCompania = ingresoCompania;
 		this.saldo = saldo;
+		this.pass = pass;
 	}
 	
 	public Date getIngresoCompania() {

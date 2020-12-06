@@ -1,9 +1,14 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Cliente extends Persona {
+public class Cliente extends Persona implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3615255257547752713L;
 	private boolean estado;
 	private ArrayList<Factura> facturasMensual;
 	private Plan PlanC;

@@ -10,12 +10,16 @@ public class EmpleadoCom extends Empleado {
 
 	public EmpleadoCom(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
 			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia, String telefonoReferencia,
-			Date ingresoCompania, float saldo) {
+			Date ingresoCompania, float saldo, String pass) {
 		super(cedula, nombres, apellidos, telefonos, correo, sexo, nacimiento, nacionalidad, nombreReferencia,
-				telefonoReferencia, ingresoCompania, saldo);
+				telefonoReferencia, ingresoCompania, saldo, pass);
+		this.bono = 0;
+		this.cantVenta = 0;
+		
 	}
 
 	public float getBono() {
+		setBono();
 		return bono;
 	}
 

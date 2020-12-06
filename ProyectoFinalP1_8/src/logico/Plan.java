@@ -1,6 +1,12 @@
 package logico;
 
-public class Plan {
+import java.io.Serializable;
+
+public class Plan implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5244183798228891881L;
 	private String codPlan;
 	private String nombreP;
 	private String descripcionP;
