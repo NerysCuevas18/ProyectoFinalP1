@@ -1,26 +1,28 @@
 package logico;
 
 public class Plan {
-	private static int codPlan = 0;
+	private String codPlan;
 	private String nombreP;
 	private String descripcionP;
-	private float precioP;
+	private float precioBase;
+	private float precioFinal;
 	private String tipoPlan;
 	
-	public Plan(String nombreP, String descripcionP, float precioP, String tipoPlan) {
+	public Plan(String codPlan, String nombreP, String descripcionP, float precioBase, String tipoPlan) {
 		super();
+		this.codPlan = codPlan;
 		this.nombreP = nombreP;
 		this.descripcionP = descripcionP;
-		this.precioP = precioP;
+		this.precioBase = precioBase;
 		this.tipoPlan = tipoPlan;
 	}
 	
-	public static int getCodPlan() {
+	public String getCodPlan() {
 		return codPlan;
 	}
 
-	public static void setCodPlan(int codPlan) {
-		Plan.codPlan = codPlan;
+	public void setCodPlan(String codPlan) {
+		this.codPlan = codPlan;
 	}
 
 	public String getNombreP() {
@@ -39,14 +41,18 @@ public class Plan {
 		this.descripcionP = descripcionP;
 	}
 
-	public float getPrecioP() {
-		return precioP;
+	public float getPrecioBase() {
+		return precioBase;
 	}
-
-	public void setPrecioP(float precioP) {
-		this.precioP = precioP;
+	
+	public void setPrecioBase(float precioBase) {
+		this.precioBase = precioBase;
 	}
-
+	
+	public float getPrecioFinal() {
+		return precioFinal;
+	}
+	
 	public String getTipoPlan() {
 		return tipoPlan;
 	}
@@ -54,7 +60,12 @@ public class Plan {
 	public void setTipoPlan(String tipoPlan) {
 		this.tipoPlan = tipoPlan;
 	}
-
+	
+	public void generarImpPlan() {
+		float imp = 0;
+		imp = (float) (precioBase*0.3);
+		this.precioFinal = precioBase + imp;
+	}
 		
 
 }

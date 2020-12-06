@@ -71,7 +71,7 @@ public class PrincipalAdm extends JFrame {
 				if(Empresa.getInstance().getFacturas().size() == 0) {
 					JOptionPane.showMessageDialog(null, "Actualmente no hay facturas realizadas.", "Información", JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					ListFacturas listFacturas = new ListFacturas("Listado de facturas", 0);
+					ListFactura listFacturas = new ListFactura();
 					listFacturas.setVisible(true);
 				}
 			}

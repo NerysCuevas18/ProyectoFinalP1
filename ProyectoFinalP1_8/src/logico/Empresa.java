@@ -13,6 +13,7 @@ public class Empresa {
 	private static Empresa altice = null;
 	private boolean facturasGeneradas;
 	private int codFacturas = 1;
+	private int codPlan = 1;
 	
 	private Empresa() {
 		super();
@@ -80,6 +81,7 @@ public class Empresa {
 	
 	public void insertarPlan(Plan plan) {
 		planes.add(plan);
+		codPlan++;
 	}
 	
 	public void insertarFactura(Factura factura) {
@@ -100,5 +102,17 @@ public class Empresa {
 			facturasGeneradas = true;
 		}
 	}
-
+	/*public Plan findPlan (String codPlan) {
+		Plan misPlanes = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<planes.size()){
+			if(planes.get(i).getCodPlan().equalsIgnoreCase(codPlan)) {
+				misPlanes = planes.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return misPlanes;
+	}*/
 }
