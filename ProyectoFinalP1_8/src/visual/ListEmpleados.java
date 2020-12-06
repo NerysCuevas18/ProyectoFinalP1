@@ -74,7 +74,7 @@ public class ListEmpleados extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"Cedula","Nombre","Telefono","Correo","Tipo de empleado","Ingreso compañia", "Saldo"};
+					String[] headers = {"Cedula","Nombre","Telefono","Correo","Tipo de empleado","Ingreso compañia","Cant. Ventas","Expericia años", "Saldo"};
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
@@ -154,7 +154,9 @@ public class ListEmpleados extends JDialog {
 				
 				filas[4]="Comercial"; 
 				filas[5]=empleados.getIngresoCompania();
-				filas[6]=empleados.getSaldo();
+				filas[6]=((EmpleadoCom) empleados).getCantVenta();
+				filas[7]="N/A";
+				filas[8]=empleados.getSaldo();
 			    modelo.addRow(filas);
 			     }
 		 
@@ -163,7 +165,9 @@ public class ListEmpleados extends JDialog {
 				 
 				 filas[4]="Administrativo"; 
 				 filas[5]=empleados.getIngresoCompania();
-				 filas[6]=empleados.getSaldo();
+				 filas[6]="N/A";
+				 filas[7]=((EmpleadoAdm) empleados).getExpAnios();
+				 filas[8]=empleados.getSaldo();
 				modelo.addRow(filas);
 			     }
 			
@@ -187,7 +191,9 @@ public class ListEmpleados extends JDialog {
 					filas[3]=empleados.getCorreo();
 					filas[4]="Comercial"; 
 					filas[5]=empleados.getIngresoCompania();
-					filas[6]=empleados.getSaldo();
+					filas[6]=((EmpleadoCom) empleados).getCantVenta();
+					filas[7]="N/A";
+					filas[8]=empleados.getSaldo();
 				    modelo.addRow(filas);
 				     }
 			 }
@@ -200,7 +206,9 @@ public class ListEmpleados extends JDialog {
 					 filas[3]=empleados.getCorreo();
 					 filas[4]="Administrativo"; 
 					 filas[5]=empleados.getIngresoCompania();
-					 filas[6]=empleados.getSaldo();
+					 filas[6]="N/A";
+					 filas[7]=((EmpleadoAdm) empleados).getExpAnios();
+					 filas[8]=empleados.getSaldo();
 					modelo.addRow(filas);
 				     }
 			 }
