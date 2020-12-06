@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -11,7 +12,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -45,6 +48,7 @@ public class PrincipalCom extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalCom() {
+		setTitle("Altice Comercial");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -65,14 +69,46 @@ public class PrincipalCom extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 820, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		setResizable(false);
+		setLocationRelativeTo(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u00A1Bienvenido, Sr/a "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
+		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(25, 268, 621, 45);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblbuenaSuerteEn = new JLabel("\u00A1Buena suerte en su jornada!");
+		lblbuenaSuerteEn.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblbuenaSuerteEn.setBounds(25, 306, 621, 63);
+		contentPane.add(lblbuenaSuerteEn);
+		
+		JLabel lblNewLabel2 = new JLabel("");
+		lblNewLabel2.setIcon(new ImageIcon("Fondo2.png"));
+		lblNewLabel2.setBounds(397, 11, 407, 358);
+		contentPane.add(lblNewLabel2);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("Fondo.jpg"));
+		lblNewLabel.setBounds(0, -21, 804, 391);
+		contentPane.add(lblNewLabel);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		
+		JMenu mnCuenta = new JMenu("Cuenta");
+		menuBar.add(mnCuenta);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Perfil");
+		mnCuenta.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Cerrar sesi\u00F3n");
+		mnCuenta.add(mntmNewMenuItem_3);
 		
 		JMenu mnNewMenu = new JMenu("Listados");
 		menuBar.add(mnNewMenu);
@@ -102,19 +138,6 @@ public class PrincipalCom extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmFacturas);
-		
-		JMenuItem mntmEmpleados = new JMenuItem("Empleados");
-		mntmEmpleados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(Empresa.getInstance().getEmpleados().size() == 0) {
-					JOptionPane.showMessageDialog(null, "Actualmente no hay empleados registrados.", "Información", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					ListEmpleados listEmpleados = new ListEmpleados();
-					listEmpleados.setVisible(true);
-				}
-			}
-		});
-		mnNewMenu.add(mntmEmpleados);
 		
 
 		JMenu mnNewMenu1 = new JMenu("Compra de planes");

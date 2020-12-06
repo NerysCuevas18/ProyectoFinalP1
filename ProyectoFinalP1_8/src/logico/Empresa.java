@@ -129,7 +129,7 @@ public class Empresa implements Serializable {
 		boolean login = false;
 		for (Empleado empleado : empleados) {
 			if(empleado.getCedula().equals(text) && empleado.getPass().equals(text2) && empleado instanceof EmpleadoAdm){
-				loginUser = empleado;
+				setLoginUser(empleado);
 				login = true;
 			}
 		}
@@ -140,7 +140,7 @@ public class Empresa implements Serializable {
 		boolean login = false;
 		for (Empleado empleado : empleados) {
 			if(empleado.getCedula().equals(text) && empleado.getPass().equals(text2) && empleado instanceof EmpleadoCom){
-				loginUser = empleado;
+				setLoginUser(empleado);
 				login = true;
 			}
 		}
@@ -166,5 +166,13 @@ public class Empresa implements Serializable {
 
 	public void setCodPlan(int codPlan) {
 		this.codPlan = codPlan;
+	}
+
+	public Empleado getLoginUser() {
+		return loginUser;
+	}
+
+	public static void setLoginUser(Empleado loginUser) {
+		Empresa.loginUser = loginUser;
 	}
 }

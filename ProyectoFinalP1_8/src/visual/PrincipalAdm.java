@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logico.Empresa;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class PrincipalAdm extends JFrame { 
 
@@ -47,6 +50,7 @@ public class PrincipalAdm extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalAdm() {
+		setTitle("Altice Administrador");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -68,14 +72,68 @@ public class PrincipalAdm extends JFrame {
 		});
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 820, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		setResizable(false);
+		setLocationRelativeTo(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u00A1Bienvenido, Sr/a "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
+		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 26));
+		lblNewLabel_1.setBounds(25, 268, 621, 45);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblbuenaSuerteEn = new JLabel("\u00A1Buena suerte en su jornada!");
+		lblbuenaSuerteEn.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblbuenaSuerteEn.setBounds(25, 306, 621, 63);
+		contentPane.add(lblbuenaSuerteEn);
+		
+		JLabel lblNewLabel2 = new JLabel("");
+		lblNewLabel2.setIcon(new ImageIcon("Fondo2.png"));
+		lblNewLabel2.setBounds(397, 11, 407, 358);
+		contentPane.add(lblNewLabel2);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("Fondo.jpg"));
+		lblNewLabel.setBounds(0, -21, 804, 391);
+		contentPane.add(lblNewLabel);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		
+		JMenu mnCuenta = new JMenu("Cuenta");
+		menuBar.add(mnCuenta);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Perfil");
+		mnCuenta.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Cerrar sesi\u00F3n");
+		mnCuenta.add(mntmNewMenuItem_3);
+		
+			JMenu mnNewMenu1 = new JMenu("Registros");
+			menuBar.add(mnNewMenu1);
+			
+				JMenuItem mntmNewMenuItem_21 = new JMenuItem("Registro de empleados");
+				mntmNewMenuItem_21.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RegEmpleado regEmpleado = new RegEmpleado("Registrar empleado", 0, null);
+						regEmpleado.setVisible(true);
+					}
+				});
+				mnNewMenu1.add(mntmNewMenuItem_21);
+				
+				JMenuItem mntmNewMenuItem = new JMenuItem("Crear plan");
+				mnNewMenu1.add(mntmNewMenuItem);
+				mntmNewMenuItem.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						CrearPlan crearPlan = new CrearPlan();
+						crearPlan.setVisible(true);
+					}
+				});
 		
 		JMenu mnNewMenu = new JMenu("Listados");
 		menuBar.add(mnNewMenu);
@@ -119,30 +177,5 @@ public class PrincipalAdm extends JFrame {
 		});
 		mnNewMenu.add(mntmEmpleados);
 	
-		JMenu mnNewMenu1 = new JMenu("Registro de empleados");
-		menuBar.add(mnNewMenu1);
-	
-		JMenuItem mntmNewMenuItem_21 = new JMenuItem("Registro de empleados");
-		mntmNewMenuItem_21.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegEmpleado regEmpleado = new RegEmpleado("Registrar empleado", 0, null);
-				regEmpleado.setVisible(true);
-			}
-		});
-		mnNewMenu1.add(mntmNewMenuItem_21);
-		
-		JMenu mnNewMenu_1 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Crear plan");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearPlan crearPlan = new CrearPlan();
-				crearPlan.setVisible(true);
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem);
-	
 	}
-
 }

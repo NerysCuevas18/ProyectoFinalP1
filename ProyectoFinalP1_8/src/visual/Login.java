@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
@@ -96,8 +97,9 @@ public class Login extends JDialog {
 	 * @throws ParseException 
 	 */
 	public Login() throws ParseException {
+		setTitle("\u00A1Bienvenido/a a Altice!");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 370, 410);
+		setBounds(100, 100, 370, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -112,21 +114,21 @@ public class Login extends JDialog {
 		panel.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("C\u00E9dula:");
-		lblUsuario.setBounds(75, 174, 72, 14);
+		lblUsuario.setBounds(75, 261, 72, 14);
 		panel.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setBounds(75, 237, 105, 14);
+		lblContrasea.setBounds(75, 324, 105, 14);
 		panel.add(lblContrasea);
 		
 		MaskFormatter formatter = new MaskFormatter("###-#######-#");
         textField = new JFormattedTextField(formatter);
-		textField.setBounds(75, 191, 191, 20);
+		textField.setBounds(75, 278, 191, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JPasswordField();
-		textField_1.setBounds(75, 255, 191, 20);
+		textField_1.setBounds(75, 342, 191, 20);
 		panel.add(textField_1);
 		
 		JButton btnLogin = new JButton("Ingresar");
@@ -158,20 +160,21 @@ public class Login extends JDialog {
 				textField_1.setText("");
 			}
 		});
-		btnLogin.setBounds(126, 302, 89, 23);
+		btnLogin.setBounds(126, 389, 89, 23);
 		panel.add(btnLogin);
+		
+		JLabel logo = new JLabel("");
+		logo.setHorizontalAlignment(SwingConstants.CENTER);
+		logo.setIcon(new ImageIcon("Altice_logo.png"));
+		logo.setBounds(39, 34, 262, 133);
+		panel.add(logo);
 		
 		JLabel lblNewLabel = new JLabel("\u00A1Bienvenido/a, distinguido/a socio/a!");
 		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 121, 324, 30);
+		lblNewLabel.setBounds(10, 208, 324, 30);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("altice");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 70));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(30, 11, 286, 105);
-		panel.add(lblNewLabel_1);
 		
 	}
 }

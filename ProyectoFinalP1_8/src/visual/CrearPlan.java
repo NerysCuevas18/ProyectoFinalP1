@@ -55,7 +55,7 @@ public class CrearPlan extends JDialog {
 		setTitle("Creaci\u00F3n de planes");
 		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 510, 378);
+		setBounds(100, 100, 518, 378);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
