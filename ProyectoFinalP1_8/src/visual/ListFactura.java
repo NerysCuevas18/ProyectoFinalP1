@@ -8,9 +8,14 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import logico.Empresa;
+import logico.Factura;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
@@ -21,6 +26,7 @@ public class ListFactura extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	public static DefaultTableModel modelo;
+	public static Object[] filas;
 
 	/**
 	 * Launch the application.
@@ -58,7 +64,7 @@ public class ListFactura extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"CodFactura", "Cliente","Empleado" ,"Creacion de factura","Vencimiento de factura","Monto"};
+					String[] headers = {"CodFactura", "Cliente","Creacion de factura","Vencimiento de factura","Monto"};
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
@@ -96,6 +102,20 @@ public class ListFactura extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+		
+		llenarTabla();
 	}
-
+	
+	public static void llenarTabla() {
+		modelo.setRowCount(0);
+		filas = new Object[modelo.getColumnCount()];
+		for(Factura factura : Empresa.getInstance().getFacturas()) {
+			filas[0]=factura.getCodFactura();
+			filas[1]=factura.getCliente().getNombres();
+			filas[2]=factura.getCreacionFactura();
+			filas[3]=factura.getVencimientoFactura();
+			filas[4]="RD$"+factura.getMonto();
+			modelo.addRow(filas);
+		}
+	}
 }

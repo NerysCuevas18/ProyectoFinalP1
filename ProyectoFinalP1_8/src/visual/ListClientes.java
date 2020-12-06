@@ -5,12 +5,19 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import logico.Cliente;
+import logico.Empresa;
+import logico.Persona;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
@@ -21,6 +28,10 @@ public class ListClientes extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	public static DefaultTableModel modelo;
+	public static Object[] filas;
+	public Persona aux = null;
+	private JButton btnEliminar;
+	private JButton btnModificar;
 
 	/**
 	 * Launch the application.
@@ -58,7 +69,7 @@ public class ListClientes extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"Estado", "Facts.Mensuales","Telefono" ,"PlanC","Fact.Mensual","Registro","Estado"};
+					String[] headers = {"Cedula","Nombre","Telefono","Correo","Estado","PlanC","Fact.Mensual","Registro"};
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
@@ -74,14 +85,35 @@ public class ListClientes extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnModificar = new JButton("Modificar");
+				btnModificar = new JButton("Modificar");
+				btnModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RegCliente regClient = null;
+						regClient = new RegCliente("Modificar cliente", 1, aux);
+						regClient.setVisible(true);
+						llenarTabla();
+					}
+				});
 				btnModificar.setEnabled(false);
 				btnModificar.setActionCommand("OK");
 				buttonPane.add(btnModificar);
 				getRootPane().setDefaultButton(btnModificar);
 			}
 			{
-				JButton btnEliminar = new JButton("Eliminar");
+				btnEliminar = new JButton("Eliminar");
+				btnEliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(aux!=null){
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar al Cliente: "+aux.getCedula(), "Confirmación", JOptionPane.WARNING_MESSAGE);
+						    if(option == JOptionPane.OK_OPTION){
+						    	Empresa.getInstance().eliminarClientes(aux);
+						    	llenarTabla();
+						    	btnEliminar.setEnabled(false);
+						    	
+						    }
+						}
+					}
+				});
 				btnEliminar.setEnabled(false);
 				buttonPane.add(btnEliminar);
 			}
@@ -96,6 +128,25 @@ public class ListClientes extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+		
+		llenarTabla();
 	}
 
+	public static void llenarTabla() {
+		modelo.setRowCount(0);
+		filas = new Object[modelo.getColumnCount()];
+		for (Cliente person : Empresa.getInstance().getClientes()) {
+			filas[0] = person.getCedula();
+			filas[1] =person.getNombres();
+			filas[2] = person.getTelefonos();
+			filas[3] = person.getCorreo();
+			filas[4] = person.isEstado();
+			filas[5] = person.getPlanC();
+			filas[6] = person.getFacturasMensual();
+			filas[7] = person.getRegistro();
+			modelo.addRow(filas);
+		}
+		
+	}
+	
 }

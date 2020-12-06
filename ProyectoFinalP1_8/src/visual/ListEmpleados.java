@@ -21,6 +21,7 @@ public class ListEmpleados extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	public static DefaultTableModel modelo;
+	public static Object[] filas;
 
 	/**
 	 * Launch the application.
@@ -58,7 +59,7 @@ public class ListEmpleados extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"Ingreso compañia", "Saldo"};
+					String[] headers = {"Cedula","Nombre","Telefono","Correo","Sexo","Ingreso compañia", "Saldo"};
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
@@ -96,6 +97,8 @@ public class ListEmpleados extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+		
+		llenarTabla();
 	}
 
 }
