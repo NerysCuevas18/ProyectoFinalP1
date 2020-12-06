@@ -29,7 +29,7 @@ public class Factura {
 		float cant = cliente.getPlanC().getPrecioFinal();
 		int cantSinPagar = 0;
 		for(int i = 0; i<cliente.getFacturasMensual().size(); i++)
-		if (!(cliente.getFacturaMensual().index(i).isPagada())) cantSinPagar++;
+		if (!(cliente.getFacturasMensual().get(i).isPagada())) cantSinPagar++;
 		switch (cantSinPagar) {
 		case 1: 
 			cant += cant*0.05;

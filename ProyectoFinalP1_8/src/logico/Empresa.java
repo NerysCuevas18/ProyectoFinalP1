@@ -11,6 +11,7 @@ public class Empresa {
 	private ArrayList<Plan> planes;
 	private ArrayList<Factura> facturas;
 	private static Empresa altice = null;
+	private static Empleado loginUser;
 	private boolean facturasGeneradas;
 	private int codFacturas = 1;
 	private int codPlan = 1;
@@ -88,6 +89,22 @@ public class Empresa {
 		facturas.add(factura);
 	}
 	
+	public boolean isFacturasGeneradas() {
+		return facturasGeneradas;
+	}
+
+	public void setFacturasGeneradas(boolean facturasGeneradas) {
+		this.facturasGeneradas = facturasGeneradas;
+	}
+
+	public int getCodFacturas() {
+		return codFacturas;
+	}
+
+	public void setCodFacturas(int codFacturas) {
+		this.codFacturas = codFacturas;
+	}
+	
 	public void generarFacturas() {
 		Date hoy = new Date();
 		Calendar facturar = Calendar.getInstance();
@@ -101,6 +118,28 @@ public class Empresa {
 			}
 			facturasGeneradas = true;
 		}
+	}
+	
+	public boolean confirmLoginAdm(String text, String text2) {
+		boolean login = false;
+		for (Empleado empleado : empleados) {
+			if(empleado.getCedula().equals(text) && empleado.getPass().equals(text2) && empleado instanceof EmpleadoAdm){
+				loginUser = empleado;
+				login = true;
+			}
+		}
+		return login;
+	} 
+	
+	public boolean confirmLoginCom(String text, String text2) {
+		boolean login = false;
+		for (Empleado empleado : empleados) {
+			if(empleado.getCedula().equals(text) && empleado.getPass().equals(text2) && empleado instanceof EmpleadoCom){
+				loginUser = empleado;
+				login = true;
+			}
+		}
+		return login;
 	}
 	/*public Plan findPlan (String codPlan) {
 		Plan misPlanes = null;

@@ -6,6 +6,7 @@ import java.util.Date;
 public abstract class Empleado extends Persona {
 	protected Date ingresoCompania;
 	protected float saldo;
+	protected String pass; 
 	
 	public Empleado(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
 			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
@@ -27,6 +28,14 @@ public abstract class Empleado extends Persona {
 	}
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
+	}
+	
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	
 }
