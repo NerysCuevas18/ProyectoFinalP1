@@ -66,7 +66,7 @@ public class Login extends JDialog {
 						tel.add("");
 						Date nac = new Date();
 						Date ing = new Date();
-						EmpleadoAdm aux = new EmpleadoAdm("000-0000000-0", "Adm", "Adm", tel, "Adm", 'A', nac, "Adm", "Adm", "Adm", ing, 0, "Adm", 0);
+						EmpleadoAdm aux = new EmpleadoAdm("000-0000000-0", "Adm", "Adm", tel, "Adm", 'A', nac, "Adm", "Adm", "Adm", ing, 0, "Adm");
 						Empresa.getInstance().insertarEmpleado(aux);
 						empresaWrite.writeObject(Empresa.getInstance());
 						empresa2.close();
@@ -88,7 +88,7 @@ public class Login extends JDialog {
 						PrincipalAdm frame = new PrincipalAdm();
 						frame.setVisible(true);
 					} else {
-						PrincipalCom frame = new PrincipalCom();
+						PrincipalCom frame = new PrincipalCom("");
 						frame.setVisible(true);
 					}
 					} else {
@@ -156,7 +156,7 @@ public class Login extends JDialog {
 					frame.setVisible(true);
 					Empresa.getInstance().setConexion(true);
 				} else if(Empresa.getInstance().confirmLoginCom(textField.getText(),passw)){
-					PrincipalCom frame = new PrincipalCom();
+					PrincipalCom frame = new PrincipalCom(textField.getText());
 					dispose();
 					frame.setVisible(true);
 					Empresa.getInstance().setConexion(true);

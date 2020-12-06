@@ -205,6 +205,7 @@ public class CompraPlan extends JDialog {
 								cliente.setPlanC(planC);
 							}
 						}
+						clean();
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -236,5 +237,10 @@ public class CompraPlan extends JDialog {
 		}			
 		list.removeAll();
 		list.setListData(auxDisponible.toArray());	
+	}
+	private void clean() {
+		txtNomb.setText("");
+		txtCed.setText("");
+		txtCodPlan.setText("");
 	}
 }

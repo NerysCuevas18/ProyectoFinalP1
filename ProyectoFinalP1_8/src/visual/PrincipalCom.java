@@ -30,6 +30,7 @@ public class PrincipalCom extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @param ced 
 	 */
 /*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,7 +48,7 @@ public class PrincipalCom extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PrincipalCom() {
+	public PrincipalCom(String ced) {
 		setTitle("Altice Comercial");
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -170,7 +171,7 @@ public class PrincipalCom extends JFrame {
 		JMenuItem mntmNewMenuItem_21 = new JMenuItem("Compra de planes");
 		mntmNewMenuItem_21.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CompraPlan compraPlan = new CompraPlan();
+				CompraPlan compraPlan = new CompraPlan(ced);
 				compraPlan.setVisible(true);
 			}
 		});
