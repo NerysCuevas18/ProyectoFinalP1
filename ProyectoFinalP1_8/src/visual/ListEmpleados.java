@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+
+import logico.Empleado;
+import logico.EmpleadoAdm;
+import logico.EmpleadoCom;
 import logico.Empresa;
 import logico.Persona;
 
@@ -70,7 +74,7 @@ public class ListEmpleados extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					modelo = new DefaultTableModel();
-					String[] headers = {"Cedula","Nombre","Telefono","Correo","Sexo","Tipo de empleado","Ingreso compañia", "Saldo"};
+					String[] headers = {"Cedula","Nombre","Telefono","Correo","Tipo de empleado","Ingreso compañia", "Saldo"};
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
@@ -136,6 +140,74 @@ public class ListEmpleados extends JDialog {
 		cargarListaDisponible(seleccion);
 	}
 	
+	public static void llenarTabla() {
+		modelo.setRowCount(0);
+		filas = new Object[modelo.getColumnCount()];
+		for(Empleado empleados : Empresa.getInstance().getEmpleados()) {
+			filas[0]=empleados.getCedula();
+			filas[1]=empleados.getNombres();
+			filas[2]=empleados.getTelefonos();
+			filas[3]=empleados.getCorreo();
+			
+			if(empleados instanceof EmpleadoCom)
+			 {
+				
+				filas[4]="Comercial"; 
+				filas[5]=empleados.getIngresoCompania();
+				filas[6]=empleados.getSaldo();
+			    modelo.addRow(filas);
+			     }
+		 
+			if(empleados instanceof EmpleadoAdm)
+			 {
+				 
+				 filas[4]="Administrativo"; 
+				 filas[5]=empleados.getIngresoCompania();
+				 filas[6]=empleados.getSaldo();
+				modelo.addRow(filas);
+			     }
+			
+			modelo.addRow(filas);
+		}
+	}
 	
+	private void cargarListaDisponible(String seleccion) {
+		modelo.setRowCount(0);
+		filas = new Object[modelo.getColumnCount()];
+		if(seleccion.equalsIgnoreCase("<Todos>")){
+		  llenarTabla();
+		}else{
+			for(Empleado empleados : Empresa.getInstance().getEmpleados()) {
+			 if(seleccion == "Comercial"){
+				 if(empleados instanceof EmpleadoCom)
+				 {
+					filas[0]=empleados.getCedula();
+					filas[1]=empleados.getNombres();
+					filas[2]=empleados.getTelefonos();
+					filas[3]=empleados.getCorreo();
+					filas[4]="Comercial"; 
+					filas[5]=empleados.getIngresoCompania();
+					filas[6]=empleados.getSaldo();
+				    modelo.addRow(filas);
+				     }
+			 }
+			 if(seleccion == "Administrativo"){
+				 if(empleados instanceof EmpleadoAdm)
+				 {
+					 filas[0]=empleados.getCedula();
+					 filas[1]=empleados.getNombres();
+					 filas[2]=empleados.getTelefonos();
+					 filas[3]=empleados.getCorreo();
+					 filas[4]="Administrativo"; 
+					 filas[5]=empleados.getIngresoCompania();
+					 filas[6]=empleados.getSaldo();
+					modelo.addRow(filas);
+				     }
+			 }
+			 
+		 }	
+		}
+		
+	}
 
 }
