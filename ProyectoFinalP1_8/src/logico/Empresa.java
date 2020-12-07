@@ -211,6 +211,20 @@ public class Empresa implements Serializable {
 		}
 		return misClientes;
 	}
+	public Factura findFactura (String codFac) {
+		Factura misFacturas = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<facturas.size()){
+			if(facturas.get(i).getCodFactura().equalsIgnoreCase(codFac)) {
+				misFacturas = facturas.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		return misFacturas;
+	}
+	
 	public int[] cantClientePlan() {
 		int[] cant = new int[planes.size()];
 		for (int i = 0; i < planes.size(); i++) {
@@ -283,4 +297,5 @@ public class Empresa implements Serializable {
 		}
 		return aux;
 	}
+
 }

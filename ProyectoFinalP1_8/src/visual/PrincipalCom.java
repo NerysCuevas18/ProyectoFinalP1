@@ -175,7 +175,13 @@ public class PrincipalCom extends JFrame {
 				if(Empresa.getInstance().findCliente(mensaje) != null) {
 					CompraPlan compraPlan = new CompraPlan(ced, Empresa.getInstance().findCliente(mensaje).getNombres(), Empresa.getInstance().findCliente(mensaje).getCedula());
 					compraPlan.setVisible(true);
-				} else JOptionPane.showMessageDialog(null, "El cliente ingresado no existe en nuestros registros.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					int returnValue= JOptionPane.showConfirmDialog(null, "El usuario insertado no se encuentra en nuestros registros. ¿Desea añadirlo?", "Confirmación", JOptionPane.CANCEL_OPTION);
+			    	 if(returnValue == 0) {
+			    		 RegCliente regCliente = new RegCliente("Registrar cliente", 0, null);
+			    		 regCliente.setVisible(true);
+			    	 }
+				}
 				
 			}
 		});
@@ -188,7 +194,13 @@ public class PrincipalCom extends JFrame {
 				if(Empresa.getInstance().findCliente(mensaje) != null) {
 					PagarFactura pagarFactura = new PagarFactura(Empresa.getInstance().findCliente(mensaje));
 					pagarFactura.setVisible(true);
-				} else JOptionPane.showMessageDialog(null, "El cliente ingresado no existe en nuestros registros.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					int returnValue= JOptionPane.showConfirmDialog(null, "El usuario insertado no se encuentra en nuestros registros. ¿Desea añadirlo?", "Confirmación", JOptionPane.CANCEL_OPTION);
+			    	 if(returnValue == 0) {
+			    		 RegCliente regCliente = new RegCliente("Registrar cliente", 0, null);
+			    		 regCliente.setVisible(true);
+			    	 }
+				}
 				}
 		});
 		mnNewMenu1.add(mntmNewMenuItem);
