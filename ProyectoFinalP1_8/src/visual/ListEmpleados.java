@@ -121,6 +121,20 @@ public class ListEmpleados extends JDialog {
 					
 					}
 				});
+				{
+					JButton btnNewButton = new JButton("Ver Informacion");
+					btnNewButton.setEnabled(false);
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							DetalleEmpleado det = new DetalleEmpleado();
+							det.setModal(true);
+							det.setLocationRelativeTo(null);
+							det.setVisible(true);
+							aux = Empresa.getInstance().findEmpleado((String)modelo.getValueAt(seleccion, 0));
+						}
+					});
+					buttonPane.add(btnNewButton);
+				}
 				btnEliminar.setEnabled(false);
 				buttonPane.add(btnEliminar);
 			}

@@ -32,7 +32,7 @@ public class DetalleCliente extends JDialog {
 	private JTextField txtNombreR;
 	private JTextField txtTeleR;
 	private Cliente cliente;
-	private Date today;
+
 
 	/**
 	 * Launch the application.

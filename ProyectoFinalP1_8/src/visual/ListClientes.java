@@ -94,6 +94,20 @@ public class ListClientes extends JDialog {
 						llenarTabla();
 					}
 				});
+				{
+					JButton btnNewButton = new JButton("Ver Informacion");
+					btnNewButton.setEnabled(false);
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							DetalleCliente det = new DetalleCliente();
+							det.setModal(true);
+							det.setLocationRelativeTo(null);
+							det.setVisible(true);
+							aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
+						}
+					});
+					buttonPane.add(btnNewButton);
+				}
 				btnModificar.setEnabled(false);
 				btnModificar.setActionCommand("OK");
 				buttonPane.add(btnModificar);
