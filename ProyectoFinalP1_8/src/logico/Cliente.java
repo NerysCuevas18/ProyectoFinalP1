@@ -12,7 +12,6 @@ public class Cliente extends Persona implements Serializable {
 	private boolean estado;
 	private ArrayList<Factura> facturasMensual;
 	private Plan PlanC;
-	private Factura facturaMensual;
 	private Date registro;
 	
 	public Cliente(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
@@ -46,14 +45,6 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setPlanC(Plan planC) {
 		PlanC = planC;
-	}
-
-	public Factura getFacturaMensual() {
-		return facturaMensual;
-	}
-
-	public void setFacturaMensual(Factura facturaMensual) {
-		this.facturaMensual = facturaMensual;
 	}
 
 	public Date getRegistro() {
