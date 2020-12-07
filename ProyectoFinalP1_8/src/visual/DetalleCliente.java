@@ -44,7 +44,7 @@ public class DetalleCliente extends JDialog {
 	 */
 	public DetalleCliente() {
 		setTitle("Detalles datos Clientes");
-		setBounds(100, 100, 649, 571);
+		setBounds(100, 100, 643, 588);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -148,7 +148,7 @@ public class DetalleCliente extends JDialog {
 			panel.add(txtNacionalidad);
 			txtNacionalidad.setText(cliente.getNacionalidad());
 			
-			JLabel lblNombrereferen = new JLabel("NombreReferen:");
+			JLabel lblNombrereferen = new JLabel("NombreRef:");
 			lblNombrereferen.setBounds(15, 379, 125, 20);
 			panel.add(lblNombrereferen);
 			
