@@ -211,5 +211,19 @@ public class Empresa implements Serializable {
 		}
 		return misClientes;
 	}
-
+	public int[] cantClientePlan() {
+		int[] cant = new int[planes.size()];
+		for (int i = 0; i < planes.size(); i++) {
+			cant[i] = 0;
+		}
+		for (Cliente client : clientes) {
+			for (int i = 0; i < planes.size(); i++) {
+				if(client.getPlanC().getCodPlan()==planes.get(i).getCodPlan()) {
+					cant[i]++;
+				}
+			}
+			
+		}
+		return cant;
+	}
 }
