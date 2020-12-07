@@ -67,7 +67,7 @@ public class Login extends JDialog {
 						tel.add("");
 						Date nac = new Date();
 						Date ing = new Date();
-						EmpleadoAdm aux = new EmpleadoAdm("000-0000000-0", "Adm", "Adm", tel, "Adm", 'A', nac, "Adm", "Adm", "Adm", ing, 0, "Adm");
+						EmpleadoAdm aux = new EmpleadoAdm("000-0000000-0", "Adm", "Adm", tel, "Adm", 'A', nac, "Adm", "Adm", "Adm",ing, 0, "Adm");
 						Empresa.getInstance().insertarEmpleado(aux);
 						empresaWrite.writeObject(Empresa.getInstance());
 						empresa2.close();

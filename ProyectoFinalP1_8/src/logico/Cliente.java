@@ -15,7 +15,7 @@ public class Cliente extends Persona implements Serializable {
 	private Date registro;
 	
 	public Cliente(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
-			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,String telefonoReferencia, 
+			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,String telefonoReferencia,
 			boolean estado, Date registro) {
 		super(cedula, nombres, apellidos, telefonos, correo, sexo, nacimiento, nacionalidad, nombreReferencia,
 				telefonoReferencia);

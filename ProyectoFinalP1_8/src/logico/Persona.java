@@ -21,8 +21,7 @@ public abstract class Persona implements Serializable{
 	protected String telefonoReferencia;
 	
 	public Persona(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
-			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,
-			String telefonoReferencia) {
+			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,String telefonoReferencia) {
 		super();
 		this.cedula = cedula;
 		this.nombres = nombres;

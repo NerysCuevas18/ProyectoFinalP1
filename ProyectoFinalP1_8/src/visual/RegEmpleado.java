@@ -19,6 +19,7 @@ import logico.EmpleadoCom;
 import logico.Empresa;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -59,7 +60,7 @@ public class RegEmpleado extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			RegEmpleado dialog = new RegEmpleado("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -67,7 +68,7 @@ public class RegEmpleado extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
@@ -109,13 +110,6 @@ public class RegEmpleado extends JDialog {
 			txtNombre.setColumns(10);
 			
 			txtApellido = new JTextField();
-			txtApellido.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					txtNombre.setText("");
-					txtApellido.setText("");
-				}
-			});
 			txtApellido.setText("Apellido(s)");
 			txtApellido.setColumns(10);
 			txtApellido.setBounds(455, 8, 300, 20);
@@ -205,13 +199,6 @@ public class RegEmpleado extends JDialog {
 		panel.add(txtNombRef);
 		
 		txtApellRef = new JTextField();
-		txtApellRef.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				txtNombRef.setText("");
-				txtApellRef.setText("");
-			}
-		});
 		txtApellRef.setText("Apellido(s)");
 		txtApellRef.setColumns(10);
 		txtApellRef.setBounds(455, 25, 300, 20);
@@ -294,6 +281,8 @@ public class RegEmpleado extends JDialog {
 							EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,"");
 							Empresa.getInstance().insertarEmpleado(aux);
 						}
+						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+						clean();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -311,5 +300,19 @@ public class RegEmpleado extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void clean() {
+		   txtCed.setText("");
+		   txtNombre.setText("Nombre(s)");
+		   txtApellido.setText("Apellido(s)");
+		   txtTel1.setText("");
+		   txtTel2.setText("");
+		   txtEmail.setText("");
+		   txtNaci.setText("");
+		   txtNombRef.setText("Nombre(s)");
+		   txtApellRef.setText("Apellido(s)");
+		   txtTel.setText("");
+		   txtSueldo.setText("");
+		   cbxSexo.setSelectedIndex(0);   
 	}
 }

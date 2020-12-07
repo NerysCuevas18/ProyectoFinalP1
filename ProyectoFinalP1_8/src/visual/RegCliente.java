@@ -17,6 +17,7 @@ import logico.Cliente;
 import logico.Empresa;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -105,13 +106,6 @@ public class RegCliente extends JDialog {
 			txtNombre.setColumns(10);
 			
 			txtApellido = new JTextField();
-			txtApellido.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					txtNombre.setText("");
-					txtApellido.setText("");
-				}
-			});
 			txtApellido.setText("Apellido(s)");
 			txtApellido.setColumns(10);
 			txtApellido.setBounds(455, 8, 300, 20);
@@ -201,13 +195,6 @@ public class RegCliente extends JDialog {
 		panel.add(txtNomR);
 		
 		txtApellR = new JTextField();
-		txtApellR.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				txtNomR.setText("");
-				txtApellR.setText("");
-			}
-		});
 		txtApellR.setText("Apellido(s)");
 		txtApellR.setColumns(10);
 		txtApellR.setBounds(455, 25, 300, 20);
@@ -245,6 +232,8 @@ public class RegCliente extends JDialog {
 						Date reg = new Date();
 						Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
 						Empresa.getInstance().insertarCliente(aux);
+						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+						clean();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -262,5 +251,18 @@ public class RegCliente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void clean() {
+		   txtCed.setText("");
+		   txtNombre.setText("Nombre(s)");
+		   txtApellido.setText("Apellido(s)");
+		   txtTel1.setText("");
+		   txtTel2.setText("");
+		   txtEmail.setText("");
+		   txtNac.setText("");
+		   txtNomR.setText("Nombre(s)");
+		   txtApellR.setText("Apellido(s)");
+		   txtTelR.setText("");
+		   cbxSexo.setSelectedIndex(0);  
 	}
 }
