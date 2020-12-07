@@ -28,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import logico.EmpleadoAdm;
+import logico.EmpleadoCom;
 import logico.Empresa;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -87,7 +88,7 @@ public class Login extends JDialog {
 						if(Empresa.getInstance().getLoginUser() instanceof EmpleadoAdm) {
 						PrincipalAdm frame = new PrincipalAdm();
 						frame.setVisible(true);
-					} else {
+					} else if (Empresa.getInstance().getLoginUser() instanceof EmpleadoCom){
 						PrincipalCom frame = new PrincipalCom("");
 						frame.setVisible(true);
 					}

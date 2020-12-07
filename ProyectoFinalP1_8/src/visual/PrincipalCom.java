@@ -165,17 +165,32 @@ public class PrincipalCom extends JFrame {
 		mnNewMenu.add(mntmFacturas);
 		
 
-		JMenu mnNewMenu1 = new JMenu("Compra de planes");
+		JMenu mnNewMenu1 = new JMenu("Actividades");
 		menuBar.add(mnNewMenu1);
 	
 		JMenuItem mntmNewMenuItem_21 = new JMenuItem("Compra de planes");
 		mntmNewMenuItem_21.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CompraPlan compraPlan = new CompraPlan(ced);
-				compraPlan.setVisible(true);
+				String mensaje = JOptionPane.showInputDialog(null, "Ingrese la cédula del solicitante.");
+				if(Empresa.getInstance().findCliente(mensaje) != null) {
+					CompraPlan compraPlan = new CompraPlan(ced, Empresa.getInstance().findCliente(mensaje).getNombres(), Empresa.getInstance().findCliente(mensaje).getCedula());
+					compraPlan.setVisible(true);
+				} else JOptionPane.showMessageDialog(null, "El cliente ingresado no existe en nuestros registros.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		});
 		mnNewMenu1.add(mntmNewMenuItem_21);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Pago de factura");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mensaje = JOptionPane.showInputDialog(null, "Ingrese la cédula del solicitante.");
+				if(Empresa.getInstance().findCliente(mensaje) != null) {
+					PagarFactura pagarFactura = new PagarFactura(Empresa.getInstance().findCliente(mensaje));
+					pagarFactura.setVisible(true);
+				} else JOptionPane.showMessageDialog(null, "El cliente ingresado no existe en nuestros registros.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				}
+		});
+		mnNewMenu1.add(mntmNewMenuItem);
 	}
-
 }

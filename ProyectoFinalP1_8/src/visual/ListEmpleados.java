@@ -135,8 +135,7 @@ public class ListEmpleados extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
-		
-		llenarTabla();
+	
 		cargarListaDisponible(seleccion);
 	}
 	
@@ -171,7 +170,6 @@ public class ListEmpleados extends JDialog {
 				modelo.addRow(filas);
 			     }
 			
-			modelo.addRow(filas);
 		}
 	}
 	

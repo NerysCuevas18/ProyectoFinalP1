@@ -226,4 +226,61 @@ public class Empresa implements Serializable {
 		}
 		return cant;
 	}
+	
+	public void eliminarCliente(Cliente aux) {
+		int index = getIndexCliente(aux.getCedula());
+		clientes.remove(index);		
+	}
+	
+	public void eliminarEmpleado(Empleado aux) {
+		int index = getIndexEmpleado(aux.getCedula());
+		empleados.remove(index);		
+	}
+	
+	public void eliminarPlan(Plan aux) {
+		int index = getIndexPlan(aux.getCodPlan());
+		planes.remove(index);		
+	}
+		
+	public int getIndexCliente(String id) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<clientes.size()){
+			if(clientes.get(i).getCedula().equalsIgnoreCase(id)) {
+				aux = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	
+	public int getIndexEmpleado(String id) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<empleados.size()){
+			if(empleados.get(i).getCedula().equalsIgnoreCase(id)) {
+				aux = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	
+	public int getIndexPlan(String id) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<planes.size()){
+			if(planes.get(i).getCodPlan().equalsIgnoreCase(id)) {
+				aux = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
 }

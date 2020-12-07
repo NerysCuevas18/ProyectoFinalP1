@@ -74,7 +74,7 @@ public class CompraPlan extends JDialog {
 	 * Create the dialog.
 	 * @param miAlmacen 
 	 */
-	public CompraPlan(String cedEmpleado) {
+	public CompraPlan(String cedEmpleado, String nombreCliente, String cedulaCliente) {
 		setTitle("Venta de planes");
 		setModal(true);
 		setLocationRelativeTo(null);
@@ -153,7 +153,9 @@ public class CompraPlan extends JDialog {
 		lblNewLabel.setBounds(10, 27, 95, 14);
 		panel_1.add(lblNewLabel);
 		
-		txtNomb = new JTextField();
+		txtNomb = new JTextField(nombreCliente);
+		txtNomb.setEnabled(false);
+		txtNomb.setEditable(false);
 		txtNomb.setBounds(104, 24, 236, 20);
 		panel_1.add(txtNomb);
 		txtNomb.setColumns(10);
@@ -162,7 +164,9 @@ public class CompraPlan extends JDialog {
 		lblCdula.setBounds(420, 27, 111, 14);
 		panel_1.add(lblCdula);
 		
-		txtCed = new JTextField();
+		txtCed = new JTextField(cedulaCliente);
+		txtCed.setEnabled(false);
+		txtCed.setEditable(false);
 		txtCed.setColumns(10);
 		txtCed.setBounds(507, 24, 236, 20);
 		panel_1.add(txtCed);
