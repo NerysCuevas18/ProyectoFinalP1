@@ -227,7 +227,7 @@ public class RegCliente extends JDialog {
 						char sexo=s.charAt(0);
 						Date fecha = (Date) spnFecNac.getValue();
 						String nac = txtNac.getText();
-						String nombreR = txtNomR.getText();
+						String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
 						String telR = txtTelR.getText();
 						Date reg = new Date();
 						Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);

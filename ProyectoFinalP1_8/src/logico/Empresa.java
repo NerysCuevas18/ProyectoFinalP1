@@ -297,5 +297,4 @@ public class Empresa implements Serializable {
 		}
 		return aux;
 	}
-
 }

@@ -244,42 +244,69 @@ public class RegEmpleado extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(cbxPuesto.getSelectedItem().toString()=="Administrativo") {
-							String cedula = txtCed.getText();
-							String nombre = txtNombre.getText();
-							String apellido = txtApellido.getText();
-							ArrayList<String> tel = new ArrayList<String>();
-							tel.add(txtTel1.getText());
-							tel.add(txtTel2.getText());
-							String correo = txtEmail.getText();
-							String s=cbxSexo.getSelectedItem().toString();  
-							char sexo=s.charAt(0);
-							Date fecha = (Date) spnFecNac.getValue();
-							String nac = txtNaci.getText();
-							String nombreR = txtNombRef.getText();
-							String telR = txtTel.getText();
-							Date fechaIng = new Date();
-							float sueldo = Float.parseFloat(txtSueldo.getText());
-							EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,"");
-							Empresa.getInstance().insertarEmpleado(aux);
-						}else if(cbxPuesto.getSelectedItem().toString()=="Comercial") {
-							String cedula = txtCed.getText();
-							String nombre = txtNombre.getText();
-							String apellido = txtApellido.getText();
-							ArrayList<String> tel = new ArrayList<String>();
-							tel.add(txtTel1.getText());
-							tel.add(txtTel2.getText());
-							String correo = txtEmail.getText();
-							String s=cbxSexo.getSelectedItem().toString();  
-							char sexo=s.charAt(0);
-							Date fecha = (Date) spnFecNac.getValue();
-							String nac = txtNaci.getText();
-							String nombreR = txtNombRef.getText();
-							String telR = txtTel.getText();
-							Date fechaIng = new Date();
-							float sueldo = Float.parseFloat(txtSueldo.getText());
-							EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,"");
-							Empresa.getInstance().insertarEmpleado(aux);
+						String cliente1=" ";
+						String cliente2=" ";
+						boolean aux1 = false;
+						{
+							do {
+								cliente1 = JOptionPane.showInputDialog("Digite la contraseña a utilizar:");
+								if(cliente1!=" ") {
+									cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
+									do {
+										if (cliente2!=" ") {
+											aux1=true;
+										}else {
+											JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
+											cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
+										}
+									} while (cliente2!=cliente1);
+								}else {
+									JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
+									cliente1 = JOptionPane.showInputDialog("Digite la contraseña a utilizar:");
+								}
+							} while (aux1==false);
+						}
+						if (aux1==true) {
+							if(cbxPuesto.getSelectedItem().toString()=="Administrativo") {
+								String cedula = txtCed.getText();
+								String nombre = txtNombre.getText();
+								String apellido = txtApellido.getText();
+								ArrayList<String> tel = new ArrayList<String>();
+								tel.add(txtTel1.getText());
+								tel.add(txtTel2.getText());
+								String correo = txtEmail.getText();
+								String s=cbxSexo.getSelectedItem().toString();  
+								char sexo=s.charAt(0);
+								Date fecha = (Date) spnFecNac.getValue();
+								String nac = txtNaci.getText();
+								String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
+								String telR = txtTel.getText();
+								Date fechaIng = new Date();
+								float sueldo = Float.parseFloat(txtSueldo.getText());
+								String password = cliente1;
+								EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
+								Empresa.getInstance().insertarEmpleado(aux);
+								
+							}else if(cbxPuesto.getSelectedItem().toString()=="Comercial") {
+								String cedula = txtCed.getText();
+								String nombre = txtNombre.getText();
+								String apellido = txtApellido.getText();
+								ArrayList<String> tel = new ArrayList<String>();
+								tel.add(txtTel1.getText());
+								tel.add(txtTel2.getText());
+								String correo = txtEmail.getText();
+								String s=cbxSexo.getSelectedItem().toString();  
+								char sexo=s.charAt(0);
+								Date fecha = (Date) spnFecNac.getValue();
+								String nac = txtNaci.getText();
+								String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
+								String telR = txtTel.getText();
+								Date fechaIng = new Date();
+								float sueldo = Float.parseFloat(txtSueldo.getText());
+								String password = cliente1;
+								EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
+								Empresa.getInstance().insertarEmpleado(aux);
+							}
 						}
 						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
 						clean();
