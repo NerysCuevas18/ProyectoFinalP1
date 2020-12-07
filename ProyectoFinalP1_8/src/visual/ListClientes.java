@@ -29,7 +29,7 @@ public class ListClientes extends JDialog {
 	private JTable table;
 	public static DefaultTableModel modelo;
 	public static Object[] filas;
-	public Persona aux = null;
+	public Cliente aux = null;
 	private JButton btnEliminar;
 	private JButton btnModificar;
 
@@ -106,7 +106,7 @@ public class ListClientes extends JDialog {
 						if(aux!=null){
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar al Cliente: "+aux.getCedula(), "Confirmación", JOptionPane.WARNING_MESSAGE);
 						    if(option == JOptionPane.OK_OPTION){
-						    	Empresa.getInstance().eliminarClientes(aux);
+						    	Empresa.getInstance().eliminarCliente(aux);
 						    	llenarTabla();
 						    	btnEliminar.setEnabled(false);
 						    	

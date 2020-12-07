@@ -36,7 +36,7 @@ public class ListEmpleados extends JDialog {
 	public static Object[] filas;
 	private JComboBox comboBox;
 	private String seleccion = "<Todos>";
-	private Persona aux = null;
+	private Empleado aux = null;
 
 	/**
 	 * Launch the application.
@@ -112,7 +112,7 @@ public class ListEmpleados extends JDialog {
 						if(aux!=null) {
 							int option = JOptionPane.showConfirmDialog(null, "¿Está seguro/a de que desea eliminar el empleado: "+aux.getCedula(), "Confirmación", JOptionPane.WARNING_MESSAGE);
 						    if(option == JOptionPane.OK_OPTION) {
-						        Empresa.getInstance().eliminarQueso(aux);
+						        Empresa.getInstance().eliminarEmpleado(aux);
 						     	seleccion = "<Todos>";
 						    	cargarListaDisponible(seleccion);
 						    	btnEliminar.setEnabled(false);
