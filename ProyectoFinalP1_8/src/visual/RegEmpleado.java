@@ -259,7 +259,7 @@ public class RegEmpleado extends JDialog {
 											JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
 											cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
 										}
-									} while (cliente2!=cliente1);
+									} while (!(cliente2.equals(cliente1)));
 								}else {
 									JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
 									cliente1 = JOptionPane.showInputDialog("Digite la contraseña a utilizar:");
