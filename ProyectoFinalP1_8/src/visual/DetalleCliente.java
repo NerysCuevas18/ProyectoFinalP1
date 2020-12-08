@@ -39,6 +39,7 @@ public class DetalleCliente extends JDialog {
 	 */
 	
 
+	
 	/**
 	 * Create the dialog.
 	 */
