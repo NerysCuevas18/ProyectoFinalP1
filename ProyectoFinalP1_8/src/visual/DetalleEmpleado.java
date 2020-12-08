@@ -32,7 +32,7 @@ public class DetalleEmpleado extends JDialog {
 	private JTextField txtNacimiento;
 	private JTextField txtNacionalidad;
 	private JTextField txtIngresoComp;
-	private JTextField txtSaldo;
+	private JTextField txtSueldo;
 	private JTextField txtTipo;
 	private JTextField txtNombreRef;
 	private JTextField txtTelefonoR;
@@ -76,7 +76,7 @@ public class DetalleEmpleado extends JDialog {
 			
 			txtCedula = new JTextField();
 			txtCedula.setEditable(false);
-			txtCedula.setBounds(143, 48, 504, 26);
+			txtCedula.setBounds(143, 48, 421, 26);
 			panel.add(txtCedula);
 			txtCedula.setColumns(10);
 			txtCedula.setText(empleado.getCedula());
@@ -175,16 +175,16 @@ public class DetalleEmpleado extends JDialog {
 			txtIngresoComp.setText(empleado.getIngresoCompania().toString());
 			
 			
-			JLabel lblSaldo = new JLabel("Saldo:");
+			JLabel lblSaldo = new JLabel("Sueldo");
 			lblSaldo.setBounds(608, 357, 69, 20);
 			panel.add(lblSaldo);
 			
-			txtSaldo = new JTextField();
-			txtSaldo.setEditable(false);
-			txtSaldo.setColumns(10);
-			txtSaldo.setBounds(737, 354, 421, 26);
-			panel.add(txtSaldo);
-			txtSaldo.setText(empleado.getSaldo()+"");
+			txtSueldo = new JTextField();
+			txtSueldo.setEditable(false);
+			txtSueldo.setColumns(10);
+			txtSueldo.setBounds(737, 354, 421, 26);
+			panel.add(txtSueldo);
+			txtSueldo.setText(empleado.getSaldo()+"");
 			
 			JLabel lblPass = new JLabel("Tipos Emp:");
 			lblPass.setBounds(15, 357, 99, 20);
