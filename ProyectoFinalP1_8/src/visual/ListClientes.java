@@ -76,6 +76,15 @@ public class ListClientes extends JDialog {
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
+					table.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							btnEliminar.setEnabled(true);
+							btnNewButton.setEnabled(true);
+							btnModificar.setEnabled(true);
+							
+						}
+					});
 					table.setModel(modelo);
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					scrollPane.setViewportView(table);

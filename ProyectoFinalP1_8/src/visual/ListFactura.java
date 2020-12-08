@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListFactura extends JDialog {
 
@@ -31,15 +33,7 @@ public class ListFactura extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			ListFactura dialog = new ListFactura();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the dialog.
@@ -68,6 +62,10 @@ public class ListFactura extends JDialog {
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
+					table.addMouseListener(new MouseAdapter() {
+						
+						
+					});
 					table.setModel(modelo);
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					scrollPane.setViewportView(table);
@@ -79,18 +77,6 @@ public class ListFactura extends JDialog {
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton btnModificar = new JButton("Modificar");
-				btnModificar.setEnabled(false);
-				btnModificar.setActionCommand("OK");
-				buttonPane.add(btnModificar);
-				getRootPane().setDefaultButton(btnModificar);
-			}
-			{
-				JButton btnEliminar = new JButton("Eliminar");
-				btnEliminar.setEnabled(false);
-				buttonPane.add(btnEliminar);
-			}
 			{
 				JButton btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {

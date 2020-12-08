@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import fabrica.Cilindrico;
+import fabrica.CilindricoHueco;
+import fabrica.Esferico;
 import logico.Cliente;
 import logico.Empleado;
 import logico.EmpleadoAdm;
@@ -27,7 +30,11 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JLabel;
@@ -57,6 +64,7 @@ public class CompraPlan extends JDialog {
 	private JTextField txtCed;
 	private JTextField txtCodPlan;
 	private JButton btnRegistrar;
+	private Date today;
 
 	/**
 	 * Launch the application.
@@ -210,6 +218,8 @@ public class CompraPlan extends JDialog {
 							}
 						}
 						clean();
+						
+						
 					}
 				});
 				btnRegistrar.setActionCommand("OK");

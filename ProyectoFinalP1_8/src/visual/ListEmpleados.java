@@ -29,6 +29,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 
 public class ListEmpleados extends JDialog {
 
@@ -41,19 +42,12 @@ public class ListEmpleados extends JDialog {
 	private Empleado aux = null;
 	private JButton btnNewButton;
 	private JButton btnEliminar;
+	private JButton btnModificar;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			ListEmpleados dialog = new ListEmpleados();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the dialog.
@@ -82,6 +76,15 @@ public class ListEmpleados extends JDialog {
 					modelo.setColumnIdentifiers(headers);
 					
 					table = new JTable();
+					table.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							btnEliminar.setEnabled(true);
+							btnNewButton.setEnabled(true);
+							btnModificar.setEnabled(true);
+
+						}
+					});
 					table.setModel(modelo);
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					scrollPane.setViewportView(table);
@@ -148,6 +151,24 @@ public class ListEmpleados extends JDialog {
 						}
 					});
 					buttonPane.add(btnNewButton);
+				}
+				{
+					btnModificar = new JButton("Modificar");
+					btnModificar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							RegEmpleado regEmpleado = null;
+							try {
+								regEmpleado = new RegEmpleado("Modificar Empleado", 1, aux);
+							} catch (ParseException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							regEmpleado.setVisible(true);
+							llenarTabla();
+						}
+					});
+					btnModificar.setEnabled(false);
+					buttonPane.add(btnModificar);
 				}
 				btnEliminar.setEnabled(false);
 				buttonPane.add(btnEliminar);
