@@ -142,7 +142,7 @@ public class Empresa implements Serializable {
 			Calendar facturar = Calendar.getInstance();
 			facturar.setTime(hoy);
 			
-			if(((facturar.get(Calendar.DAY_OF_MONTH))==15) && !facturasGeneradas) {
+			if(((facturar.get(Calendar.DAY_OF_MONTH))==8) && !facturasGeneradas) {
 				for(int i = 0; i<clientes.size(); i++) {
 					if(clientes.get(i).isEstado()) {
 						Factura fact = new Factura("ALT"+codFacturas++, clientes.get(i));
@@ -151,7 +151,7 @@ public class Empresa implements Serializable {
 					}
 				}
 				setFacturasGeneradas(true);
-			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=15) && facturasGeneradas) {
+			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=8) && facturasGeneradas) {
 				setFacturasGeneradas(false);
 			}
 		
