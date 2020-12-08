@@ -89,6 +89,8 @@ public class RegEmpleado extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -239,13 +241,7 @@ public class RegEmpleado extends JDialog {
 		JLabel lblSueldoBase = new JLabel("Sueldo base:");
 		lblSueldoBase.setBounds(455, 31, 137, 14);
 		panel_1.add(lblSueldoBase);
-		
-		MaskFormatter formatter1 = new MaskFormatter("(###) ###-####");
-		txtTel1 = new JFormattedTextField(formatter1);
-		txtTel1.setColumns(10);
-		txtTel1.setBounds(135, 127, 300, 20);
-		panel.add(txtTel1);
-		
+				
 		txtSueldo = new JTextField();
 		txtSueldo.setColumns(10);
 		txtSueldo.setBounds(585, 28, 170, 20);
@@ -289,17 +285,14 @@ public class RegEmpleado extends JDialog {
 					public void actionPerformed(ActionEvent e) {	
 						int aux1 = 0;
 						if (i==0) {
-							if((txtCed.getText()==" ")||(txtNombre.getText()=="Nombre(s)")||(txtApellido.getText()=="Apellido(s)")||(txtNombre.getText()==" ")||(txtApellido.getText()==" ")
-									||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||(txtEmail.getText()==" ")||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
-									||(txtNaci.getText()==" ")||(txtNombRef.getText()=="Nombre(s)")||(txtApellRef.getText()=="Apellido(s)")||(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||
-									(txtTel.getText()==" ")) {
+							if((txtCed.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))
+									||(txtTel1.getText().equalsIgnoreCase("(   )    -    "))||(txtEmail.getText().equalsIgnoreCase(""))||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
+									||(txtNaci.getText().equalsIgnoreCase(""))||(txtNombRef.getText().equalsIgnoreCase(""))||(txtApellRef.getText().equalsIgnoreCase(""))||(txtNombRef.getText().equalsIgnoreCase(""))||(txtApellRef.getText().equalsIgnoreCase(""))||
+									(txtTel.getText().equalsIgnoreCase("(   )    -    "))||(txtNombre.getText().equalsIgnoreCase("Nombre(s)"))||(txtApellido.getText().equalsIgnoreCase(""))) {
 								
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 							
-							}if((txtCed.getText()!=" ")&&(txtNombre.getText()!="Nombre(s)")&&(txtApellido.getText()!="Apellido(s)")&&(txtNombre.getText()!=" ")&&(txtApellido.getText()!=" ")
-									&&(txtTel1.getText()!=" ")&&(txtTel2.getText()!=" ")&&(txtEmail.getText()!=" ")&&((String) cbxSexo.getSelectedItem()!="<Seleccione>")
-									&&(txtNaci.getText()!=" ")&&(txtNombRef.getText()!="Nombre(s)")&&(txtApellRef.getText()!="Apellido(s)")&&(txtNombRef.getText()!=" ")&&(txtApellRef.getText()!=" ")&&
-									(txtTel.getText()!=" ")){
+							}else {
 								String cliente1=" ";
 								String cliente2=" ";
 								{

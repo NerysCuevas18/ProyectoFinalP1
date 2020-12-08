@@ -138,11 +138,11 @@ public class Confirmar extends JDialog {
 					    	 
 					    	 if(tipo) {
 					    		 JOptionPane.showMessageDialog(null, "¡Bienvenido a Altice! Sus facturas serán generadas el 15 de cada mes", "Información", JOptionPane.INFORMATION_MESSAGE);
-								} else {
-									CompraPlan compraPlan = new CompraPlan(ced, cliente.getNombres(), cliente.getCedula());
-									compraPlan.setVisible(true);
+					    		 dispose();
+					    	 } else {
+					    		 JOptionPane.showMessageDialog(null, "¡Bienvenido a Altice! Ya puedes activar tu Plan.", "Información", JOptionPane.INFORMATION_MESSAGE);
+					    		 
 								}
-					    	 dispose();
 					    	 }
 						}
 						}

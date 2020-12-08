@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -62,6 +63,7 @@ public class CompraPlan extends JDialog {
 	private JTextField txtCodPlan;
 	private JButton btnRegistrar;
 	private Date today;
+	private JEditorPane txtDescripcion;
 
 	/**
 	 * Launch the application.
@@ -147,6 +149,9 @@ public class CompraPlan extends JDialog {
 		
 		list = new JList();
 		panel.add(list, BorderLayout.CENTER);
+		txtDescripcion = new JEditorPane();
+		txtDescripcion.setBounds(92, 94, 382, 145);
+		panel.add(txtDescripcion);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos del cliente y del plan a comprar", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -247,11 +252,6 @@ public class CompraPlan extends JDialog {
 		}
 	}
 	private void cargarListaDisponible() {
-		auxDisponible = new ArrayList<>();
-		for (Plan planCliente : aux) {
-			auxDisponible.add(new String("Descripción: "+planCliente.getDescripcionP()));
-		}			
-		list.removeAll();
-		list.setListData(auxDisponible.toArray());	
+		txtDescripcion.setText("Descripción: "+aux1.getDescripcionP());
 	}
 }
