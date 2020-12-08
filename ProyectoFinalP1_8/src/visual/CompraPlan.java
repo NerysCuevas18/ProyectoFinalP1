@@ -220,7 +220,7 @@ public class CompraPlan extends JDialog {
 								}
 							}
 							JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-							clean();
+							dispose();
 						}		
 					}
 				});
@@ -253,10 +253,5 @@ public class CompraPlan extends JDialog {
 		}			
 		list.removeAll();
 		list.setListData(auxDisponible.toArray());	
-	}
-	private void clean() {
-		txtNomb.setText("");
-		txtCed.setText("");
-		txtCodPlan.setText("");
 	}
 }

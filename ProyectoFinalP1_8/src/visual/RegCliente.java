@@ -66,7 +66,7 @@ public class RegCliente extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			RegCliente dialog = new RegCliente("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -74,7 +74,7 @@ public class RegCliente extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	/**
 	 * Create the dialog.
 	 * @param object 
@@ -246,13 +246,17 @@ public class RegCliente extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(i==0) {
-							if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
-									(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNac.getText()==" ")||
-									(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||(txtTelR.getText()==" ")) {
+							if((txtCed.getText()==" ")||(txtNombre.getText()=="Nombre(s)")||(txtApellido.getText()=="Apellido(s)")||(txtNombre.getText()==" ")||(txtApellido.getText()==" ")
+									||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||(txtEmail.getText()==" ")||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
+									||(txtNac.getText()==" ")||(txtNomR.getText()=="Nombre(s)")||(txtApellR.getText()=="Apellido(s)")||(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||
+									(txtTelR.getText()==" ")) {
+								
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
-							}if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
-								JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
-							}else{
+							
+							}if((txtCed.getText()!=" ")&&(txtNombre.getText()!="Nombre(s)")&&(txtApellido.getText()!="Apellido(s)")&&(txtNombre.getText()!=" ")&&(txtApellido.getText()!=" ")
+									&&(txtTel1.getText()!=" ")&&(txtTel2.getText()!=" ")&&(txtEmail.getText()!=" ")&&((String) cbxSexo.getSelectedItem()!="<Seleccione>")
+									&&(txtNac.getText()!=" ")&&(txtNomR.getText()!="Nombre(s)")&&(txtApellR.getText()!="Apellido(s)")&&(txtNomR.getText()!=" ")&&(txtApellR.getText()!=" ")&&
+									(txtTelR.getText()!=" ")){
 								String cedula = txtCed.getText();
 								String nombre = txtNombre.getText();
 								String apellido = txtApellido.getText();
@@ -267,20 +271,32 @@ public class RegCliente extends JDialog {
 								String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
 								String telR = txtTelR.getText();
 								Date reg = new Date();
-								Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
-								Empresa.getInstance().insertarCliente(aux);
-								JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-								clean();
+								if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
+									
+									JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
+								
+								}else{
+									Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
+									Empresa.getInstance().insertarCliente(aux);
+									JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+									clean();
+								}
 							}
 						}
 						else if(i==1) {
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
 							if(option==JOptionPane.OK_OPTION) { 
-								if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
-										(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNac.getText()==" ")||
-										(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||(txtTelR.getText()==" ")) {
+								if((txtCed.getText()==" ")||(txtNombre.getText()=="Nombre(s)")||(txtApellido.getText()=="Apellido(s)")||(txtNombre.getText()==" ")||(txtApellido.getText()==" ")
+										||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||(txtEmail.getText()==" ")||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
+										||(txtNac.getText()==" ")||(txtNomR.getText()=="Nombre(s)")||(txtApellR.getText()=="Apellido(s)")||(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||
+										(txtTelR.getText()==" ")) {
+									
 									JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
-								}else {
+								
+								}if((txtCed.getText()!=" ")&&(txtNombre.getText()!="Nombre(s)")&&(txtApellido.getText()!="Apellido(s)")&&(txtNombre.getText()!=" ")&&(txtApellido.getText()!=" ")
+										&&(txtTel1.getText()!=" ")&&(txtTel2.getText()!=" ")&&(txtEmail.getText()!=" ")&&((String) cbxSexo.getSelectedItem()!="<Seleccione>")
+										&&(txtNac.getText()!=" ")&&(txtNomR.getText()!="Nombre(s)")&&(txtApellR.getText()!="Apellido(s)")&&(txtNomR.getText()!=" ")&&(txtApellR.getText()!=" ")&&
+										(txtTelR.getText()!=" ")) {
 									cliente.setCedula(txtCed.getText());
 									cliente.setNombres(txtNombre.getText());
 									cliente.setApellidos(txtApellido.getText());
