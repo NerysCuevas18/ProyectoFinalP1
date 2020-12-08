@@ -66,9 +66,9 @@ public class GraficoGananciasMensuales extends JFrame {
 		ChartPanel chartPanel = new ChartPanel(chart);
 		panel.add(chartPanel);
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		new GraficoGananciasMensuales().setVisible(true);
-	}
+	}*/
 
 
 }
