@@ -9,9 +9,9 @@ public class EmpleadoCom extends Empleado {
 	public int cantVenta;
 
 	public EmpleadoCom(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
-			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia, String telefonoReferencia,
+			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia, String apellidoReferencia, String telefonoReferencia,
 			Date ingresoCompania, float saldo, String pass) {
-		super(cedula, nombres, apellidos, telefonos, correo, sexo, nacimiento, nacionalidad, nombreReferencia,
+		super(cedula, nombres, apellidos, telefonos, correo, sexo, nacimiento, nacionalidad, nombreReferencia, apellidoReferencia,
 				telefonoReferencia, ingresoCompania, saldo, pass);
 		this.bono = 0;
 		this.cantVenta = 0;

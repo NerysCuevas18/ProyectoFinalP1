@@ -70,7 +70,7 @@ public class DetalleEmpleado extends JDialog {
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("Cedula:");
+			JLabel lblNewLabel = new JLabel("C\u00E9dula:");
 			lblNewLabel.setBounds(15, 51, 69, 20);
 			panel.add(lblNewLabel);
 			
@@ -104,7 +104,7 @@ public class DetalleEmpleado extends JDialog {
 			txtApellido.setText(empleado.getApellidos());
 
 			
-			JLabel lblNewLabel_3 = new JLabel("Telefono:");
+			JLabel lblNewLabel_3 = new JLabel("T\u00E9lefono:");
 			lblNewLabel_3.setBounds(15, 145, 69, 20);
 			panel.add(lblNewLabel_3);
 			
@@ -214,9 +214,9 @@ public class DetalleEmpleado extends JDialog {
 			txtNombreRef.setColumns(10);
 			txtNombreRef.setBounds(143, 299, 421, 26);
 			panel.add(txtNombreRef);
-			txtNombreRef.setText(empleado.getNombreReferencia());
+			txtNombreRef.setText(empleado.getNombreReferencia()+" "+empleado.getApellidoReferencia());
 			
-			JLabel lblTelefonoRef = new JLabel("Telefono Ref:");
+			JLabel lblTelefonoRef = new JLabel("Tel\u00E9fono Ref:");
 			lblTelefonoRef.setBounds(608, 302, 113, 20);
 			panel.add(lblTelefonoRef);
 			

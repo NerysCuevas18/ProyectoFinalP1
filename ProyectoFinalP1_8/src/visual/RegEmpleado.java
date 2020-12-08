@@ -263,7 +263,8 @@ public class RegEmpleado extends JDialog {
 			txtTel1.setText(empl.getTelefonos().get(0));
 			txtTel2.setText(empl.getTelefonos().get(1));
 			txtEmail.setText(empl.getCorreo());
-			txtNombRef.setText(empl.getNombreReferencia());//ARREGLAR ESO
+			txtNombRef.setText(empl.getNombreReferencia());
+			txtApellRef.setText(empl.getApellidoReferencia());
 			txtTel.setText(empl.getTelefonoReferencia());
 			txtSueldo.setText(Float.toString(empl.getSaldo()));
 						
@@ -341,7 +342,8 @@ public class RegEmpleado extends JDialog {
 										char sexo=s.charAt(0);
 										Date fecha = (Date) spnFecNac.getValue();
 										String nac = txtNaci.getText();
-										String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
+										String nombreR = txtNombRef.getText();
+										String apellR = txtApellRef.getText();
 										String telR = txtTel.getText();
 										Date fechaIng = new Date();
 										if(!(validar(txtSueldo.getText()))) {
@@ -351,7 +353,7 @@ public class RegEmpleado extends JDialog {
 										if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
 											JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
 										}else {
-											EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,Float.valueOf(txtSueldo.getText()),password);
+											EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,apellR,telR,fechaIng,Float.valueOf(txtSueldo.getText()),password);
 											Empresa.getInstance().insertarEmpleado(aux);
 										}
 										
@@ -367,7 +369,8 @@ public class RegEmpleado extends JDialog {
 										char sexo=s.charAt(0);
 										Date fecha = (Date) spnFecNac.getValue();
 										String nac = txtNaci.getText();
-										String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
+										String nombreR = (txtNombRef.getText());
+										String apellidoR = txtApellRef.getText();
 										String telR = txtTel.getText();
 										Date fechaIng = new Date();
 										if(!(validar(txtSueldo.getText()))) {
@@ -377,7 +380,7 @@ public class RegEmpleado extends JDialog {
 										if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
 											JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
 										}else {
-											EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,Float.valueOf(txtSueldo.getText()),password);
+											EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,apellidoR,telR,fechaIng,Float.valueOf(txtSueldo.getText()),password);
 											Empresa.getInstance().insertarEmpleado(aux);
 										}
 										

@@ -254,7 +254,8 @@ public class RegCliente extends JDialog {
 			txtTel1.setText(cliente.getTelefonos().get(0));
 			txtTel2.setText(cliente.getTelefonos().get(1));
 			txtEmail.setText(cliente.getCorreo());
-			txtNomR.setText(cliente.getNombreReferencia());//ARREGLAR ESO
+			txtNomR.setText(cliente.getNombreReferencia());
+			txtApellR.setText(cliente.getApellidoReferencia());//ARREGLAR ESO
 			txtTelR.setText(cliente.getTelefonoReferencia());
 		}
 		{
@@ -285,7 +286,8 @@ public class RegCliente extends JDialog {
 								char sexo=s.charAt(0);
 								Date fecha = (Date) spnFecNac.getValue();
 								String nac = txtNac.getText();
-								String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
+								String nombreR = txtNomR.getText();
+								String apellidoR = txtApellR.getText();
 								String telR = txtTelR.getText();
 								Date reg = new Date();
 								if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
@@ -293,7 +295,7 @@ public class RegCliente extends JDialog {
 									JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
 								
 								}else{
-									Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
+									Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,apellidoR,telR,true,reg);
 									Empresa.getInstance().insertarCliente(aux);
 									JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
 									dispose();

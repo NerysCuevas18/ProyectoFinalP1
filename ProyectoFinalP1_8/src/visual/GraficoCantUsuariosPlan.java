@@ -21,7 +21,6 @@ public class GraficoCantUsuariosPlan extends JFrame {
 		setTitle("CANTIDAD DE USUARIOS POR PLAN");
 		setSize(800,475);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		init();
 	}

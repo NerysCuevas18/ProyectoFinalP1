@@ -21,7 +21,6 @@ public class GraficoGananciasMensuales extends JFrame {
 		setTitle("GANANCIAS MENSUALES");
 		setSize(725,475);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		init();
 	}

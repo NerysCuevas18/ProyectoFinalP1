@@ -18,10 +18,11 @@ public abstract class Persona implements Serializable{
 	protected Date nacimiento;
 	protected String nacionalidad;
 	protected String nombreReferencia;
+	protected String apellidoReferencia;
 	protected String telefonoReferencia;
 	
 	public Persona(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
-			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,String telefonoReferencia) {
+			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,String apellidoReferencia,String telefonoReferencia) {
 		super();
 		this.cedula = cedula;
 		this.nombres = nombres;
@@ -33,6 +34,7 @@ public abstract class Persona implements Serializable{
 		this.nacionalidad = nacionalidad;
 		this.nombreReferencia = nombreReferencia;
 		this.telefonoReferencia = telefonoReferencia;
+		this.apellidoReferencia = apellidoReferencia;
 	}
 	
 	public String getCedula() {
@@ -95,6 +97,14 @@ public abstract class Persona implements Serializable{
 	}
 	public void setTelefonoReferencia(String telefonoReferencia) {
 		this.telefonoReferencia = telefonoReferencia;
+	}
+
+	public String getApellidoReferencia() {
+		return apellidoReferencia;
+	}
+
+	public void setApellidoReferencia(String apellidoReferencia) {
+		this.apellidoReferencia = apellidoReferencia;
 	}
 	
 
