@@ -240,6 +240,12 @@ public class RegEmpleado extends JDialog {
 		lblSueldoBase.setBounds(455, 31, 137, 14);
 		panel_1.add(lblSueldoBase);
 		
+		MaskFormatter formatter1 = new MaskFormatter("(###) ###-####");
+		txtTel1 = new JFormattedTextField(formatter1);
+		txtTel1.setColumns(10);
+		txtTel1.setBounds(135, 127, 300, 20);
+		panel.add(txtTel1);
+		
 		txtSueldo = new JTextField();
 		txtSueldo.setColumns(10);
 		txtSueldo.setBounds(585, 28, 170, 20);
@@ -337,12 +343,14 @@ public class RegEmpleado extends JDialog {
 										String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
 										String telR = txtTel.getText();
 										Date fechaIng = new Date();
-										float sueldo = Float.parseFloat(txtSueldo.getText());
+										if(!(validar(txtSueldo.getText()))) {
+											JOptionPane.showMessageDialog(null, "Dígite un sueldo válido.", "Información", JOptionPane.ERROR_MESSAGE);
+										}
 										String password = cliente1;
 										if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
 											JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
 										}else {
-											EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
+											EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,Float.valueOf(txtSueldo.getText()),password);
 											Empresa.getInstance().insertarEmpleado(aux);
 										}
 										
@@ -361,12 +369,14 @@ public class RegEmpleado extends JDialog {
 										String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
 										String telR = txtTel.getText();
 										Date fechaIng = new Date();
-										float sueldo = Float.parseFloat(txtSueldo.getText());
+										if(!(validar(txtSueldo.getText()))) {
+											JOptionPane.showMessageDialog(null, "Dígite un sueldo válido.", "Información", JOptionPane.ERROR_MESSAGE);
+										}	
 										String password = cliente1;
 										if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
 											JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
 										}else {
-											EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
+											EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,Float.valueOf(txtSueldo.getText()),password);
 											Empresa.getInstance().insertarEmpleado(aux);
 										}
 										
@@ -405,10 +415,14 @@ public class RegEmpleado extends JDialog {
 										empl.setNacionalidad(txtNaci.getText());
 										empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
 										empl.setTelefonoReferencia(txtTel.getText());
-										empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
-										cbxPuesto.setSelectedItem("Administrativo");
-										cbxPuesto.setEnabled(false);
-										spnFecNac.setValue(empl.getNacimiento());
+										if(validar(txtSueldo.getText())) {
+											empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
+											cbxPuesto.setSelectedItem("Comercial");
+											cbxPuesto.setEnabled(false);
+											spnFecNac.setValue(empl.getNacimiento());
+										}else {
+											JOptionPane.showMessageDialog(null, "Dígite un sueldo válido.", "Información", JOptionPane.ERROR_MESSAGE);
+										}	
 																			
 									}else if(empl instanceof EmpleadoCom) {
 										empl.setCedula(txtCed.getText());
@@ -426,10 +440,14 @@ public class RegEmpleado extends JDialog {
 										empl.setNacionalidad(txtNaci.getText());
 										empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
 										empl.setTelefonoReferencia(txtTel.getText());
-										empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
-										cbxPuesto.setSelectedItem("Comercial");
-										cbxPuesto.setEnabled(false);
-										spnFecNac.setValue(empl.getNacimiento());
+										if(validar(txtSueldo.getText())) {
+											empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
+											cbxPuesto.setSelectedItem("Comercial");
+											cbxPuesto.setEnabled(false);
+											spnFecNac.setValue(empl.getNacimiento());
+										}else {
+											JOptionPane.showMessageDialog(null, "Dígite un sueldo válido.", "Información", JOptionPane.ERROR_MESSAGE);
+										}		
 									}								
 									clean();
 									dispose();
@@ -475,5 +493,14 @@ public class RegEmpleado extends JDialog {
 		   txtTel.setText("");
 		   txtSueldo.setText("");
 		   cbxSexo.setSelectedIndex(0);   
+	}
+	private boolean validar(String texto) {
+		boolean isValid = true;
+	    try {
+	        Double.parseDouble(texto);
+	    } catch(NumberFormatException nfe) {
+	        isValid = false;
+	    }
+	    return isValid;
 	}
 }
