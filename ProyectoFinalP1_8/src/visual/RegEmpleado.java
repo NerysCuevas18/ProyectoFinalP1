@@ -59,6 +59,9 @@ public class RegEmpleado extends JDialog {
 	private JComboBox cbxSexo;
 	private JSpinner spnFecNac;
 	private JComboBox cbxPuesto; 
+	private MaskFormatter formatter1;
+	private MaskFormatter formatter;
+	private MaskFormatter formatter2;
 
 	/**
 	 * Launch the application.
@@ -125,7 +128,7 @@ public class RegEmpleado extends JDialog {
 			lblCdula.setBounds(10, 48, 137, 14);
 			panel.add(lblCdula);
 			
-			MaskFormatter formatter = new MaskFormatter("###-#######-#");
+			formatter = new MaskFormatter("###-#######-#");
 			txtCed = new JFormattedTextField(formatter);
 			txtCed.setColumns(10);
 			txtCed.setBounds(135, 45, 300, 20);
@@ -144,7 +147,7 @@ public class RegEmpleado extends JDialog {
 			lblTelfonos.setBounds(10, 130, 137, 14);
 			panel.add(lblTelfonos);
 					
-			MaskFormatter formatter1 = new MaskFormatter("(###) ###-####");
+			formatter1 = new MaskFormatter("(###) ###-####");
 			txtTel1 = new JFormattedTextField(formatter1);
 			txtTel1.setColumns(10);
 			txtTel1.setBounds(135, 127, 300, 20);
@@ -217,7 +220,7 @@ public class RegEmpleado extends JDialog {
 		lblTelfono.setBounds(10, 65, 137, 14);
 		panel.add(lblTelfono);
 		
-		MaskFormatter formatter2 = new MaskFormatter("(###) ###-####");
+		formatter2 = new MaskFormatter("(###) ###-####");
 		txtTel = new JFormattedTextField(formatter2);
 		txtTel.setColumns(10);
 		txtTel.setBounds(135, 62, 300, 20);
@@ -292,7 +295,11 @@ public class RegEmpleado extends JDialog {
 								
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 							
-							}else {
+							} else if(!(validar(txtSueldo.getText()))) {
+								JOptionPane.showMessageDialog(null, "Dígite un sueldo válido.", "Información", JOptionPane.ERROR_MESSAGE);
+							} else if (Empresa.getInstance().findEmpleado(txtCed.getText())!=null) {
+								JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
+							} else {
 								String cliente1=" ";
 								String cliente2=" ";
 								{
@@ -379,16 +386,14 @@ public class RegEmpleado extends JDialog {
 								}
 							}
 						}else if(i==1) {
-							if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
-									(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNaci.getText()==" ")||
-									(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||(txtTel.getText()==" ")||(cbxPuesto.getSelectedItem().toString()=="<Seleccione>")) {
+							if((txtCed.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))
+									||(txtTel1.getText().equalsIgnoreCase("(   )    -    "))||(txtEmail.getText().equalsIgnoreCase(""))||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
+									||(txtNaci.getText().equalsIgnoreCase(""))||(txtNombRef.getText().equalsIgnoreCase(""))||(txtApellRef.getText().equalsIgnoreCase(""))||(txtNombRef.getText().equalsIgnoreCase(""))||(txtApellRef.getText().equalsIgnoreCase(""))||
+									(txtTel.getText().equalsIgnoreCase("(   )    -    "))||(txtNombre.getText().equalsIgnoreCase("Nombre(s)"))||(txtApellido.getText().equalsIgnoreCase(""))) {
 								
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 							
-							}if(((txtCed.getText()!=" ")&&(txtNombre.getText()!="Nombre(s)")&&(txtApellido.getText()!="Apellido(s)")&&(txtNombre.getText()!=" ")&&(txtApellido.getText()!=" ")
-									&&(txtTel1.getText()!=" ")&&(txtTel2.getText()!=" ")&&(txtEmail.getText()!=" ")&&(cbxSexo.getSelectedItem().toString()!="<Seleccione>")
-									&&(txtNaci.getText()!=" ")&&(txtNombRef.getText()!="Nombre(s)")&&(txtApellRef.getText()!="Apellido(s)")&&(txtNombRef.getText()!=" ")&&(txtApellRef.getText()!=" ")&&
-									(txtTel.getText()!=" "))) {
+							} else if(validar(txtSueldo.getText())) {
 								
 								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
 								if(option==JOptionPane.OK_OPTION) { 
@@ -449,7 +454,9 @@ public class RegEmpleado extends JDialog {
 									clean();
 									dispose();
 								}
-							}
+							}else {
+								JOptionPane.showMessageDialog(null, "Dígite un sueldo válido.", "Información", JOptionPane.ERROR_MESSAGE);
+							}	
 						}else if(aux1==2) {
 							dispose();
 						}else {
@@ -475,15 +482,19 @@ public class RegEmpleado extends JDialog {
 	}
 	private void clean() {
 		   txtCed.setText("");
+		   txtCed = new JFormattedTextField(formatter);
 		   txtNombre.setText("Nombre(s)");
 		   txtApellido.setText("Apellido(s)");
 		   txtTel1.setText("");
+		   txtTel1 = new JFormattedTextField(formatter2);
 		   txtTel2.setText("");
+		   txtTel2 = new JFormattedTextField(formatter2);
 		   txtEmail.setText("");
 		   txtNaci.setText("");
 		   txtNombRef.setText("Nombre(s)");
 		   txtApellRef.setText("Apellido(s)");
 		   txtTel.setText("");
+		   txtTel = new JFormattedTextField(formatter2);
 		   txtSueldo.setText("");
 		   cbxSexo.setSelectedIndex(0);   
 	}

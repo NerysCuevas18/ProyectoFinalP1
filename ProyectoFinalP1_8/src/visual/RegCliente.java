@@ -265,10 +265,10 @@ public class RegCliente extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(i==0) {
-							if((txtCed.getText()==" ")||(txtNombre.getText()=="Nombre(s)")||(txtApellido.getText()=="Apellido(s)")||(txtNombre.getText()==" ")||(txtApellido.getText()==" ")
-									||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||(txtEmail.getText()==" ")||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
-									||(txtNac.getText()==" ")||(txtNomR.getText()=="Nombre(s)")||(txtApellR.getText()=="Apellido(s)")||(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||
-									(txtTelR.getText()==" ")) {
+							if((txtCed.getText()==" ")||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))
+									||(txtTel1.getText().equalsIgnoreCase("(   )    -    "))||(txtTel2.getText().equalsIgnoreCase("(   )    -    "))||(txtEmail.getText().equalsIgnoreCase(""))||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
+									||(txtNac.getText().equalsIgnoreCase(""))||(txtNomR.getText().equalsIgnoreCase(""))||(txtApellR.getText().equalsIgnoreCase(""))||(txtNomR.getText().equalsIgnoreCase(""))||(txtApellR.getText().equalsIgnoreCase(""))||
+									(txtTelR.getText().equalsIgnoreCase("(   )    -    "))) {
 								
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 							
@@ -305,10 +305,10 @@ public class RegCliente extends JDialog {
 						else if(i==1) {
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
 							if(option==JOptionPane.OK_OPTION) { 
-								if((txtCed.getText()==" ")||(txtNombre.getText()=="Nombre(s)")||(txtApellido.getText()=="Apellido(s)")||(txtNombre.getText()==" ")||(txtApellido.getText()==" ")
-										||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||(txtEmail.getText()==" ")||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
-										||(txtNac.getText()==" ")||(txtNomR.getText()=="Nombre(s)")||(txtApellR.getText()=="Apellido(s)")||(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||
-										(txtTelR.getText()==" ")) {
+								if((txtCed.getText()==" ")||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))
+										||(txtTel1.getText().equalsIgnoreCase("(   )    -    "))||(txtTel2.getText().equalsIgnoreCase("(   )    -    "))||(txtEmail.getText().equalsIgnoreCase(""))||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
+										||(txtNac.getText().equalsIgnoreCase(""))||(txtNomR.getText().equalsIgnoreCase(""))||(txtApellR.getText().equalsIgnoreCase(""))||(txtNomR.getText().equalsIgnoreCase(""))||(txtApellR.getText().equalsIgnoreCase(""))||
+										(txtTelR.getText().equalsIgnoreCase("(   )    -    "))) {
 									
 									JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 								
