@@ -121,17 +121,6 @@ public class ListClientes extends JDialog {
 				});
 				{
 					btnNewButton = new JButton("Ver Informacion");
-					btnNewButton.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							int seleccion = table.getSelectedRow();
-							if(seleccion!=-1) {
-								btnEliminar.setEnabled(true);
-								btnNewButton.setEnabled(true);
-								aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
-							}
-						}
-					});
 					btnNewButton.setEnabled(false);
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -139,7 +128,12 @@ public class ListClientes extends JDialog {
 							det.setModal(true);
 							det.setLocationRelativeTo(null);
 							det.setVisible(true);
-							
+							int seleccion = table.getSelectedRow();
+							if(seleccion!=-1) {
+								btnEliminar.setEnabled(true);
+								btnNewButton.setEnabled(true);
+								aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
+							}
 						}
 					});
 					buttonPane.add(btnNewButton);
@@ -191,8 +185,8 @@ public class ListClientes extends JDialog {
 			filas[2] = person.getTelefonos();
 			filas[3] = person.getCorreo();
 			filas[4] = person.isEstado();
-			filas[5] = person.getPlanC();
-			filas[6] = person.getFacturasMensual();
+			filas[5] = person.getPlanC().getCodPlan()+" - "+person.getPlanC().getNombreP();
+			filas[6] = person.getPlanC().getCodPlan()+" - RD$"+person.getPlanC().getPrecioFinal();
 			filas[7] = person.getRegistro();
 			modelo.addRow(filas);
 		}

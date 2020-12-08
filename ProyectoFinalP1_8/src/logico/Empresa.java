@@ -178,7 +178,7 @@ public class Empresa implements Serializable {
 							info.add("                                                  +-+-+");
 							info.add("");
 							info.add("                                  Plan                                Precio");
-							info.add("                                  "+clientes.get(i).getPlanC()+"      RD$"+clientes.get(i).getPlanC().getPrecioFinal());
+							info.add("                                  "+clientes.get(i).getPlanC().getNombreP()+"      RD$"+clientes.get(i).getPlanC().getPrecioFinal());
 							info.add("");
 							info.add("");
 							info.add("                                                  +-+-+");
