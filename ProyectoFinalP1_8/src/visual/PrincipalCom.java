@@ -80,7 +80,7 @@ public class PrincipalCom extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u00A1Bienvenido, Sr/a "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
+		JLabel lblNewLabel_1 = new JLabel("\u00A1Bienvenido/a, Sr/a "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
 		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 26));
 		lblNewLabel_1.setBounds(25, 268, 621, 45);
 		contentPane.add(lblNewLabel_1);

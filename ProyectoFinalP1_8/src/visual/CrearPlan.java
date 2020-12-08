@@ -25,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
 
 public class CrearPlan extends JDialog {
 
@@ -33,14 +35,15 @@ public class CrearPlan extends JDialog {
 	private JTextField txtPrecioBase;
 	private JLabel lblNombre;
 	private JTextField txtNombre;
-	private JTextField txtDescripcion;
+	private JEditorPane txtDescripcion;
+	private JComboBox cbxServicios;
 
 	/**
 	 * Launch the application.
 	 */
 /*	public static void main(String[] args) {
 		try {
-			RegPub dialog = new RegPub();
+			CrearPlan dialog = new CrearPlan();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -55,7 +58,7 @@ public class CrearPlan extends JDialog {
 		setTitle("Creaci\u00F3n de planes");
 		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 518, 378);
+		setBounds(100, 100, 515, 383);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -106,12 +109,12 @@ public class CrearPlan extends JDialog {
 		lblDescripcin.setBounds(10, 92, 71, 19);
 		panel_Informacion.add(lblDescripcin);
 		
-		txtDescripcion = new JTextField();
-		txtDescripcion.setColumns(10);
+		txtDescripcion = new JEditorPane();
 		txtDescripcion.setBounds(92, 94, 382, 145);
 		panel_Informacion.add(txtDescripcion);
 		
-		JComboBox cbxServicios = new JComboBox();
+		
+		cbxServicios = new JComboBox();
 		cbxServicios.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Cable", "Tel\u00E9fono", "Internet", "Cable y tel\u00E9fono", "Cable e Internet", "Tel\u00E9fono e Internet", "Cable, tel\u00E9fono e Internet"}));
 		cbxServicios.setBounds(235, 25, 239, 20);
 		panel_Informacion.add(cbxServicios);
@@ -119,6 +122,7 @@ public class CrearPlan extends JDialog {
 		JLabel lblServicios = new JLabel("Servicios:");
 		lblServicios.setBounds(177, 28, 58, 14);
 		panel_Informacion.add(lblServicios);
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -136,6 +140,9 @@ public class CrearPlan extends JDialog {
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						boolean isValid = true;
+						if(cbxServicios.getSelectedItem().toString()=="<Seleccione>") {
+							JOptionPane.showMessageDialog(null, "Debe escoger un tipo de servicio.", "Información", JOptionPane.INFORMATION_MESSAGE);
+						} else {
 					    try {
 					        Double.parseDouble(txtPrecioBase.getText());
 					    } catch(NumberFormatException nfe) {
@@ -153,6 +160,7 @@ public class CrearPlan extends JDialog {
 					    	 }
 						} else JOptionPane.showMessageDialog(null, "Debe ingresar un valor numérico en el precio base.", "Información", JOptionPane.INFORMATION_MESSAGE);
 					}
+					}
 				});
 				btnRegistrar.setActionCommand("Cancel");
 				buttonPane.add(btnRegistrar);
@@ -164,8 +172,9 @@ public class CrearPlan extends JDialog {
 	
 	private void clean() {
 		txtNombre.setText("");
-		txtDescripcion.setText("");
+		txtDescripcion.setText(" ");
 		txtPrecioBase.setText("");
 		txtId.setText("PL"+(1000+ Empresa.getInstance().getCodPlan()));
+		cbxServicios.setSelectedIndex(0);
 	}
 }

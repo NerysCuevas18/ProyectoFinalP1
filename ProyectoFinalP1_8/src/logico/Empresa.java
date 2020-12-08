@@ -147,10 +147,11 @@ public class Empresa implements Serializable {
 			Calendar facturar = Calendar.getInstance();
 			facturar.setTime(hoy);
 			
-			if(((facturar.get(Calendar.DAY_OF_MONTH))==15) && !facturasGeneradas) {
+			if(((facturar.get(Calendar.DAY_OF_MONTH))==8) && !facturasGeneradas) {
 				for(int i = 0; i<clientes.size(); i++) {
-					if(clientes.get(i).isEstado()) {
-						Factura fact = new Factura("ALT"+codFacturas++, clientes.get(i));
+					if(clientes.get(i).isEstado() && clientes.get(i).getPlanC() != null) {
+						Factura fact = new Factura("ALT"+(1000+codFacturas), clientes.get(i));
+						codFacturas++;
 						clientes.get(i).addFactura(fact);
 						Empresa.getInstance().insertarFactura(fact);
 						
@@ -166,26 +167,28 @@ public class Empresa implements Serializable {
 							ArrayList<String> info = new ArrayList<String>();
 							info.add("| - - - - - - - - - - - - - - - - - - - -|   Altice Rep. Dom  | - - - - - - - - - - - - - - - - - - -|");
 							info.add("");
-							info.add("    ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ Factura ~ ~ ~ ~ ~ ~ ~ ~ ~");
-							info.add("    + Cédula: "+clientes.get(i).getCedula());
+							info.add("    ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ Factura "+fact.getCodFactura()+"~ ~ ~ ~ ~ ~ ~ ~ ~");
 							info.add("    + Nombre: "+clientes.get(i).getNombres());
-							info.add("    + Apellido: "+clientes.get(i).getApellidos()+"         + Código: "+fact.getCodFactura());
-							info.add("    + Teléfono: "+clientes.get(i).getTelefonos()+"         + Fecha: "+calendar.getTime());
-							info.add("    + Correo: "+clientes.get(i).getCorreo()+"              + FechaVencimiento: "+fact.getVencimientoFactura());
+							info.add("    + Apellido: "+clientes.get(i).getApellidos());
+							info.add("    + Cédula: "+clientes.get(i).getCedula()+"                                + Fecha: "+calendar.getTime());
+							info.add("    + Teléfono: "+clientes.get(i).getTelefonos()+"           + Vencimiento: "+fact.getVencimientoFactura());
+							info.add("    + Correo: "+clientes.get(i).getCorreo());
 							info.add("    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
 							info.add("");
 							info.add("");
 							info.add("                                                  +-+-+");
 							info.add("");
-							info.add("                                  Plan                                Precio");
-							info.add("                                  "+clientes.get(i).getPlanC().getNombreP()+"      RD$"+clientes.get(i).getPlanC().getPrecioFinal());
+							info.add("                          Plan             Nombre                 Precio");
+							String volumen = clientes.get(i).getPlanC().getNombreP();
+						    while(volumen.length()<24) volumen+=" ";
+							info.add("                          "+clientes.get(i).getPlanC().getCodPlan()+"           "+volumen+"RD$"+clientes.get(i).getPlanC().getPrecioFinal());
 							info.add("");
 							info.add("");
 							info.add("                                                  +-+-+");
 							info.add("                                          Total: RD$"+clientes.get(i).getPlanC().getPrecioFinal());
 							info.add("");
 							info.add("");
-							info.add("                              ¡Esperamos que disfrute su compra! ¡Vuelva pronto!");
+							info.add("                                    Altice: Hechos de vida, hechos de fibra");
 							info.add("");
 							info.add("| - - - - - - - - - - - - - - - - - - - - - - - |   Factura   | - - - - - - - - - - - - - - - - - - - - - - -|");
 									
@@ -202,9 +205,9 @@ public class Empresa implements Serializable {
 						
 					}
 				}
-				facturasGeneradas = false;
-			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=15) && facturasGeneradas) {
 				facturasGeneradas = true;
+			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=8) && facturasGeneradas) {
+				facturasGeneradas = false;
 			}
 		
 	}
