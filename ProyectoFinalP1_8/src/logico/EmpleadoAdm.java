@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class EmpleadoAdm extends Empleado {
 	
-	int expAnios;
+	private int expAnios;
 
 	public EmpleadoAdm(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
 			char sexo, Date nacimiento, String nacionalidad, String nombreReferencia,String telefonoReferencia,

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class EmpleadoCom extends Empleado {
 	
-	float bono;
+	private float bono;
 	public int cantVenta;
 
 	public EmpleadoCom(String cedula, String nombres, String apellidos, ArrayList<String> telefonos, String correo,
