@@ -110,7 +110,7 @@ public class ListClientes extends JDialog {
 					public void actionPerformed(ActionEvent e) {					
 						RegCliente regClient = null;
 						try {
-							regClient = new RegCliente("Modificar cliente", 1, aux);
+							regClient = new RegCliente("Modificar cliente", 1, aux, aux.getCedula());
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -178,7 +178,9 @@ public class ListClientes extends JDialog {
 			filas[1] =person.getNombres();
 			filas[2] = person.getTelefonos();
 			filas[3] = person.getCorreo();
-			filas[4] = person.isEstado();
+			if (person.isEstado())
+			filas[4] = "Activo";
+			else filas[4] = "Bloqueado";
 			if (person.getPlanC() == null) filas[5] = ("No registrado.");
 			else filas[5] = (person.getPlanC().getCodPlan()+" - "+person.getPlanC().getNombreP());
 			ArrayList<String> facturas = new ArrayList<String>();

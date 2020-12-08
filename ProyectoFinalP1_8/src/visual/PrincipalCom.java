@@ -28,6 +28,7 @@ import logico.Empresa;
 public class PrincipalCom extends JFrame { 
 
 	private JPanel contentPane;
+	private String ced;
 
 	/**
 	 * Launch the application.
@@ -50,6 +51,7 @@ public class PrincipalCom extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalCom(String ced) {
+		this.ced = Empresa.getInstance().getLoginUser().getCedula();
 		setTitle("Altice Comercial");
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -178,24 +180,14 @@ public class PrincipalCom extends JFrame {
 		JMenuItem mntmNewMenuItem_21 = new JMenuItem("Compra de planes");
 		mntmNewMenuItem_21.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String mensaje = JOptionPane.showInputDialog(null, "Ingrese la cédula del solicitante.");
-				if(Empresa.getInstance().findCliente(mensaje) != null) {
-					CompraPlan compraPlan = new CompraPlan(ced, Empresa.getInstance().findCliente(mensaje).getNombres(), Empresa.getInstance().findCliente(mensaje).getCedula());
-					compraPlan.setVisible(true);
-				} else {
-					int returnValue= JOptionPane.showConfirmDialog(null, "El usuario insertado no se encuentra en nuestros registros. ¿Desea añadirlo?", "Confirmación", JOptionPane.CANCEL_OPTION);
-			    	 if(returnValue == 0) {
-			    		 RegCliente regCliente = null;
-						try {
-							regCliente = new RegCliente("Registrar cliente", 0, null);
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-			    		 regCliente.setVisible(true);
-			    	 }
+				Confirmar confirmar = null;
+				try {
+					confirmar = new Confirmar(false, ced);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				
+				confirmar.setVisible(true);
 			}
 		});
 		mnNewMenu1.add(mntmNewMenuItem_21);
@@ -203,24 +195,15 @@ public class PrincipalCom extends JFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Pago de factura");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String mensaje = JOptionPane.showInputDialog(null, "Ingrese la cédula del solicitante.");
-				if(Empresa.getInstance().findCliente(mensaje) != null) {
-					PagarFactura pagarFactura = new PagarFactura(Empresa.getInstance().findCliente(mensaje));
-					pagarFactura.setVisible(true);
-				} else {
-					int returnValue= JOptionPane.showConfirmDialog(null, "El usuario insertado no se encuentra en nuestros registros. ¿Desea añadirlo?", "Confirmación", JOptionPane.CANCEL_OPTION);
-			    	 if(returnValue == 0) {
-			    		 RegCliente regCliente = null;
-						try {
-							regCliente = new RegCliente("Registrar cliente", 0, null);
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-			    		 regCliente.setVisible(true);
-			    	 }
+				Confirmar confirmar = null;
+				try {
+					confirmar = new Confirmar(true, ced);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				}
+				confirmar.setVisible(true);
+			}
 		});
 		mnNewMenu1.add(mntmNewMenuItem);
 	}

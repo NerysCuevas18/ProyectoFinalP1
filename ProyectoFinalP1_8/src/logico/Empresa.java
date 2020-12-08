@@ -20,7 +20,7 @@ public class Empresa implements Serializable {
 	private ArrayList<Factura> facturas;
 	private static Empresa altice = null;
 	private Empleado loginUser;
-	private boolean facturasGeneradas = false;
+	private boolean facturasGeneradas;
 	private int codFacturas = 1;
 	private int codPlan = 1;
 	private boolean conexion;
@@ -34,6 +34,7 @@ public class Empresa implements Serializable {
 		this.facturas = new ArrayList<Factura>();
 		this.setConexion(false);
 		this.facture = 0;
+		this.facturasGeneradas = false;
 	}
 	
 	public static Empresa getInstance() {
@@ -148,7 +149,7 @@ public class Empresa implements Serializable {
 			facturar.setTime(hoy);
 			
 			if(((facturar.get(Calendar.DAY_OF_MONTH))==8) && !facturasGeneradas) {
-				for(int i = 0; i<clientes.size(); i++) {
+	/*			for(int i = 0; i<clientes.size(); i++) {
 					if(clientes.get(i).isEstado() && clientes.get(i).getPlanC() != null) {
 						Factura fact = new Factura("ALT"+(1000+codFacturas), clientes.get(i));
 						codFacturas++;
@@ -204,7 +205,7 @@ public class Empresa implements Serializable {
 							}
 						
 					}
-				}
+				}*/
 				facturasGeneradas = true;
 			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=8) && facturasGeneradas) {
 				facturasGeneradas = false;

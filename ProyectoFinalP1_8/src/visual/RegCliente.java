@@ -52,7 +52,7 @@ public class RegCliente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private JTextField txtApellido;
-	private JFormattedTextField txtCed;
+	private JTextField txtCed;
 	private JFormattedTextField txtTel1;
 	private JFormattedTextField txtTel2;
 	private JTextField txtEmail;
@@ -62,11 +62,12 @@ public class RegCliente extends JDialog {
 	private JTextField txtTelR;
 	private JComboBox cbxSexo;
 	private JSpinner spnFecNac;
+	private int condicion = 0;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			RegCliente dialog = new RegCliente("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -82,7 +83,7 @@ public class RegCliente extends JDialog {
 	 * @param string 
 	 * @throws ParseException 
 	 */
-	public RegCliente(String string, int i, Cliente cliente) throws ParseException {
+	public RegCliente(String string, int i, Cliente cliente, String ced) throws ParseException {
 		setResizable(false);
 		setModal(true);
 		setTitle(string);
@@ -91,7 +92,23 @@ public class RegCliente extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		{
+			if(i==0) {
+				setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+		        addWindowListener(new java.awt.event.WindowAdapter() {
+		            @Override
+		            public void windowClosing(java.awt.event.WindowEvent evt){
+		                if (JOptionPane.showConfirmDialog(rootPane, "Si cierra la ventana, no podrá registrarse. ¿Continuar de todos modos?", 
+		                        "Información", JOptionPane.ERROR_MESSAGE) == JOptionPane.ERROR_MESSAGE){
+		                	setCondicion(1);
+		                    dispose();
+		                }
+		            }
+		        });
+				}
+			
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(5, 5, 765, 204);
@@ -126,7 +143,9 @@ public class RegCliente extends JDialog {
 			panel.add(lblCdula);
 			
 			MaskFormatter formatter = new MaskFormatter("###-#######-#");
-			txtCed = new JFormattedTextField(formatter);
+			txtCed = new JTextField(ced);
+			txtCed.setEditable(false);
+			txtCed.setEnabled(false);
 			txtCed.setColumns(10);
 			txtCed.setBounds(135, 45, 300, 20);
 			panel.add(txtCed);
@@ -279,7 +298,7 @@ public class RegCliente extends JDialog {
 									Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
 									Empresa.getInstance().insertarCliente(aux);
 									JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-									clean();
+									dispose();
 								}
 							}
 						}
@@ -332,7 +351,11 @@ public class RegCliente extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						dispose();
+						if (JOptionPane.showConfirmDialog(rootPane, "Si cierra la ventana, no podrá registrarse. ¿Continuar de todos modos?", 
+		                        "Información", JOptionPane.ERROR_MESSAGE) == JOptionPane.ERROR_MESSAGE){
+		                	setCondicion(1);
+		                    dispose();
+		                }
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -352,5 +375,11 @@ public class RegCliente extends JDialog {
 		   txtApellR.setText("Apellido(s)");
 		   txtTelR.setText("");
 		   cbxSexo.setSelectedIndex(0);  
+	}
+	public int getCondicion() {
+		return condicion;
+	}
+	public void setCondicion(int condicion) {
+		this.condicion = condicion;
 	} 
 }

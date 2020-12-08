@@ -68,6 +68,8 @@ public class PagarFactura extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -88,6 +90,10 @@ public class PagarFactura extends JDialog {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 		
+		JLabel label_11 = new JLabel("Total:  RD$0");
+		label_11.setBounds(458, 188, 133, 14);
+		panel.add(label_11);
+		
 		modelo = new DefaultTableModel();
 		String [] headers = {"Código de factura", "Mes", "Monto"};
 		modelo.setColumnIdentifiers(headers);
@@ -101,7 +107,7 @@ public class PagarFactura extends JDialog {
 					okButton.setEnabled(true);
 					aux = Empresa.getInstance().findFactura((String)modelo.getValueAt(seleccion, 0));
 					monto = aux.getMonto();
-					label_1.setText("Total:  RD$"+monto);
+					label_11.setText("Total:  RD$"+monto);
 				}
 			}
 		});
@@ -135,9 +141,6 @@ public class PagarFactura extends JDialog {
 		textField_1.setBounds(126, 184, 80, 23);
 		panel.add(textField_1);
 		
-		JLabel label_11 = new JLabel("Total:  RD$0");
-		label_11.setBounds(458, 188, 133, 14);
-		panel.add(label_11);
 		
 		JLabel label = new JLabel(cliente.getCedula());
 		label.setBounds(12, 74, 188, 14);

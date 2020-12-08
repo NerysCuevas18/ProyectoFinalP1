@@ -82,13 +82,13 @@ public class CompraPlan extends JDialog {
 	public CompraPlan(String cedEmpleado, String nombreCliente, String cedulaCliente) {
 		setTitle("Venta de planes");
 		setModal(true);
-		setLocationRelativeTo(null);
 		setBounds(100, 100, 785, 511);
-		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
 			panel.setBounds(10, 11, 456, 233);
