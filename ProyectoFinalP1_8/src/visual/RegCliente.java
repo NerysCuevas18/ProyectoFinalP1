@@ -326,7 +326,8 @@ public class RegCliente extends JDialog {
 									char sexo=s.charAt(0);
 									cliente.setSexo(sexo);
 									cliente.setNacionalidad(txtNac.getText());
-									cliente.setNombreReferencia(txtNomR.getText()+" "+txtApellR.getText());
+									cliente.setNombreReferencia(txtNomR.getText());
+									cliente.setApellidoReferencia(txtApellR.getText());
 									cliente.setTelefonoReferencia(txtTelR.getText());
 									spnFecNac.setValue(cliente.getNacimiento());	
 									JOptionPane.showMessageDialog(null, "Sus cambios han sido guardados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);

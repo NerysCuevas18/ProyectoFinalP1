@@ -416,7 +416,8 @@ public class RegEmpleado extends JDialog {
 										char sexo=s.charAt(0);
 										empl.setSexo(sexo);
 										empl.setNacionalidad(txtNaci.getText());
-										empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
+										empl.setNombreReferencia(txtNombRef.getText());
+										empl.setApellidoReferencia(txtApellRef.getText());
 										empl.setTelefonoReferencia(txtTel.getText());
 										if(validar(txtSueldo.getText())) {
 											empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
@@ -441,7 +442,8 @@ public class RegEmpleado extends JDialog {
 										char sexo=s.charAt(0);
 										empl.setSexo(sexo);
 										empl.setNacionalidad(txtNaci.getText());
-										empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
+										empl.setNombreReferencia(txtNombRef.getText());
+										empl.setApellidoReferencia(txtApellRef.getText());
 										empl.setTelefonoReferencia(txtTel.getText());
 										if(validar(txtSueldo.getText())) {
 											empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
