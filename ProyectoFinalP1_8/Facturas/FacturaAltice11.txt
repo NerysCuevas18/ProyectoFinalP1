@@ -1,22 +1,22 @@
 | - - - - - - - - - - - - - - - - - - - -|   Altice Rep. Dom  | - - - - - - - - - - - - - - - - - - -|
 
-    ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ Factura ALT1006~ ~ ~ ~ ~ ~ ~ ~ ~
-    + Nombre: Marta
-    + Apellido: Fernández
-    + Cédula: 031-8979879-8                                + Fecha: Tue Dec 08 13:00:23 BOT 2020
-    + Teléfono: [(809) 889-6875, (809) 674-5735]           + Vencimiento: Fri Dec 18 13:00:23 BOT 2020
-    + Correo: mFernandez@hotmail.com
+    ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ Factura ALT1012~ ~ ~ ~ ~ ~ ~ ~ ~
+    + Nombre: Noelfi
+    + Apellido: Espinal
+    + Cédula: 031-8789262-3                                + Fecha: Tue Dec 08 13:01:59 BOT 2020
+    + Teléfono: [(809) 362-5376, (273) 468-3274]           + Vencimiento: Fri Dec 18 13:01:59 BOT 2020
+    + Correo: nEspinal@hotmail.com
     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 
                                                   +-+-+
 
                           Plan             Nombre                 Precio
-                          PL1016           Multiplan doble básico RD$1709.5
+                          PL1020           Multiplan triple extra RD$2652.0
 
 
                                                   +-+-+
-                                          Total: RD$1709.5
+                                          Total: RD$2652.0
 
 
                                     Altice: Hechos de vida, hechos de fibra

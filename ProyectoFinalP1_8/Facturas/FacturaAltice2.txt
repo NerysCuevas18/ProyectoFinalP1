@@ -1,22 +1,22 @@
 | - - - - - - - - - - - - - - - - - - - -|   Altice Rep. Dom  | - - - - - - - - - - - - - - - - - - -|
 
     ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ Factura ALT1003~ ~ ~ ~ ~ ~ ~ ~ ~
-    + Nombre: iiiiiiiiii
-    + Apellido: iiiiiiiii
-    + Cédula: 000-0000000-3                                + Fecha: Tue Dec 08 10:28:47 BOT 2020
-    + Teléfono: [(000) 000-0000, (000) 000-0000]           + Vencimiento: Fri Dec 18 10:28:47 BOT 2020
-    + Correo: iiiiiiiii
+    + Nombre: Nerys
+    + Apellido: Cuevas
+    + Cédula: 031-8234624-7                                + Fecha: Tue Dec 08 12:58:37 BOT 2020
+    + Teléfono: [(809) 231-2387, (809) 236-4872]           + Vencimiento: Fri Dec 18 12:58:37 BOT 2020
+    + Correo: NCuevas@hotmail.com
     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 
                                                   +-+-+
 
                           Plan             Nombre                 Precio
-                          PL1002           ssss                   RD$2600.0
+                          PL1001           Básico                 RD$747.5
 
 
                                                   +-+-+
-                                          Total: RD$2600.0
+                                          Total: RD$747.5
 
 
                                     Altice: Hechos de vida, hechos de fibra

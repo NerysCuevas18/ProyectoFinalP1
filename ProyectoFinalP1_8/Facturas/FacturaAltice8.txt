@@ -1,22 +1,22 @@
 | - - - - - - - - - - - - - - - - - - - -|   Altice Rep. Dom  | - - - - - - - - - - - - - - - - - - -|
 
     ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ Factura ALT1009~ ~ ~ ~ ~ ~ ~ ~ ~
-    + Nombre: iiiiiiiiii
-    + Apellido: iiiiiiiii
-    + Cédula: 000-0000000-3                                + Fecha: Tue Dec 08 10:30:36 BOT 2020
-    + Teléfono: [(000) 000-0000, (000) 000-0000]           + Vencimiento: Fri Dec 18 10:30:36 BOT 2020
-    + Correo: iiiiiiiii
+    + Nombre: Dhayanna
+    + Apellido: Peralta
+    + Cédula: 031-3687648-7                                + Fecha: Tue Dec 08 13:00:23 BOT 2020
+    + Teléfono: [(809) 367-8357, (738) 969-4863]           + Vencimiento: Fri Dec 18 13:00:23 BOT 2020
+    + Correo: DPeralta@gmail.com
     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 
                                                   +-+-+
 
                           Plan             Nombre                 Precio
-                          PL1002           ssss                   RD$2600.0
+                          PL1021           Multiplan triple superiorRD$2860.0
 
 
                                                   +-+-+
-                                          Total: RD$2600.0
+                                          Total: RD$2860.0
 
 
                                     Altice: Hechos de vida, hechos de fibra
