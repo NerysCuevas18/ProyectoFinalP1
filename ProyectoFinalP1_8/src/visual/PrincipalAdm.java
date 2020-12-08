@@ -231,6 +231,8 @@ public class PrincipalAdm extends JFrame {
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Ganancias mensuales");
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GraficoGananciasMensuales graficoGananciasMensuales = new GraficoGananciasMensuales();
+				graficoGananciasMensuales.setVisible(true);
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_5);

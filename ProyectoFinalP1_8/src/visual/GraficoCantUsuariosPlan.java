@@ -19,7 +19,7 @@ public class GraficoCantUsuariosPlan extends JFrame {
 	private JPanel panel;
 	public GraficoCantUsuariosPlan() {
 		setTitle("CANTIDAD DE USUARIOS POR PLAN");
-		setSize(800,600);
+		setSize(800,475);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -43,9 +43,9 @@ public class GraficoCantUsuariosPlan extends JFrame {
 		ChartPanel chartPanel = new ChartPanel(chart);
 		panel.add(chartPanel);
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		new GraficoCantUsuariosPlan().setVisible(true);
-	}
+	}*/
 
 
 }

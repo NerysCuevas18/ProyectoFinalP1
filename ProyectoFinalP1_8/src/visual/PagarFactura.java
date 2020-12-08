@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -191,6 +192,8 @@ public class PagarFactura extends JDialog {
 					    	if(pago>=monto) {
 					    		JOptionPane.showMessageDialog(null, "Se ha pagado la factura correctamente. Su cambio es de RD$"+(pago-monto), "Información", JOptionPane.INFORMATION_MESSAGE);
 					    		aux.setPagada(true);
+					    		Date date = new Date();
+					    		Empresa.getInstance().totalPagoMes(aux, date);
 					    		dispose();
 					    		}  else JOptionPane.showMessageDialog(null, "El monto insertado es menor al requerido.", "Información", JOptionPane.INFORMATION_MESSAGE);
 					    } else JOptionPane.showMessageDialog(null, "Por favor, introduzca el monto a pagar", "Información", JOptionPane.INFORMATION_MESSAGE);
