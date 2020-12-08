@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListClientes extends JDialog {
 
@@ -32,6 +34,7 @@ public class ListClientes extends JDialog {
 	public Cliente aux = null;
 	private JButton btnEliminar;
 	private JButton btnModificar;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -89,13 +92,29 @@ public class ListClientes extends JDialog {
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						RegCliente regClient = null;
-						regClient = new RegCliente("Modificar cliente", 1, aux);
+						try {
+							regClient = new RegCliente("Modificar cliente", 1, aux);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						regClient.setVisible(true);
 						llenarTabla();
 					}
 				});
 				{
-					JButton btnNewButton = new JButton("Ver Informacion");
+					btnNewButton = new JButton("Ver Informacion");
+					btnNewButton.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							int seleccion = table.getSelectedRow();
+							if(seleccion!=-1) {
+								btnEliminar.setEnabled(true);
+								btnNewButton.setEnabled(true);
+								aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
+							}
+						}
+					});
 					btnNewButton.setEnabled(false);
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -103,7 +122,7 @@ public class ListClientes extends JDialog {
 							det.setModal(true);
 							det.setLocationRelativeTo(null);
 							det.setVisible(true);
-							aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
+							
 						}
 					});
 					buttonPane.add(btnNewButton);

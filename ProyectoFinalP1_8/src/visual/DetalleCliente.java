@@ -134,7 +134,7 @@ public class DetalleCliente extends JDialog {
 			txtNacimiento.setColumns(10);
 			txtNacimiento.setBounds(155, 298, 376, 26);
 			panel.add(txtNacimiento);
-			txtNacimiento.setTime(cliente.getNacimiento());
+			txtNacimiento.setText(cliente.getNacimiento().toString());
 			
 			
 			JLabel lblNacionalidad_1 = new JLabel("Nacionalidad:");

@@ -27,6 +27,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListEmpleados extends JDialog {
 
@@ -37,6 +39,8 @@ public class ListEmpleados extends JDialog {
 	private JComboBox comboBox;
 	private String seleccion = "<Todos>";
 	private Empleado aux = null;
+	private JButton btnNewButton;
+	private JButton btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -106,7 +110,7 @@ public class ListEmpleados extends JDialog {
 				buttonPane.add(comboBox);
 			}
 			{
-				JButton btnEliminar = new JButton("Eliminar");
+				btnEliminar = new JButton("Eliminar");
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(aux!=null) {
@@ -122,7 +126,18 @@ public class ListEmpleados extends JDialog {
 					}
 				});
 				{
-					JButton btnNewButton = new JButton("Ver Informacion");
+					btnNewButton = new JButton("Ver Informacion");
+					btnNewButton.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							int seleccion = table.getSelectedRow();
+							if(seleccion!=-1) {
+								btnEliminar.setEnabled(true);
+								btnNewButton.setEnabled(true);
+								aux = Empresa.getInstance().findEmpleado((String)modelo.getValueAt(seleccion, 0));
+							}
+						}
+					});
 					btnNewButton.setEnabled(false);
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -130,7 +145,6 @@ public class ListEmpleados extends JDialog {
 							det.setModal(true);
 							det.setLocationRelativeTo(null);
 							det.setVisible(true);
-							aux = Empresa.getInstance().findEmpleado((String)modelo.getValueAt(seleccion, 0));
 						}
 					});
 					buttonPane.add(btnNewButton);

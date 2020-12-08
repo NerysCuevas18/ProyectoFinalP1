@@ -144,7 +144,7 @@ public class DetalleEmpleado extends JDialog {
 			txtNacimiento.setColumns(10);
 			txtNacimiento.setBounds(737, 191, 421, 26);
 			panel.add(txtNacimiento);
-			txtNacimiento.setText(empleado.getNacimiento());
+			txtNacimiento.setText(empleado.getNacimiento().toString());
 			
 			JLabel lblNacionalidad = new JLabel("Nacionalidad:");
 			lblNacionalidad.setBounds(15, 246, 113, 20);
@@ -178,7 +178,7 @@ public class DetalleEmpleado extends JDialog {
 			txtSaldo.setColumns(10);
 			txtSaldo.setBounds(737, 354, 421, 26);
 			panel.add(txtSaldo);
-			txtSaldo.setText(empleado.getSaldo());
+			txtSaldo.setText(empleado.getSaldo().toString());
 			
 			JLabel lblPass = new JLabel("Tipos Emp:");
 			lblPass.setBounds(15, 357, 99, 20);
