@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logico.Cliente;
 import logico.Empresa;
 import logico.Factura;
 
@@ -33,6 +34,7 @@ public class ListFactura extends JDialog {
 	public static DefaultTableModel modelo;
 	public static Object[] filas;
 	private JButton btnVer;
+	private Factura aux = null;
 
 	/**
 	 * Launch the application.
@@ -67,12 +69,15 @@ public class ListFactura extends JDialog {
 					
 					table = new JTable();
 					table.addMouseListener(new MouseAdapter() {
-						
-						
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							btnVer.setEnabled(true);
-						}
+												
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								int seleccion = table.getSelectedRow();
+								if(seleccion!=-1) {
+									btnVer.setEnabled(true);
+									aux = Empresa.getInstance().findFactura((String)modelo.getValueAt(seleccion, 0));
+								}
+							}
 					});
 					table.setModel(modelo);
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -96,7 +101,7 @@ public class ListFactura extends JDialog {
 					btnVer = new JButton("Ver Factura");
 					btnVer.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							abrirarchivo("FacturaAltice.txt");
+							abrirarchivo(aux.getFact());
 						}
 					});
 					btnVer.setEnabled(false);

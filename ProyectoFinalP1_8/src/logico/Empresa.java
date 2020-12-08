@@ -24,8 +24,7 @@ public class Empresa implements Serializable {
 	private int codFacturas = 1;
 	private int codPlan = 1;
 	private boolean conexion;
-	private Date today;
-	
+	private int facture;
 	
 	private Empresa() {
 		super();
@@ -34,6 +33,7 @@ public class Empresa implements Serializable {
 		this.planes = new ArrayList<Plan>();
 		this.facturas = new ArrayList<Factura>();
 		this.setConexion(false);
+		this.facture = 0;
 	}
 	
 	public static Empresa getInstance() {
@@ -147,16 +147,19 @@ public class Empresa implements Serializable {
 			Calendar facturar = Calendar.getInstance();
 			facturar.setTime(hoy);
 			
-			if(((facturar.get(Calendar.DAY_OF_MONTH))==8) && !facturasGeneradas) {
+			if(((facturar.get(Calendar.DAY_OF_MONTH))==15) && !facturasGeneradas) {
 				for(int i = 0; i<clientes.size(); i++) {
 					if(clientes.get(i).isEstado()) {
 						Factura fact = new Factura("ALT"+codFacturas++, clientes.get(i));
 						clientes.get(i).addFactura(fact);
 						Empresa.getInstance().insertarFactura(fact);
 						
-						File archivo = new File ("FacturaAltice.txt");
+						File archivo = new File ("Facturas/FacturaAltice"+facture+".txt");
+						fact.setFact("Facturas/FacturaAltice"+facture+".txt");
+						facture++;
 				        FileWriter escritor;
 				        try {
+				        	Date today = new Date();
 							escritor = new FileWriter(archivo);
 							Calendar calendar = Calendar.getInstance();
 							calendar.setTime(today);
@@ -199,9 +202,9 @@ public class Empresa implements Serializable {
 						
 					}
 				}
-				setFacturasGeneradas(true);
-			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=8) && facturasGeneradas) {
-				setFacturasGeneradas(false);
+				facturasGeneradas = true;
+			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=15) && facturasGeneradas) {
+				facturasGeneradas = true;
 			}
 		
 	}

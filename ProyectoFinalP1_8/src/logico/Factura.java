@@ -16,6 +16,7 @@ public class Factura implements Serializable{
 	private Date vencimientoFactura;
 	private boolean pagada;
 	private float monto;
+	private String fact;
 	
 	public Factura(String codFactura, Cliente cliente) {
 		super();
@@ -28,10 +29,13 @@ public class Factura implements Serializable{
 		this.vencimientoFactura = vence.getTime();
 		this.pagada = false;
 		this.monto = montoFactura();
+		this.setFact(null);
 	}
 	
 	private float montoFactura(){
-		float cant = cliente.getPlanC().getPrecioFinal();
+		float cant = 0;
+		if(cliente.getPlanC() != null)
+		cant = cliente.getPlanC().getPrecioFinal();
 		int cantSinPagar = 0;
 		if(cliente.getFacturasMensual() != null) {
 		for(int i = 0; i<cliente.getFacturasMensual().size(); i++)
@@ -97,6 +101,14 @@ public class Factura implements Serializable{
 
 	public void setPagada(boolean pagada) {
 		this.pagada = pagada;
+	}
+
+	public String getFact() {
+		return fact;
+	}
+
+	public void setFact(String fact) {
+		this.fact = fact;
 	}
 
 }
