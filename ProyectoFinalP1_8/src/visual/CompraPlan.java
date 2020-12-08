@@ -13,9 +13,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import fabrica.Cilindrico;
-import fabrica.CilindricoHueco;
-import fabrica.Esferico;
 import logico.Cliente;
 import logico.Empleado;
 import logico.EmpleadoAdm;

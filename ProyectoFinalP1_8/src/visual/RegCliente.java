@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 import javafx.scene.control.DatePicker;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import logico.Cliente;
+import logico.EmpleadoAdm;
+import logico.EmpleadoCom;
 import logico.Empresa;
 
 import javax.swing.JLabel;
@@ -76,7 +78,7 @@ public class RegCliente extends JDialog {
 	 * @param string 
 	 * @throws ParseException 
 	 */
-	public RegCliente(String string, int i, Object object) throws ParseException {
+	public RegCliente(String string, int i, Cliente cliente) throws ParseException {
 		setResizable(false);
 		setModal(true);
 		setTitle(string);
@@ -214,6 +216,22 @@ public class RegCliente extends JDialog {
 		txtTelR.setColumns(10);
 		txtTelR.setBounds(135, 62, 300, 20);
 		panel.add(txtTelR);
+		
+		if (i==1)
+		{
+			txtCed.setText(cliente.getCedula());
+			txtNombre.setText(cliente.getNombres());
+			txtCed.setEnabled(false);
+			txtApellido.setText(cliente.getApellidos());
+			spnFecNac.setValue(cliente.getNacimiento());
+			txtNac.setText(cliente.getNacionalidad());
+			cbxSexo.setSelectedItem(cliente.getSexo());
+			txtTel1.setText(cliente.getTelefonos().get(0));
+			txtTel2.setText(cliente.getTelefonos().get(1));
+			txtEmail.setText(cliente.getCorreo());
+			txtNomR.setText(cliente.getNombreReferencia());//ARREGLAR ESO
+			txtTelR.setText(cliente.getTelefonoReferencia());
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -222,24 +240,53 @@ public class RegCliente extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String cedula = txtCed.getText();
-						String nombre = txtNombre.getText();
-						String apellido = txtApellido.getText();
-						ArrayList<String> tel = new ArrayList<String>();						
-						tel.add(txtTel1.getText());
-						tel.add(txtTel2.getText());
-						String correo = txtEmail.getText();
-						String s=cbxSexo.getSelectedItem().toString();  
-						char sexo=s.charAt(0);
-						Date fecha = (Date) spnFecNac.getValue();
-						String nac = txtNac.getText();
-						String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
-						String telR = txtTelR.getText();
-						Date reg = new Date();
-						Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
-						Empresa.getInstance().insertarCliente(aux);
-						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-						clean();
+						if(i==0) {
+							String cedula = txtCed.getText();
+							String nombre = txtNombre.getText();
+							String apellido = txtApellido.getText();
+							ArrayList<String> tel = new ArrayList<String>();						
+							tel.add(txtTel1.getText());
+							tel.add(txtTel2.getText());
+							String correo = txtEmail.getText();
+							String s=cbxSexo.getSelectedItem().toString();  
+							char sexo=s.charAt(0);
+							Date fecha = (Date) spnFecNac.getValue();
+							String nac = txtNac.getText();
+							String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
+							String telR = txtTelR.getText();
+							Date reg = new Date();
+							Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
+							Empresa.getInstance().insertarCliente(aux);
+							JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+							clean();
+						}
+						else if(i==1) {
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
+							if(option==JOptionPane.OK_OPTION) { 
+								cliente.setCedula(txtCed.getText());
+								cliente.setNombres(txtNombre.getText());
+								cliente.setApellidos(txtApellido.getText());
+								ArrayList<String> tel = new ArrayList<String>();
+								tel.add(txtTel1.getText());
+								tel.add(txtTel2.getText());
+								cliente.setTelefonos(tel);
+								cliente.setCorreo(txtEmail.getText());
+								cliente.setNombres(txtNombre.getText());
+								String s=cbxSexo.getSelectedItem().toString();  
+								char sexo=s.charAt(0);
+								cliente.setSexo(sexo);
+								cliente.setNacionalidad(txtNac.getText());
+								cliente.setNombreReferencia(txtNomR.getText()+" "+txtApellR.getText());
+								cliente.setTelefonoReferencia(txtTelR.getText());
+								spnFecNac.setValue(cliente.getNacimiento());								
+								clean();
+								dispose();
+							}
+							if(option!=JOptionPane.OK_OPTION) {
+								clean();
+								dispose();
+							}
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

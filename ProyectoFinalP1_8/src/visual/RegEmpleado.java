@@ -80,7 +80,7 @@ public class RegEmpleado extends JDialog {
 	 * @param string 
 	 * @throws ParseException 
 	 */
-	public RegEmpleado(String string, int i, Empleado empl) throws ParseException {
+	public RegEmpleado(String string, int i, Empleado empl) throws ParseException{
 		setResizable(false);
 		setModal(true);
 		setTitle(string);
@@ -199,6 +199,7 @@ public class RegEmpleado extends JDialog {
 				txtApellRef.setText("");
 			}
 		});
+		{
 		txtNombRef.setText("Nombre(s)");
 		txtNombRef.setColumns(10);
 		txtNombRef.setBounds(135, 25, 300, 20);
@@ -242,6 +243,7 @@ public class RegEmpleado extends JDialog {
 		txtSueldo.setColumns(10);
 		txtSueldo.setBounds(585, 28, 170, 20);
 		panel_1.add(txtSueldo);
+		}
 		
 		if (i==1)
 		{
@@ -267,7 +269,7 @@ public class RegEmpleado extends JDialog {
 				cbxPuesto.setSelectedItem("Comercial");
 			}
 		}
-		
+			
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
