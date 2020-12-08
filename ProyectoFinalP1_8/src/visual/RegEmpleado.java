@@ -383,7 +383,7 @@ public class RegEmpleado extends JDialog {
 										
 									}
 									JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-									dispose(); 
+									dispose();
 									clean();
 								}
 							}
