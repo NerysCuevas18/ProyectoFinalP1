@@ -43,6 +43,7 @@ public class ListEmpleados extends JDialog {
 	private JButton btnNewButton;
 	private JButton btnEliminar;
 	private JButton btnModificar;
+	private Empleado aux1 = null;
 
 	/**
 	 * Launch the application.
@@ -82,7 +83,12 @@ public class ListEmpleados extends JDialog {
 							btnEliminar.setEnabled(true);
 							btnNewButton.setEnabled(true);
 							btnModificar.setEnabled(true);
-
+							int seleccion = table.getSelectedRow();
+							if(seleccion!=-1) {
+								btnEliminar.setEnabled(true);
+								btnNewButton.setEnabled(true);
+								aux = Empresa.getInstance().findEmpleado((String)modelo.getValueAt(seleccion, 0));
+							}
 						}
 					});
 					table.setModel(modelo);
@@ -134,16 +140,10 @@ public class ListEmpleados extends JDialog {
 					btnNewButton.setEnabled(false);
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							DetalleEmpleado det = new DetalleEmpleado();
+							DetalleEmpleado det = new DetalleEmpleado(aux);
 							det.setModal(true);
 							det.setLocationRelativeTo(null);
 							det.setVisible(true);
-							int seleccion = table.getSelectedRow();
-							if(seleccion!=-1) {
-								btnEliminar.setEnabled(true);
-								btnNewButton.setEnabled(true);
-								aux = Empresa.getInstance().findEmpleado((String)modelo.getValueAt(seleccion, 0));
-							}
 						}
 					});
 					buttonPane.add(btnNewButton);
@@ -154,7 +154,6 @@ public class ListEmpleados extends JDialog {
 						public void actionPerformed(ActionEvent e) {
 							RegEmpleado regEmpleado = null;
 							int seleccion = table.getSelectedRow();
-							Empleado aux1 = null;
 							if(seleccion!=-1) {
 								//btnEliminar.setEnabled(true);
 								//btnNewButton.setEnabled(true);

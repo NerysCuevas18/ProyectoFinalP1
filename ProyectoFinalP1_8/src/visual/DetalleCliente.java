@@ -42,13 +42,16 @@ public class DetalleCliente extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DetalleCliente() {
+	public DetalleCliente(Cliente cliente) {
+		this.cliente = cliente;
 		setTitle("Detalles datos Clientes");
 		setBounds(100, 100, 643, 588);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		setResizable(false);
+		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Informacion del Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));

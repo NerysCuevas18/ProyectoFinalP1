@@ -107,6 +107,12 @@ public class PrincipalCom extends JFrame {
 		menuBar.add(mnCuenta);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Perfil");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DetalleEmpleado detalleEmpleado = new DetalleEmpleado(Empresa.getInstance().getLoginUser());
+				detalleEmpleado.setVisible(true);
+			}
+		});
 		mnCuenta.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Cerrar sesi\u00F3n");

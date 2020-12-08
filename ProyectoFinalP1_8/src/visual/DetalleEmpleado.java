@@ -41,7 +41,7 @@ public class DetalleEmpleado extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			DetalleEmpleado dialog = new DetalleEmpleado();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -54,13 +54,16 @@ public class DetalleEmpleado extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DetalleEmpleado() {
+	public DetalleEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 		setTitle("Detalles Empleados");
 		setBounds(100, 100, 1293, 533);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		setResizable(false);
+		setLocationRelativeTo(null);
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Informacion Empleado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -181,7 +184,7 @@ public class DetalleEmpleado extends JDialog {
 			txtSaldo.setColumns(10);
 			txtSaldo.setBounds(737, 354, 421, 26);
 			panel.add(txtSaldo);
-			float sueldo = Float.parseFloat(txtSaldo.getText());
+			txtSaldo.setText(empleado.getSaldo()+"");
 			
 			JLabel lblPass = new JLabel("Tipos Emp:");
 			lblPass.setBounds(15, 357, 99, 20);
@@ -192,8 +195,9 @@ public class DetalleEmpleado extends JDialog {
 			txtTipo.setColumns(10);
 			txtTipo.setBounds(143, 354, 421, 26);
 			panel.add(txtTipo);
-			for (Empleado empleado : Empresa.getInstance().getEmpleados()) {
-			if( empleado instanceof EmpleadoAdm) {
+
+			for (Empleado emp : Empresa.getInstance().getEmpleados()) {
+			if( emp instanceof EmpleadoAdm) {
 				txtTipo.setText("Administrador");
 			}else {
 				txtTipo.setText("Comercial");

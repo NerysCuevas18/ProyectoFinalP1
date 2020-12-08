@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import logico.Cliente;
 import logico.Empleado;
 import logico.Empresa;
+import logico.Factura;
 import logico.Persona;
 
 import javax.swing.JScrollPane;
@@ -83,7 +85,12 @@ public class ListClientes extends JDialog {
 							btnEliminar.setEnabled(true);
 							btnNewButton.setEnabled(true);
 							btnModificar.setEnabled(true);
-							
+							int seleccion = table.getSelectedRow();
+							if(seleccion!=-1) {
+								//btnEliminar.setEnabled(true);
+								//btnNewButton.setEnabled(true);
+								aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
+							}
 						}
 					});
 					table.setModel(modelo);
@@ -102,15 +109,8 @@ public class ListClientes extends JDialog {
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {					
 						RegCliente regClient = null;
-						int seleccion = table.getSelectedRow();
-						Cliente aux1 = null;
-						if(seleccion!=-1) {
-							//btnEliminar.setEnabled(true);
-							//btnNewButton.setEnabled(true);
-							aux1 = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
-						}
 						try {
-							regClient = new RegCliente("Modificar cliente", 1, aux1);
+							regClient = new RegCliente("Modificar cliente", 1, aux);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -124,16 +124,10 @@ public class ListClientes extends JDialog {
 					btnNewButton.setEnabled(false);
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							DetalleCliente det = new DetalleCliente();
+							DetalleCliente det = new DetalleCliente(aux);
 							det.setModal(true);
 							det.setLocationRelativeTo(null);
 							det.setVisible(true);
-							int seleccion = table.getSelectedRow();
-							if(seleccion!=-1) {
-								btnEliminar.setEnabled(true);
-								btnNewButton.setEnabled(true);
-								aux = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
-							}
 						}
 					});
 					buttonPane.add(btnNewButton);
@@ -185,8 +179,14 @@ public class ListClientes extends JDialog {
 			filas[2] = person.getTelefonos();
 			filas[3] = person.getCorreo();
 			filas[4] = person.isEstado();
-			filas[5] = person.getPlanC().getCodPlan()+" - "+person.getPlanC().getNombreP();
-			filas[6] = person.getPlanC().getCodPlan()+" - RD$"+person.getPlanC().getPrecioFinal();
+			if (person.getPlanC() == null) filas[5] = ("No registrado.");
+			else filas[5] = (person.getPlanC().getCodPlan()+" - "+person.getPlanC().getNombreP());
+			ArrayList<String> facturas = new ArrayList<String>();
+			for(Factura fa : person.getFacturasMensual()) {
+				facturas.add(fa.getCodFactura()+" - RD$"+fa.getMonto()+", ");
+			}
+			if (person.getFacturasMensual().size() == 0) filas[6] = ("No registrado.");
+			else filas[6] = facturas;
 			filas[7] = person.getRegistro();
 			modelo.addRow(filas);
 		}

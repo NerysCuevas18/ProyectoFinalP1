@@ -202,7 +202,7 @@ public class Empresa implements Serializable {
 						
 					}
 				}
-				facturasGeneradas = true;
+				facturasGeneradas = false;
 			} else if (((facturar.get(Calendar.DAY_OF_MONTH))!=15) && facturasGeneradas) {
 				facturasGeneradas = true;
 			}
