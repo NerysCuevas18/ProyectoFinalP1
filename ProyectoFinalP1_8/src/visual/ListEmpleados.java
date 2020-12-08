@@ -114,14 +114,15 @@ public class ListEmpleados extends JDialog {
 			}
 			{
 				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setEnabled(false);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(aux!=null) {
 							int option = JOptionPane.showConfirmDialog(null, "¿Está seguro/a de que desea eliminar el empleado: "+aux.getCedula(), "Confirmación", JOptionPane.WARNING_MESSAGE);
 						    if(option == JOptionPane.OK_OPTION) {
 						        Empresa.getInstance().eliminarEmpleado(aux);
-						     	seleccion = "<Todos>";
-						    	cargarListaDisponible(seleccion);
+						     	String seleccion1 = "<Todos>";
+						    	cargarListaDisponible(seleccion1);
 						    	btnEliminar.setEnabled(false);
 						    }
 						}
@@ -157,8 +158,15 @@ public class ListEmpleados extends JDialog {
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							RegEmpleado regEmpleado = null;
+							int seleccion = table.getSelectedRow();
+							Empleado aux1 = null;
+							if(seleccion!=-1) {
+								//btnEliminar.setEnabled(true);
+								//btnNewButton.setEnabled(true);
+								aux1 = Empresa.getInstance().findEmpleado((String)modelo.getValueAt(seleccion, 0));
+							}
 							try {
-								regEmpleado = new RegEmpleado("Modificar Empleado", 1, aux);
+								regEmpleado = new RegEmpleado("Modificar Empleado", 1, aux1);
 							} catch (ParseException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -170,7 +178,6 @@ public class ListEmpleados extends JDialog {
 					btnModificar.setEnabled(false);
 					buttonPane.add(btnModificar);
 				}
-				btnEliminar.setEnabled(false);
 				buttonPane.add(btnEliminar);
 			}
 			{

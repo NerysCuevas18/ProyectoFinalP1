@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logico.Cliente;
+import logico.Empleado;
 import logico.Empresa;
 import logico.Persona;
 
@@ -99,10 +100,17 @@ public class ListClientes extends JDialog {
 			{
 				btnModificar = new JButton("Modificar");
 				btnModificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(ActionEvent e) {					
 						RegCliente regClient = null;
+						int seleccion = table.getSelectedRow();
+						Cliente aux1 = null;
+						if(seleccion!=-1) {
+							//btnEliminar.setEnabled(true);
+							//btnNewButton.setEnabled(true);
+							aux1 = Empresa.getInstance().findCliente((String)modelo.getValueAt(seleccion, 0));
+						}
 						try {
-							regClient = new RegCliente("Modificar cliente", 1, aux);
+							regClient = new RegCliente("Modificar cliente", 1, aux1);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

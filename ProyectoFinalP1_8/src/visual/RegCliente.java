@@ -230,7 +230,7 @@ public class RegCliente extends JDialog {
 			txtApellido.setText(cliente.getApellidos());
 			spnFecNac.setValue(cliente.getNacimiento());
 			txtNac.setText(cliente.getNacionalidad());
-			cbxSexo.setSelectedItem(cliente.getSexo());
+			cbxSexo.setSelectedItem(String.valueOf(cliente.getSexo()));
 			txtTel1.setText(cliente.getTelefonos().get(0));
 			txtTel2.setText(cliente.getTelefonos().get(1));
 			txtEmail.setText(cliente.getCorreo());

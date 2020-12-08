@@ -63,7 +63,7 @@ public class RegEmpleado extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			RegEmpleado dialog = new RegEmpleado("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -71,7 +71,7 @@ public class RegEmpleado extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	/**
 	 * Create the dialog.
@@ -254,7 +254,7 @@ public class RegEmpleado extends JDialog {
 			txtApellido.setText(empl.getApellidos());
 			spnFecNac.setValue(empl.getNacimiento());
 			txtNaci.setText(empl.getNacionalidad());
-			cbxSexo.setSelectedItem(empl.getSexo());
+			cbxSexo.setSelectedItem(String.valueOf(empl.getSexo()));
 			txtTel1.setText(empl.getTelefonos().get(0));
 			txtTel2.setText(empl.getTelefonos().get(1));
 			txtEmail.setText(empl.getCorreo());
@@ -264,10 +264,12 @@ public class RegEmpleado extends JDialog {
 						
 			if(empl instanceof EmpleadoAdm) {
 				cbxPuesto.setSelectedItem("Administrativo");
+				cbxPuesto.setEnabled(false);
 			}
 			
 			if(empl instanceof EmpleadoCom) {
 				cbxPuesto.setSelectedItem("Comercial");
+				cbxPuesto.setEnabled(false);
 			}
 		}
 			
@@ -281,7 +283,7 @@ public class RegEmpleado extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
 								(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNaci.getText()==" ")||
-								(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||(txtTel.getText()==" ")) {
+								(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||(txtTel.getText()==" ")||(cbxPuesto.getSelectedItem().toString()=="<Seleccione>")) {
 							JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 						}else {
 							if (i==0) {
