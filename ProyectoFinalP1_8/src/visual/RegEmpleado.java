@@ -63,7 +63,7 @@ public class RegEmpleado extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			RegEmpleado dialog = new RegEmpleado("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -72,7 +72,7 @@ public class RegEmpleado extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	/**
 	 * Create the dialog.
 	 * @param object 
@@ -285,7 +285,9 @@ public class RegEmpleado extends JDialog {
 								(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNaci.getText()==" ")||
 								(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||(txtTel.getText()==" ")||(cbxPuesto.getSelectedItem().toString()=="<Seleccione>")) {
 							JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
-						}else {
+						}if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
+							JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
+						}else{
 							if (i==0) {
 								String cliente1=" ";
 								String cliente2=" ";

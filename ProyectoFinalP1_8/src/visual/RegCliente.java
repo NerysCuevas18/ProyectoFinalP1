@@ -66,7 +66,7 @@ public class RegCliente extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			RegCliente dialog = new RegCliente("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -74,7 +74,7 @@ public class RegCliente extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	/**
 	 * Create the dialog.
 	 * @param object 
@@ -250,8 +250,9 @@ public class RegCliente extends JDialog {
 									(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNac.getText()==" ")||
 									(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||(txtTelR.getText()==" ")) {
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
-							}
-							else{
+							}if((Empresa.getInstance().findEmpleado(txtCed.getText()))!=null) {
+								JOptionPane.showMessageDialog(null, "Ya la cédula se encuentra registrada.\n Dígite una válida.", "Información", JOptionPane.ERROR_MESSAGE);
+							}else{
 								String cedula = txtCed.getText();
 								String nombre = txtNombre.getText();
 								String apellido = txtApellido.getText();
