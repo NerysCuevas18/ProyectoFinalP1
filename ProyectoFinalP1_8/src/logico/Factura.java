@@ -33,6 +33,7 @@ public class Factura implements Serializable{
 	private float montoFactura(){
 		float cant = cliente.getPlanC().getPrecioFinal();
 		int cantSinPagar = 0;
+		if(cliente.getFacturasMensual() != null) {
 		for(int i = 0; i<cliente.getFacturasMensual().size(); i++)
 		if (!(cliente.getFacturasMensual().get(i).isPagada())) cantSinPagar++;
 		switch (cantSinPagar) {
@@ -45,6 +46,7 @@ public class Factura implements Serializable{
 			break;
 		default:
 			break;				
+		}
 		}
 		return cant;
 	}

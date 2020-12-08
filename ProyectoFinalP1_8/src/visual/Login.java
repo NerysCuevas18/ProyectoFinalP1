@@ -48,7 +48,6 @@ public class Login extends JDialog {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				Empresa.getInstance().generarFacturas();
 				FileInputStream empresa;
 				FileOutputStream empresa2;
 				ObjectInputStream empresaRead;
@@ -83,6 +82,8 @@ public class Login extends JDialog {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				Empresa.getInstance().generarFacturas();
 				
 				try {
 					if(Empresa.getInstance().isConexion()) {

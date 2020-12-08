@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -30,10 +31,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.UIManager;
 import java.awt.Color;
 
@@ -42,9 +45,9 @@ public class RegCliente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private JTextField txtApellido;
-	private JTextField txtCed;
-	private JTextField txtTel1;
-	private JTextField txtTel2;
+	private JFormattedTextField txtCed;
+	private JFormattedTextField txtTel1;
+	private JFormattedTextField txtTel2;
 	private JTextField txtEmail;
 	private JTextField txtNac;
 	private JTextField txtNomR;
@@ -71,8 +74,9 @@ public class RegCliente extends JDialog {
 	 * @param object 
 	 * @param i 
 	 * @param string 
+	 * @throws ParseException 
 	 */
-	public RegCliente(String string, int i, Object object) {
+	public RegCliente(String string, int i, Object object) throws ParseException {
 		setResizable(false);
 		setModal(true);
 		setTitle(string);
@@ -115,7 +119,8 @@ public class RegCliente extends JDialog {
 			lblCdula.setBounds(10, 48, 137, 14);
 			panel.add(lblCdula);
 			
-			txtCed = new JTextField();
+			MaskFormatter formatter = new MaskFormatter("###-#######-#");
+			txtCed = new JFormattedTextField(formatter);
 			txtCed.setColumns(10);
 			txtCed.setBounds(135, 45, 300, 20);
 			panel.add(txtCed);
@@ -133,12 +138,13 @@ public class RegCliente extends JDialog {
 			lblTelfonos.setBounds(10, 130, 137, 14);
 			panel.add(lblTelfonos);
 			
-			txtTel1 = new JTextField();
+			MaskFormatter formatter1 = new MaskFormatter("(###) ###-####");
+			txtTel1 = new JFormattedTextField(formatter1);
 			txtTel1.setColumns(10);
 			txtTel1.setBounds(135, 127, 300, 20);
 			panel.add(txtTel1);
 			
-			txtTel2 = new JTextField();
+			txtTel2 = new JFormattedTextField(formatter1);
 			txtTel2.setColumns(10);
 			txtTel2.setBounds(455, 127, 300, 20);
 			panel.add(txtTel2);

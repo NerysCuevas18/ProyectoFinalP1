@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -178,7 +179,13 @@ public class PrincipalCom extends JFrame {
 				} else {
 					int returnValue= JOptionPane.showConfirmDialog(null, "El usuario insertado no se encuentra en nuestros registros. ¿Desea añadirlo?", "Confirmación", JOptionPane.CANCEL_OPTION);
 			    	 if(returnValue == 0) {
-			    		 RegCliente regCliente = new RegCliente("Registrar cliente", 0, null);
+			    		 RegCliente regCliente = null;
+						try {
+							regCliente = new RegCliente("Registrar cliente", 0, null);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 			    		 regCliente.setVisible(true);
 			    	 }
 				}
@@ -197,7 +204,13 @@ public class PrincipalCom extends JFrame {
 				} else {
 					int returnValue= JOptionPane.showConfirmDialog(null, "El usuario insertado no se encuentra en nuestros registros. ¿Desea añadirlo?", "Confirmación", JOptionPane.CANCEL_OPTION);
 			    	 if(returnValue == 0) {
-			    		 RegCliente regCliente = new RegCliente("Registrar cliente", 0, null);
+			    		 RegCliente regCliente = null;
+						try {
+							regCliente = new RegCliente("Registrar cliente", 0, null);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 			    		 regCliente.setVisible(true);
 			    	 }
 				}

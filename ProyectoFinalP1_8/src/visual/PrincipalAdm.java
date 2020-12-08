@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -146,7 +147,13 @@ public class PrincipalAdm extends JFrame {
 				JMenuItem mntmNewMenuItem_21 = new JMenuItem("Registro de empleados");
 				mntmNewMenuItem_21.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						RegEmpleado regEmpleado = new RegEmpleado("Registrar empleado", 0, null);
+						RegEmpleado regEmpleado = null;
+						try {
+							regEmpleado = new RegEmpleado("Registrar empleado", 0, null);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						regEmpleado.setVisible(true);
 					}
 				});

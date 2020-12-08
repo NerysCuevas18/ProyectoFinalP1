@@ -21,6 +21,7 @@ public class Cliente extends Persona implements Serializable {
 				telefonoReferencia);
 		this.estado = estado;
 		this.registro = registro;
+		this.facturasMensual = new ArrayList<Factura>();
 	}
 
 	public boolean isEstado() {
@@ -53,6 +54,10 @@ public class Cliente extends Persona implements Serializable {
 
 	public void setRegistro(Date registro) {
 		this.registro = registro;
+	}
+
+	public void addFactura(Factura fact) {
+		facturasMensual.add(fact);		
 	}
 	
 }
