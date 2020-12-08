@@ -215,7 +215,8 @@ public class RegEmpleado extends JDialog {
 		lblTelfono.setBounds(10, 65, 137, 14);
 		panel.add(lblTelfono);
 		
-		txtTel = new JTextField();
+		MaskFormatter formatter2 = new MaskFormatter("(###) ###-####");
+		txtTel = new JFormattedTextField(formatter2);
 		txtTel.setColumns(10);
 		txtTel.setBounds(135, 62, 300, 20);
 		panel.add(txtTel);
@@ -278,124 +279,136 @@ public class RegEmpleado extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (i==0) {
-							String cliente1=" ";
-							String cliente2=" ";
-							boolean aux1 = false;
-							{
-								do {
-									cliente1 = JOptionPane.showInputDialog("Digite la contraseña a utilizar:");
-									if(cliente1!=" ") {
-										cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
-										do {
-											if (cliente2!=" ") {
-												aux1=true;
-											}else {
-												JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
-												cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
-											}
-										} while (!(cliente2.equals(cliente1)));
-									}else {
-										JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
+						if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
+								(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNaci.getText()==" ")||
+								(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||(txtTel.getText()==" ")) {
+							JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+						}else {
+							if (i==0) {
+								String cliente1=" ";
+								String cliente2=" ";
+								boolean aux1 = false;
+								{
+									do {
 										cliente1 = JOptionPane.showInputDialog("Digite la contraseña a utilizar:");
-									}
-								} while (aux1==false);
-							}
-							if (aux1==true) {
-								if(cbxPuesto.getSelectedItem().toString()=="Administrativo") {
-									String cedula = txtCed.getText();
-									String nombre = txtNombre.getText();
-									String apellido = txtApellido.getText();
-									ArrayList<String> tel = new ArrayList<String>();
-									tel.add(txtTel1.getText());
-									tel.add(txtTel2.getText());
-									String correo = txtEmail.getText();
-									String s=cbxSexo.getSelectedItem().toString();  
-									char sexo=s.charAt(0);
-									Date fecha = (Date) spnFecNac.getValue();
-									String nac = txtNaci.getText();
-									String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
-									String telR = txtTel.getText();
-									Date fechaIng = new Date();
-									float sueldo = Float.parseFloat(txtSueldo.getText());
-									String password = cliente1;
-									EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
-									Empresa.getInstance().insertarEmpleado(aux);
-									
-								}else if(cbxPuesto.getSelectedItem().toString()=="Comercial") {
-									String cedula = txtCed.getText();
-									String nombre = txtNombre.getText();
-									String apellido = txtApellido.getText();
-									ArrayList<String> tel = new ArrayList<String>();
-									tel.add(txtTel1.getText());
-									tel.add(txtTel2.getText());
-									String correo = txtEmail.getText();
-									String s=cbxSexo.getSelectedItem().toString();  
-									char sexo=s.charAt(0);
-									Date fecha = (Date) spnFecNac.getValue();
-									String nac = txtNaci.getText();
-									String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
-									String telR = txtTel.getText();
-									Date fechaIng = new Date();
-									float sueldo = Float.parseFloat(txtSueldo.getText());
-									String password = cliente1;
-									EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
-									Empresa.getInstance().insertarEmpleado(aux);
+										if(cliente1!=" ") {
+											cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
+											do {
+												if (cliente2!=" ") {
+													aux1=true;
+												}else {
+													JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
+													cliente2 = JOptionPane.showInputDialog("Confirme la contraseña:");
+												}
+											} while (!(cliente2.equals(cliente1)));
+										}else {
+											JOptionPane.showMessageDialog(null, "Digite una contraseña:", "Información", JOptionPane.ERROR_MESSAGE);
+											cliente1 = JOptionPane.showInputDialog("Digite la contraseña a utilizar:");
+										}
+									} while (aux1==false);
 								}
-								JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-								clean();
-							}
-						}else if(i==1) {
-							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
-							if(option==JOptionPane.OK_OPTION) { 
-								if(empl instanceof EmpleadoAdm) {
-									empl.setCedula(txtCed.getText());
-									empl.setNombres(txtNombre.getText());
-									empl.setApellidos(txtApellido.getText());
-									ArrayList<String> tel = new ArrayList<String>();
-									tel.add(txtTel1.getText());
-									tel.add(txtTel2.getText());
-									empl.setTelefonos(tel);
-									empl.setCorreo(txtEmail.getText());
-									empl.setNombres(txtNombre.getText());
-									String s=cbxSexo.getSelectedItem().toString();  
-									char sexo=s.charAt(0);
-									empl.setSexo(sexo);
-									empl.setNacionalidad(txtNaci.getText());
-									empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
-									empl.setTelefonoReferencia(txtTel.getText());
-									empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
-									cbxPuesto.setSelectedItem("Administrativo");
-									cbxPuesto.setEnabled(false);
-									spnFecNac.setValue(empl.getNacimiento());
-																		
-								}else if(empl instanceof EmpleadoCom) {
-									empl.setCedula(txtCed.getText());
-									empl.setNombres(txtNombre.getText());
-									empl.setApellidos(txtApellido.getText());
-									ArrayList<String> tel = new ArrayList<String>();
-									tel.add(txtTel1.getText());
-									tel.add(txtTel2.getText());
-									empl.setTelefonos(tel);
-									empl.setCorreo(txtEmail.getText());
-									empl.setNombres(txtNombre.getText());
-									String s=cbxSexo.getSelectedItem().toString();  
-									char sexo=s.charAt(0);
-									empl.setSexo(sexo);
-									empl.setNacionalidad(txtNaci.getText());
-									empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
-									empl.setTelefonoReferencia(txtTel.getText());
-									empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
-									cbxPuesto.setSelectedItem("Comercial");
-									cbxPuesto.setEnabled(false);
-									spnFecNac.setValue(empl.getNacimiento());
-								}								
-								clean();
-								dispose();
-							}
-							if(option!=JOptionPane.OK_OPTION) {
-								clean();
-								dispose();
+								if (aux1==true) {
+									if(cbxPuesto.getSelectedItem().toString()=="Administrativo") {
+										String cedula = txtCed.getText();
+										String nombre = txtNombre.getText();
+										String apellido = txtApellido.getText();
+										ArrayList<String> tel = new ArrayList<String>();
+										tel.add(txtTel1.getText());
+										tel.add(txtTel2.getText());
+										String correo = txtEmail.getText();
+										String s=cbxSexo.getSelectedItem().toString();  
+										char sexo=s.charAt(0);
+										Date fecha = (Date) spnFecNac.getValue();
+										String nac = txtNaci.getText();
+										String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
+										String telR = txtTel.getText();
+										Date fechaIng = new Date();
+										float sueldo = Float.parseFloat(txtSueldo.getText());
+										String password = cliente1;
+										EmpleadoAdm aux = new EmpleadoAdm(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
+										Empresa.getInstance().insertarEmpleado(aux);
+										
+									}else if(cbxPuesto.getSelectedItem().toString()=="Comercial") {
+										String cedula = txtCed.getText();
+										String nombre = txtNombre.getText();
+										String apellido = txtApellido.getText();
+										ArrayList<String> tel = new ArrayList<String>();
+										tel.add(txtTel1.getText());
+										tel.add(txtTel2.getText());
+										String correo = txtEmail.getText();
+										String s=cbxSexo.getSelectedItem().toString();  
+										char sexo=s.charAt(0);
+										Date fecha = (Date) spnFecNac.getValue();
+										String nac = txtNaci.getText();
+										String nombreR = (txtNombRef.getText()+" "+txtApellRef.getText());
+										String telR = txtTel.getText();
+										Date fechaIng = new Date();
+										float sueldo = Float.parseFloat(txtSueldo.getText());
+										String password = cliente1;
+										EmpleadoCom aux = new EmpleadoCom(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,fechaIng,sueldo,password);
+										Empresa.getInstance().insertarEmpleado(aux);
+									}
+									JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+									clean();
+								}
+							}else if(i==1) {
+								if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
+										(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNaci.getText()==" ")||
+										(txtNombRef.getText()==" ")||(txtApellRef.getText()==" ")||(txtTel.getText()==" ")||(cbxPuesto.getSelectedItem().toString()=="<Seleccione>")) {
+									JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+								}else {
+									int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
+									if(option==JOptionPane.OK_OPTION) { 
+										if(empl instanceof EmpleadoAdm) {
+											empl.setCedula(txtCed.getText());
+											empl.setNombres(txtNombre.getText());
+											empl.setApellidos(txtApellido.getText());
+											ArrayList<String> tel = new ArrayList<String>();
+											tel.add(txtTel1.getText());
+											tel.add(txtTel2.getText());
+											empl.setTelefonos(tel);
+											empl.setCorreo(txtEmail.getText());
+											empl.setNombres(txtNombre.getText());
+											String s=cbxSexo.getSelectedItem().toString();  
+											char sexo=s.charAt(0);
+											empl.setSexo(sexo);
+											empl.setNacionalidad(txtNaci.getText());
+											empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
+											empl.setTelefonoReferencia(txtTel.getText());
+											empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
+											cbxPuesto.setSelectedItem("Administrativo");
+											cbxPuesto.setEnabled(false);
+											spnFecNac.setValue(empl.getNacimiento());
+																				
+										}else if(empl instanceof EmpleadoCom) {
+											empl.setCedula(txtCed.getText());
+											empl.setNombres(txtNombre.getText());
+											empl.setApellidos(txtApellido.getText());
+											ArrayList<String> tel = new ArrayList<String>();
+											tel.add(txtTel1.getText());
+											tel.add(txtTel2.getText());
+											empl.setTelefonos(tel);
+											empl.setCorreo(txtEmail.getText());
+											empl.setNombres(txtNombre.getText());
+											String s=cbxSexo.getSelectedItem().toString();  
+											char sexo=s.charAt(0);
+											empl.setSexo(sexo);
+											empl.setNacionalidad(txtNaci.getText());
+											empl.setNombreReferencia(txtNombRef.getText()+" "+txtApellRef.getText());
+											empl.setTelefonoReferencia(txtTel.getText());
+											empl.setSaldo(Float.parseFloat(txtSueldo.getText()));
+											cbxPuesto.setSelectedItem("Comercial");
+											cbxPuesto.setEnabled(false);
+											spnFecNac.setValue(empl.getNacimiento());
+										}								
+										clean();
+										dispose();
+									}
+									if(option!=JOptionPane.OK_OPTION) {
+										clean();
+										dispose();
+									}
+								}
 							}
 						}
 					}

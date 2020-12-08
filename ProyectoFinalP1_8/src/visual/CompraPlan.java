@@ -68,7 +68,7 @@ public class CompraPlan extends JDialog {
 	 */
 	/*public static void main(String[] args) {
 		try {
-			CompraPlan dialog = new CompraPlan();
+			CompraPlan dialog = new CompraPlan(String cedEmpleado, String nombreCliente, String cedulaCliente);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -158,7 +158,8 @@ public class CompraPlan extends JDialog {
 		lblNewLabel.setBounds(10, 27, 95, 14);
 		panel_1.add(lblNewLabel);
 		
-		txtNomb = new JTextField(nombreCliente);
+		txtNomb = new JTextField();
+		txtNomb.setText(nombreCliente);
 		txtNomb.setEnabled(false);
 		txtNomb.setEditable(false);
 		txtNomb.setBounds(104, 24, 236, 20);
@@ -170,6 +171,7 @@ public class CompraPlan extends JDialog {
 		panel_1.add(lblCdula);
 		
 		txtCed = new JTextField(cedulaCliente);
+		txtCed.setText(cedulaCliente);
 		txtCed.setEnabled(false);
 		txtCed.setEditable(false);
 		txtCed.setColumns(10);
@@ -201,22 +203,25 @@ public class CompraPlan extends JDialog {
 				btnRegistrar = new JButton("Registrar");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						String cedula = txtCed.getText();
-						String plan = txtCodPlan.getText();
-						Empleado empleado = Empresa.getInstance().findEmpleado(cedEmpleado);
-						if (empleado instanceof EmpleadoCom) {
-							((EmpleadoCom) empleado).cantVenta++;
-						}
-						Plan planC = Empresa.getInstance().findPlan(plan);
-						if(planC!=null) {
-							Cliente cliente = Empresa.getInstance().findCliente(cedula);
-							if(cliente!=null) {
-								cliente.setPlanC(planC);
+						if((txtCed.getText()==" ")||(txtCodPlan.getText()==" ")||(txtNomb.getText()==" ")) {
+							JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+						}else {
+							String cedula = txtCed.getText();
+							String plan = txtCodPlan.getText();
+							Empleado empleado = Empresa.getInstance().findEmpleado(cedEmpleado);
+							if (empleado instanceof EmpleadoCom) {
+								((EmpleadoCom) empleado).cantVenta++;
 							}
-						}
-						clean();
-						
-						
+							Plan planC = Empresa.getInstance().findPlan(plan);
+							if(planC!=null) {
+								Cliente cliente = Empresa.getInstance().findCliente(cedula);
+								if(cliente!=null) {
+									cliente.setPlanC(planC);
+								}
+							}
+							JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+							clean();
+						}		
 					}
 				});
 				btnRegistrar.setActionCommand("OK");

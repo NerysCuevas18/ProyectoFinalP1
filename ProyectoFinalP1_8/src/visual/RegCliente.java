@@ -38,9 +38,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.PlainDocument;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RegCliente extends JDialog {
 
@@ -61,7 +66,7 @@ public class RegCliente extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			RegCliente dialog = new RegCliente("", 0, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -69,8 +74,7 @@ public class RegCliente extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
-
+	}
 	/**
 	 * Create the dialog.
 	 * @param object 
@@ -212,7 +216,8 @@ public class RegCliente extends JDialog {
 		lblTelfono.setBounds(10, 65, 137, 14);
 		panel.add(lblTelfono);
 		
-		txtTelR = new JTextField();
+		MaskFormatter formatter2 = new MaskFormatter("(###) ###-####");
+		txtTelR = new JFormattedTextField(formatter2);
 		txtTelR.setColumns(10);
 		txtTelR.setBounds(135, 62, 300, 20);
 		panel.add(txtTelR);
@@ -241,46 +246,59 @@ public class RegCliente extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(i==0) {
-							String cedula = txtCed.getText();
-							String nombre = txtNombre.getText();
-							String apellido = txtApellido.getText();
-							ArrayList<String> tel = new ArrayList<String>();						
-							tel.add(txtTel1.getText());
-							tel.add(txtTel2.getText());
-							String correo = txtEmail.getText();
-							String s=cbxSexo.getSelectedItem().toString();  
-							char sexo=s.charAt(0);
-							Date fecha = (Date) spnFecNac.getValue();
-							String nac = txtNac.getText();
-							String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
-							String telR = txtTelR.getText();
-							Date reg = new Date();
-							Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
-							Empresa.getInstance().insertarCliente(aux);
-							JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
-							clean();
+							if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
+									(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNac.getText()==" ")||
+									(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||(txtTelR.getText()==" ")) {
+								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+							}
+							else{
+								String cedula = txtCed.getText();
+								String nombre = txtNombre.getText();
+								String apellido = txtApellido.getText();
+								ArrayList<String> tel = new ArrayList<String>();						
+								tel.add(txtTel1.getText());
+								tel.add(txtTel2.getText());
+								String correo = txtEmail.getText();
+								String s=cbxSexo.getSelectedItem().toString();  
+								char sexo=s.charAt(0);
+								Date fecha = (Date) spnFecNac.getValue();
+								String nac = txtNac.getText();
+								String nombreR = (txtNomR.getText()+ " "+ txtApellR.getText());
+								String telR = txtTelR.getText();
+								Date reg = new Date();
+								Cliente aux = new Cliente(cedula,nombre,apellido,tel,correo,sexo,fecha,nac,nombreR,telR,true,reg);
+								Empresa.getInstance().insertarCliente(aux);
+								JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+								clean();
+							}
 						}
 						else if(i==1) {
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
 							if(option==JOptionPane.OK_OPTION) { 
-								cliente.setCedula(txtCed.getText());
-								cliente.setNombres(txtNombre.getText());
-								cliente.setApellidos(txtApellido.getText());
-								ArrayList<String> tel = new ArrayList<String>();
-								tel.add(txtTel1.getText());
-								tel.add(txtTel2.getText());
-								cliente.setTelefonos(tel);
-								cliente.setCorreo(txtEmail.getText());
-								cliente.setNombres(txtNombre.getText());
-								String s=cbxSexo.getSelectedItem().toString();  
-								char sexo=s.charAt(0);
-								cliente.setSexo(sexo);
-								cliente.setNacionalidad(txtNac.getText());
-								cliente.setNombreReferencia(txtNomR.getText()+" "+txtApellR.getText());
-								cliente.setTelefonoReferencia(txtTelR.getText());
-								spnFecNac.setValue(cliente.getNacimiento());								
-								clean();
-								dispose();
+								if((txtCed.getText()==" ")||(txtNombre.getText()==" ")||(txtTel1.getText()==" ")||(txtTel2.getText()==" ")||
+										(txtEmail.getText()==" ")||(cbxSexo.getSelectedItem().toString()=="<Seleccione>")||(txtNac.getText()==" ")||
+										(txtNomR.getText()==" ")||(txtApellR.getText()==" ")||(txtTelR.getText()==" ")) {
+									JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+								}else {
+									cliente.setCedula(txtCed.getText());
+									cliente.setNombres(txtNombre.getText());
+									cliente.setApellidos(txtApellido.getText());
+									ArrayList<String> tel = new ArrayList<String>();
+									tel.add(txtTel1.getText());
+									tel.add(txtTel2.getText());
+									cliente.setTelefonos(tel);
+									cliente.setCorreo(txtEmail.getText());
+									cliente.setNombres(txtNombre.getText());
+									String s=cbxSexo.getSelectedItem().toString();  
+									char sexo=s.charAt(0);
+									cliente.setSexo(sexo);
+									cliente.setNacionalidad(txtNac.getText());
+									cliente.setNombreReferencia(txtNomR.getText()+" "+txtApellR.getText());
+									cliente.setTelefonoReferencia(txtTelR.getText());
+									spnFecNac.setValue(cliente.getNacimiento());								
+									clean();
+									dispose();
+								}
 							}
 							if(option!=JOptionPane.OK_OPTION) {
 								clean();
@@ -317,5 +335,5 @@ public class RegCliente extends JDialog {
 		   txtApellR.setText("Apellido(s)");
 		   txtTelR.setText("");
 		   cbxSexo.setSelectedIndex(0);  
-	}
+	} 
 }
