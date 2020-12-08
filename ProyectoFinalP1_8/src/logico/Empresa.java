@@ -1,5 +1,8 @@
 package logico;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,6 +24,8 @@ public class Empresa implements Serializable {
 	private int codFacturas = 1;
 	private int codPlan = 1;
 	private boolean conexion;
+	private Date today;
+	
 	
 	private Empresa() {
 		super();
@@ -148,6 +153,50 @@ public class Empresa implements Serializable {
 						Factura fact = new Factura("ALT"+codFacturas++, clientes.get(i));
 						clientes.get(i).addFactura(fact);
 						Empresa.getInstance().insertarFactura(fact);
+						
+						File archivo = new File ("FacturaAltice.txt");
+				        FileWriter escritor;
+				        try {
+							escritor = new FileWriter(archivo);
+							Calendar calendar = Calendar.getInstance();
+							calendar.setTime(today);
+							ArrayList<String> info = new ArrayList<String>();
+							info.add("| - - - - - - - - - - - - - - - - - - - -|   Altice Rep. Dom  | - - - - - - - - - - - - - - - - - - -|");
+							info.add("");
+							info.add("    ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ Factura ~ ~ ~ ~ ~ ~ ~ ~ ~");
+							info.add("    + Cédula: "+clientes.get(i).getCedula());
+							info.add("    + Nombre: "+clientes.get(i).getNombres());
+							info.add("    + Apellido: "+clientes.get(i).getApellidos()+"         + Código: "+fact.getCodFactura());
+							info.add("    + Teléfono: "+clientes.get(i).getTelefonos()+"         + Fecha: "+calendar.getTime());
+							info.add("    + Correo: "+clientes.get(i).getCorreo()+"              + FechaVencimiento: "+fact.getVencimientoFactura());
+							info.add("    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+							info.add("");
+							info.add("");
+							info.add("                                                  +-+-+");
+							info.add("");
+							info.add("                                  Plan                                Precio");
+							info.add("                                  "+clientes.get(i).getPlanC()+"      RD$"+clientes.get(i).getPlanC().getPrecioFinal());
+							info.add("");
+							info.add("");
+							info.add("                                                  +-+-+");
+							info.add("                                          Total: RD$"+clientes.get(i).getPlanC().getPrecioFinal());
+							info.add("");
+							info.add("");
+							info.add("                              ¡Esperamos que disfrute su compra! ¡Vuelva pronto!");
+							info.add("");
+							info.add("| - - - - - - - - - - - - - - - - - - - - - - - |   Factura   | - - - - - - - - - - - - - - - - - - - - - - -|");
+									
+							for (int j=0; j<info.size(); j++) {
+					        for (int n=0; n<info.get(j).length(); n++)
+					            escritor.write(info.get(j).charAt(n));
+					            escritor.write('\n');
+							}
+					        escritor.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						
 					}
 				}
 				setFacturasGeneradas(true);
