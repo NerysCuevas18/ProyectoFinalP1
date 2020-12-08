@@ -86,11 +86,7 @@ public class PagarFactura extends JDialog {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setEnabled(false);
 		panel_1.add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
 		
 		modelo = new DefaultTableModel();
 		String [] headers = {"Código de factura", "Mes", "Monto"};
@@ -180,6 +176,11 @@ public class PagarFactura extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -193,7 +194,7 @@ public class PagarFactura extends JDialog {
 		modelo.setRowCount(0);
 		filas = new Object[modelo.getColumnCount()];
 		for(Factura factura : cliente.getFacturasMensual()) {
-			if(factura.isPagada()) {
+			if(!(factura.isPagada())) {
 			filas[0]=factura.getCodFactura();
 			filas[1]=factura.getCliente().getNombres();
 			filas[2]="RD$"+factura.getMonto();

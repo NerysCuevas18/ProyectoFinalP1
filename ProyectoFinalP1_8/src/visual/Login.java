@@ -83,9 +83,8 @@ public class Login extends JDialog {
 					e.printStackTrace();
 				}
 				
-				Empresa.getInstance().generarFacturas();
-				
 				try {
+					Empresa.getInstance().generarFacturas();
 					if(Empresa.getInstance().isConexion()) {
 						if(Empresa.getInstance().getLoginUser() instanceof EmpleadoAdm) {
 						PrincipalAdm frame = new PrincipalAdm();
