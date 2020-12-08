@@ -1,0 +1,24 @@
+| - - - - - - - - - - - - - - - - - - - -|   Altice Rep. Dom  | - - - - - - - - - - - - - - - - - - -|
+
+    ~ ~ ~ ~ ~ ~ ~ ~ ~ Cliente ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ Factura ALT1005~ ~ ~ ~ ~ ~ ~ ~ ~
+    + Nombre: eeeeee
+    + Apellido: eeeeee
+    + Cédula: 000-0000000-2                                + Fecha: Tue Dec 08 10:30:08 BOT 2020
+    + Teléfono: [(000) 000-0000, (000) 000-0000]           + Vencimiento: Fri Dec 18 10:30:08 BOT 2020
+    + Correo: eeeeee
+    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~            ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+
+                                                  +-+-+
+
+                          Plan             Nombre                 Precio
+                          PL1002           ssss                   RD$2600.0
+
+
+                                                  +-+-+
+                                          Total: RD$2600.0
+
+
+                                    Altice: Hechos de vida, hechos de fibra
+
+| - - - - - - - - - - - - - - - - - - - - - - - |   Factura   | - - - - - - - - - - - - - - - - - - - - - - -|
