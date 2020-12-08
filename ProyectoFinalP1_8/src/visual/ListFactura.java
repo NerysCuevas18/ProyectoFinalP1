@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -22,6 +23,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class ListFactura extends JDialog {
 
@@ -29,6 +32,7 @@ public class ListFactura extends JDialog {
 	private JTable table;
 	public static DefaultTableModel modelo;
 	public static Object[] filas;
+	private JButton btnVer;
 
 	/**
 	 * Launch the application.
@@ -65,6 +69,10 @@ public class ListFactura extends JDialog {
 					table.addMouseListener(new MouseAdapter() {
 						
 						
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							btnVer.setEnabled(true);
+						}
 					});
 					table.setModel(modelo);
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -84,6 +92,16 @@ public class ListFactura extends JDialog {
 						dispose();
 					}
 				});
+				{
+					btnVer = new JButton("Ver Factura");
+					btnVer.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							abrirarchivo("FacturaAltice.txt");
+						}
+					});
+					btnVer.setEnabled(false);
+					buttonPane.add(btnVer);
+				}
 				btnCancelar.setActionCommand("Cancel");
 				buttonPane.add(btnCancelar);
 			}
@@ -91,6 +109,21 @@ public class ListFactura extends JDialog {
 		
 		llenarTabla();
 	}
+	
+	public void abrirarchivo(String archivo){
+
+	     try {
+
+	            File objetofile = new File (archivo);
+	            Desktop.getDesktop().open(objetofile);
+
+	     }catch (IOException ex) {
+
+	            System.out.println(ex);
+
+	     }
+
+	} 
 	
 	public static void llenarTabla() {
 		modelo.setRowCount(0);
