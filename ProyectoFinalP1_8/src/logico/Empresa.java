@@ -365,7 +365,7 @@ public class Empresa implements Serializable {
 	}
 	public void totalPagoMes(Factura fact, Date date) {
 		
-		float[] cant1 = new float[11];
+		float[] cant1 = new float[12];
 		Calendar facturar = Calendar.getInstance();
 		facturar.setTime(date);
 		
