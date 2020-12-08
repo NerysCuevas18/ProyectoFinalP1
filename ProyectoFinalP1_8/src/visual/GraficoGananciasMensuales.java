@@ -19,7 +19,7 @@ public class GraficoGananciasMensuales extends JFrame {
 	private JPanel panel;
 	public GraficoGananciasMensuales() {
 		setTitle("GANANCIAS MENSUALES");
-		setSize(800,475);
+		setSize(725,475);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -29,8 +29,8 @@ public class GraficoGananciasMensuales extends JFrame {
 		panel = new JPanel();
 		getContentPane().add(panel);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		int[] aux = new int[12];
-		for (int i = 0; i < Empresa.getInstance().getPlanes().size(); i++) {
+		float[] aux = Empresa.getInstance().getCant();
+		for (int i = 0; i < 12; i++) {
 			if(i==0) {
 				dataset.setValue(aux[i], "Enero","");
 			}else if(i==1) {
@@ -64,6 +64,7 @@ public class GraficoGananciasMensuales extends JFrame {
 		CategoryPlot p = chart.getCategoryPlot();
 		p.setRangeGridlinePaint(Color.red);
 		ChartPanel chartPanel = new ChartPanel(chart);
+		chartPanel.setMinimumDrawWidth(700);
 		panel.add(chartPanel);
 	}
 	/*public static void main(String[] args) {

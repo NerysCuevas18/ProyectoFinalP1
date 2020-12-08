@@ -147,6 +147,9 @@ public class Empresa implements Serializable {
 		return cant;
 	}
 	
+	public void setCant(float[] cant) {
+		this.cant = cant;
+	}
 	public void generarFacturas() {
 			Date hoy = new Date();
 			Calendar facturar = Calendar.getInstance();
@@ -374,37 +377,37 @@ public class Empresa implements Serializable {
 			
 		}else if(facturar.get(Calendar.MONTH)==1) {
 			cant1[1]= cant1[1]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==2) {
 			cant1[2]= cant1[2]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==3) {
 			cant1[3]= cant1[3]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==4) {
 			cant1[4]= cant1[4]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==5) {
 			cant1[5]= cant1[5]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==6) {
 			cant1[6]= cant1[6]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==7) {
 			cant1[7]= cant1[7]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==8) {
 			cant1[8]= cant1[8]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==9) {
 			cant1[9]= cant1[9]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==10) {
 			cant1[10]= cant1[10]+fact.getMonto();
-			
+
 		}else if(facturar.get(Calendar.MONTH)==11) {
 			cant1[11]= cant1[11]+fact.getMonto();
-			
+
 		}
 		this.cant = cant1;	
 	}

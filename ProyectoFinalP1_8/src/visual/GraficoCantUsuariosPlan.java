@@ -32,7 +32,7 @@ public class GraficoCantUsuariosPlan extends JFrame {
 		int[] aux = new int[Empresa.getInstance().getPlanes().size()];
 		aux = Empresa.getInstance().cantClientePlan();
 		for (int i = 0; i < Empresa.getInstance().getPlanes().size(); i++) {
-			dataset.setValue(aux[i], "", Empresa.getInstance().getPlanes().get(i).getNombreP());
+			dataset.setValue(aux[i],Empresa.getInstance().getPlanes().get(i).getNombreP(),"" );
 		}
 		JFreeChart chart = ChartFactory.createBarChart3D("CANTIDAD DE USUARIOS POR PLAN", "Nombre de plan", 
 				"Cantidad de usuarios por plan", dataset,PlotOrientation.VERTICAL,true,true,false);
