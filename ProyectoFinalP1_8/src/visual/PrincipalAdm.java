@@ -84,7 +84,10 @@ public class PrincipalAdm extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u00A1Bienvenido, Sr/a "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
+		JLabel lblNewLabel_1 = new JLabel("");
+		if((Empresa.getInstance().getLoginUser().getSexo()) == 'M')
+			lblNewLabel_1.setText("\u00A1Bienvenido, Sr. "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
+			else lblNewLabel_1.setText("\u00A1Bienvenida, Sra. "+Empresa.getInstance().getLoginUser().getApellidos()+"!");
 		lblNewLabel_1.setFont(new Font("Verdana", Font.BOLD, 26));
 		lblNewLabel_1.setBounds(25, 268, 621, 45);
 		contentPane.add(lblNewLabel_1);

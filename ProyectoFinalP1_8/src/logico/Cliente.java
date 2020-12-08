@@ -60,4 +60,13 @@ public class Cliente extends Persona implements Serializable {
 		facturasMensual.add(fact);		
 	}
 	
+	public boolean getFacturasPorPagar() {
+		boolean can = false;
+		for(int i = 0; i<facturasMensual.size(); i++) {
+			if (!(facturasMensual.get(i).isPagada()))
+					can = true;
+		}
+		return can;
+	}
+	
 }

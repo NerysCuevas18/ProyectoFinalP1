@@ -51,7 +51,7 @@ public class Confirmar extends JDialog {
 	public Confirmar(boolean tipo, String ced) throws ParseException {
 		this.ced = ced;
 		this.tipo = tipo;
-		setTitle("Saldo");
+		setTitle("Confirmar cliente");
 		setBounds(100, 100, 405, 182);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -109,7 +109,7 @@ public class Confirmar extends JDialog {
 							}
 							else {
 							if(tipo) {
-								if(cliente.getFacturasMensual().size()==0)
+								if(!(cliente.getFacturasPorPagar()))
 									JOptionPane.showMessageDialog(null, "Usted no tiene facturas pendientes de pago.", "Información", JOptionPane.INFORMATION_MESSAGE);
 								else {
 									PagarFactura pagarFactura = new PagarFactura(cliente);

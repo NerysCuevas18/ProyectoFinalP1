@@ -284,6 +284,7 @@ public class RegEmpleado extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Registrar");
+				if(i==1) okButton.setText("Modificar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {	
 						int aux1 = 0;

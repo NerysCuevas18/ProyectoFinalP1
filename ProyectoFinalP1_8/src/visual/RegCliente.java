@@ -200,6 +200,7 @@ public class RegCliente extends JDialog {
 			txtNac.setColumns(10);
 			txtNac.setBounds(135, 84, 300, 20);
 			panel.add(txtNac);
+
 		}
 		
 		JPanel panel = new JPanel();
@@ -272,10 +273,7 @@ public class RegCliente extends JDialog {
 								
 								JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 							
-							}if((txtCed.getText()!=" ")&&(txtNombre.getText()!="Nombre(s)")&&(txtApellido.getText()!="Apellido(s)")&&(txtNombre.getText()!=" ")&&(txtApellido.getText()!=" ")
-									&&(txtTel1.getText()!=" ")&&(txtTel2.getText()!=" ")&&(txtEmail.getText()!=" ")&&((String) cbxSexo.getSelectedItem()!="<Seleccione>")
-									&&(txtNac.getText()!=" ")&&(txtNomR.getText()!="Nombre(s)")&&(txtApellR.getText()!="Apellido(s)")&&(txtNomR.getText()!=" ")&&(txtApellR.getText()!=" ")&&
-									(txtTelR.getText()!=" ")){
+							} else {
 								String cedula = txtCed.getText();
 								String nombre = txtNombre.getText();
 								String apellido = txtApellido.getText();
@@ -303,8 +301,8 @@ public class RegCliente extends JDialog {
 							}
 						}
 						else if(i==1) {
-							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea actualizar", "Confirmación", JOptionPane.WARNING_MESSAGE);
-							if(option==JOptionPane.OK_OPTION) { 
+							int option = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea actualizar?", "Confirmación", JOptionPane.WARNING_MESSAGE);
+								if(option==JOptionPane.OK_OPTION) { 
 								if((txtCed.getText()==" ")||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))||(txtNombre.getText().equalsIgnoreCase(""))||(txtApellido.getText().equalsIgnoreCase(""))
 										||(txtTel1.getText().equalsIgnoreCase("(   )    -    "))||(txtTel2.getText().equalsIgnoreCase("(   )    -    "))||(txtEmail.getText().equalsIgnoreCase(""))||((String) cbxSexo.getSelectedItem()=="<Seleccione>")
 										||(txtNac.getText().equalsIgnoreCase(""))||(txtNomR.getText().equalsIgnoreCase(""))||(txtApellR.getText().equalsIgnoreCase(""))||(txtNomR.getText().equalsIgnoreCase(""))||(txtApellR.getText().equalsIgnoreCase(""))||
@@ -312,10 +310,7 @@ public class RegCliente extends JDialog {
 									
 									JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
 								
-								}if((txtCed.getText()!=" ")&&(txtNombre.getText()!="Nombre(s)")&&(txtApellido.getText()!="Apellido(s)")&&(txtNombre.getText()!=" ")&&(txtApellido.getText()!=" ")
-										&&(txtTel1.getText()!=" ")&&(txtTel2.getText()!=" ")&&(txtEmail.getText()!=" ")&&((String) cbxSexo.getSelectedItem()!="<Seleccione>")
-										&&(txtNac.getText()!=" ")&&(txtNomR.getText()!="Nombre(s)")&&(txtApellR.getText()!="Apellido(s)")&&(txtNomR.getText()!=" ")&&(txtApellR.getText()!=" ")&&
-										(txtTelR.getText()!=" ")) {
+								}else {
 									cliente.setCedula(txtCed.getText());
 									cliente.setNombres(txtNombre.getText());
 									cliente.setApellidos(txtApellido.getText());
@@ -331,7 +326,8 @@ public class RegCliente extends JDialog {
 									cliente.setNacionalidad(txtNac.getText());
 									cliente.setNombreReferencia(txtNomR.getText()+" "+txtApellR.getText());
 									cliente.setTelefonoReferencia(txtTelR.getText());
-									spnFecNac.setValue(cliente.getNacimiento());								
+									spnFecNac.setValue(cliente.getNacimiento());	
+									JOptionPane.showMessageDialog(null, "Sus cambios han sido guardados correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
 									clean();
 									dispose();
 								}
@@ -351,11 +347,18 @@ public class RegCliente extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						if(i==0) {
 						if (JOptionPane.showConfirmDialog(rootPane, "Si cierra la ventana, no podrá registrarse. ¿Continuar de todos modos?", 
 		                        "Información", JOptionPane.ERROR_MESSAGE) == JOptionPane.ERROR_MESSAGE){
 		                	setCondicion(1);
 		                    dispose();
 		                }
+						} else {
+							if (JOptionPane.showConfirmDialog(rootPane, "Si cierra la ventana, no podrá hacer la modificación. ¿Continuar de todos modos?", 
+			                        "Información", JOptionPane.ERROR_MESSAGE) == JOptionPane.ERROR_MESSAGE){
+			                    dispose();
+						}
+					}
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

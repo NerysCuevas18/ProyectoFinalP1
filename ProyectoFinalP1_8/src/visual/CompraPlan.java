@@ -210,7 +210,10 @@ public class CompraPlan extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						if((txtCed.getText()==" ")||(txtCodPlan.getText()==" ")||(txtNomb.getText()==" ")) {
 							JOptionPane.showMessageDialog(null, "Llene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
-						}else {
+						} else if(Empresa.getInstance().findPlan(txtCodPlan.getText()) == null){
+							JOptionPane.showMessageDialog(null, "Inserte un plan existente.", "Información", JOptionPane.ERROR_MESSAGE);
+						}
+						else {
 							String cedula = txtCed.getText();
 							String plan = txtCodPlan.getText();
 							Empleado empleado = Empresa.getInstance().findEmpleado(cedEmpleado);
