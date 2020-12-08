@@ -11,6 +11,9 @@ import javax.swing.border.TitledBorder;
 
 import logico.Cliente;
 import logico.Empleado;
+import logico.EmpleadoAdm;
+import logico.Empresa;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -133,7 +136,7 @@ public class DetalleEmpleado extends JDialog {
 			txtSexo.setColumns(10);
 			txtSexo.setBounds(143, 191, 421, 26);
 			panel.add(txtSexo);
-			txtSexo.setText(empleado.getSexo());
+			txtSexo.setText(empleado.getSexo()+"");
 			
 			JLabel lblNacimiento = new JLabel("Nacimiento:");
 			lblNacimiento.setBounds(608, 194, 123, 20);
@@ -166,7 +169,7 @@ public class DetalleEmpleado extends JDialog {
 			txtIngresoComp.setColumns(10);
 			txtIngresoComp.setBounds(737, 243, 421, 26);
 			panel.add(txtIngresoComp);
-			txtIngresoComp.setText(empleado.getIngresoCompania());
+			txtIngresoComp.setText(empleado.getIngresoCompania().toString());
 			
 			
 			JLabel lblSaldo = new JLabel("Saldo:");
@@ -178,7 +181,7 @@ public class DetalleEmpleado extends JDialog {
 			txtSaldo.setColumns(10);
 			txtSaldo.setBounds(737, 354, 421, 26);
 			panel.add(txtSaldo);
-			txtSaldo.setText(empleado.getSaldo().toString());
+			float sueldo = Float.parseFloat(txtSaldo.getText());
 			
 			JLabel lblPass = new JLabel("Tipos Emp:");
 			lblPass.setBounds(15, 357, 99, 20);
@@ -189,7 +192,14 @@ public class DetalleEmpleado extends JDialog {
 			txtTipo.setColumns(10);
 			txtTipo.setBounds(143, 354, 421, 26);
 			panel.add(txtTipo);
-			txtTipo.setText(empleado.get());
+			for (Empleado empleado : Empresa.getInstance().getEmpleados()) {
+			if( empleado instanceof EmpleadoAdm) {
+				txtTipo.setText("Administrador");
+			}else {
+				txtTipo.setText("Comercial");
+			}
+			}
+			
 			
 			JLabel lblNombreRef = new JLabel("Nombre Ref:");
 			lblNombreRef.setBounds(15, 302, 113, 20);

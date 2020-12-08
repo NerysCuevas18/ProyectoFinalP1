@@ -123,7 +123,7 @@ public class DetalleCliente extends JDialog {
 			txtSexo.setColumns(10);
 			txtSexo.setBounds(155, 259, 376, 26);
 			panel.add(txtSexo);
-			txtSexo.setText(cliente.getSexo());
+			txtSexo.setText(cliente.getSexo()+"");
 			
 			JLabel lblNacionalidad = new JLabel("Nacimiento:");
 			lblNacionalidad.setBounds(15, 301, 104, 20);
