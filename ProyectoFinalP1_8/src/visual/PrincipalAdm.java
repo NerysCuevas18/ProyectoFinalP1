@@ -219,6 +219,19 @@ public class PrincipalAdm extends JFrame {
 		});
 		mnNewMenu.add(mntmEmpleados);
 		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Planes");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(Empresa.getInstance().getPlanes().size() == 0) {
+					JOptionPane.showMessageDialog(null, "Actualmente no hay planes registrados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					ListPlan listPlan = new ListPlan();
+					listPlan.setVisible(true);
+				}
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_6);
+		
 		JMenu mnNewMenu_1 = new JMenu("Reportes");
 		menuBar.add(mnNewMenu_1);
 		
