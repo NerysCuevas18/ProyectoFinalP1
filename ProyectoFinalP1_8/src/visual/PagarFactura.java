@@ -102,7 +102,7 @@ public class PagarFactura extends JDialog {
 		modelo = new DefaultTableModel();
 		String [] headers = {"Código de factura", "Nombre", "Monto"};
 		modelo.setColumnIdentifiers(headers);
-		table = new JTable();
+		table = new JTable(); 
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
